@@ -4,28 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Taneil Currie — AI Resource Hub</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --plum:       #6b4fa0;
-  --plum-deep:  #3d2455;
-  --plum-mid:   #8b6fba;
-  --plum-light: #c5b3e0;
-  --gold:       #c9a96e;
-  --gold-light: #e2c99a;
-  --rose:       #c4788a;
+  --plum:       #7c5ce0;
+  --plum-deep:  #5a3fb5;
+  --plum-mid:   #9b7ff0;
+  --plum-light: #c4b5f8;
+  --gold:       #7c5ce0;
+  --gold-light: #9b7ff0;
+  --rose:       #9b7ff0;
   --white:      #ffffff;
-  --bg:         #ede9f4;
-  --bg-section: #e8e2f2;
-  --bg-card:    #f7f4fc;
-  --text:       #1c1828;
-  --text-mid:   #3d3352;
-  --text-muted: #7a6e8a;
-  --border:     rgba(107,79,160,0.15);
-  --border-gold:rgba(201,169,110,0.3);
-  --card-bg:    #f7f4fc;
-  --serif:      'Cormorant Garamond', Georgia, serif;
-  --sans:       'Jost', sans-serif;
+  --bg:         #0d0d0f;
+  --bg-section: #111115;
+  --bg-card:    #18181e;
+  --text:       #f0f0f0;
+  --text-mid:   #c8c8d0;
+  --text-muted: #7a7a8a;
+  --border:     rgba(255,255,255,0.08);
+  --border-gold:rgba(124,92,224,0.4);
+  --card-bg:    #18181e;
+  --serif:      'Inter', 'Jost', sans-serif;
+  --sans:       'Inter', 'Jost', sans-serif;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -35,6 +35,7 @@ body {
   font-family: var(--sans);
   background: var(--bg);
   color: var(--text);
+  -webkit-font-smoothing: antialiased;
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -48,7 +49,7 @@ body::before {
 /* ===================== SITE NAV ===================== */
 .site-nav {
   position:fixed; top:0; left:0; right:0; z-index:500;
-  background: rgba(237,233,244,0.97);
+  background: rgba(13,13,15,0.97);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   padding: 0 48px;
@@ -59,14 +60,15 @@ body::before {
   height: 60px;
 }
 .nav-brand {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 18px;
-  font-weight: 500;
-  color: var(--text);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
   text-decoration: none;
   letter-spacing: 0.02em;
 }
-.nav-brand em { color: var(--gold); font-style: italic; }
+.nav-brand em { color: var(--plum); font-style: italic; }
 .nav-links { display:flex; gap:6px; }
 .nav-tab {
   padding: 7px 18px;
@@ -82,12 +84,12 @@ body::before {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.nav-tab:hover { color: var(--plum); border-color: rgba(107,79,160,0.3); }
+.nav-tab:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
 .nav-tab.active {
   background: var(--plum);
   border-color: var(--plum);
   color: #ffffff;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 /* ===================== HERO ===================== */
@@ -99,11 +101,11 @@ body::before {
 .hero-eyebrow {
   display:inline-flex; align-items:center; gap:10px;
   font-size:11px; letter-spacing:0.2em; text-transform:uppercase;
-  color: var(--gold); font-weight:500;
+  color: var(--plum); font-weight:500;
   margin-bottom: 28px;
 }
 .hero-eyebrow::before {
-  content:''; width:32px; height:1px; background:var(--plum); opacity:0.5;
+  content:''; width:32px; height:1px; background:var(--plum); opacity:0.8;
 }
 h1 {
   font-family: var(--serif);
@@ -116,12 +118,12 @@ h1 {
 }
 h1 em {
   font-style: italic;
-  color: var(--gold);
+  color: var(--plum);
 }
 .hero-sub {
-  font-size:17px; font-weight:300; line-height:1.7;
+  font-size:17px; font-weight:400; line-height:1.7;
   color: var(--text-muted);
-  max-width: 560px;
+  max-width: 520px;
   margin-bottom: 52px;
 }
 .hero-stats {
@@ -129,15 +131,16 @@ h1 em {
 }
 .hero-stat {}
 .hero-stat-num {
-  font-family: var(--serif);
-  font-size: 38px;
-  font-weight:500;
-  color: var(--gold);
+  font-family: var(--sans);
+  font-size: 42px;
+  font-weight:900;
+  color: var(--plum);
   display:block; line-height:1;
+  letter-spacing:-0.03em;
 }
 .hero-stat-label {
-  font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
-  color: var(--text-muted); margin-top:6px; display:block;
+  font-size:10px; letter-spacing:0.14em; text-transform:uppercase;
+  color: var(--text-muted); margin-top:6px; display:block; font-weight:600;
 }
 .hero-divider {
   width:1px; height:40px; background:rgba(45,27,61,0.15); align-self:center;
@@ -154,7 +157,7 @@ h1 em {
 /* ===================== SEARCH + FILTER BAR ===================== */
 .filter-bar {
   position:sticky; top:60px; z-index:100;
-  background: rgba(237,233,244,0.98);
+  background: rgba(13,13,15,0.98);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   padding: 14px 48px;
@@ -163,12 +166,12 @@ h1 em {
 .search-wrap { position:relative; flex:1; min-width:200px; max-width:360px; }
 .search-wrap svg { position:absolute; left:13px; top:50%; transform:translateY(-50%); opacity:0.35; }
 input[type="search"] {
-  width:100%; background:rgba(255,255,255,0.6); border:1px solid var(--border);
+  width:100%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
   border-radius:8px; padding:9px 13px 9px 40px;
   color:var(--text); font-family:var(--sans); font-size:13px; outline:none;
   transition:border-color 0.2s;
 }
-input[type="search"]:focus { border-color:rgba(107,79,160,0.4); }
+input[type="search"]:focus { border-color:rgba(124,92,224,0.6); }
 input[type="search"]::placeholder { color:var(--text-muted); }
 
 .cat-pills { display:flex; gap:6px; flex-wrap:wrap; }
@@ -179,19 +182,19 @@ input[type="search"]::placeholder { color:var(--text-muted); }
   font-weight:500; letter-spacing:0.07em; text-transform:uppercase;
   cursor:pointer; transition:all 0.18s; white-space:nowrap;
 }
-.cpill:hover { border-color:rgba(107,79,160,0.35); color:var(--plum); }
+.cpill:hover { border-color:rgba(124,92,224,0.5); color:var(--white); }
 .cpill.active {
   background:var(--plum);
   border-color:var(--plum);
   color:#ffffff;
-  font-weight:500;
+  font-weight:700;
 }
 
 /* ===================== SECTION HEADERS ===================== */
 .cat-head {
   display:flex; align-items:center; gap:14px;
   margin-bottom:36px; padding-bottom:18px;
-  border-bottom:1px solid var(--border);
+  border-bottom:1px solid rgba(255,255,255,0.08);
 }
 .cat-header {
   display:flex; align-items:center; gap:14px;
@@ -205,12 +208,12 @@ input[type="search"]::placeholder { color:var(--text-muted); }
 }
 .cat-emoji svg { width:18px; height:18px; stroke-width:1.6; }
 .cat-name {
-  font-family:var(--serif); font-size:22px; font-weight:500; color:var(--text);
-  letter-spacing:0.01em;
+  font-family:var(--sans); font-size:18px; font-weight:700; color:var(--white);
+  letter-spacing:-0.01em; text-transform:uppercase;
 }
 .cat-tally {
   margin-left:auto; font-size:11px; color:var(--text-muted);
-  background:rgba(107,79,160,0.08); border:1px solid var(--border);
+  background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
   border-radius:100px; padding:3px 12px; letter-spacing:0.06em;
 }
 
@@ -223,8 +226,8 @@ input[type="search"]::placeholder { color:var(--text-muted); }
 #toolsContent { padding-top:32px; }
 
 .tool-card {
-  background: #ffffff;
-  border:1px solid rgba(107,79,160,0.12);
+  background: var(--bg-card);
+  border:1px solid rgba(255,255,255,0.07);
   border-radius:14px; padding:22px;
   display:flex; flex-direction:column; gap:11px;
   text-decoration:none; color:inherit;
@@ -238,9 +241,9 @@ input[type="search"]::placeholder { color:var(--text-muted); }
   opacity:0; transition:opacity 0.2s; pointer-events:none; border-radius:14px;
 }
 .tool-card:hover {
-  border-color:rgba(107,79,160,0.35);
+  border-color:rgba(124,92,224,0.5);
   transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(107,79,160,0.12);
+  box-shadow:0 8px 32px rgba(124,92,224,0.15);
 }
 .tool-card:hover::before { opacity:1; }
 .tool-card.hidden { display:none; }
@@ -249,18 +252,18 @@ input[type="search"]::placeholder { color:var(--text-muted); }
 .card-top-left { display:flex; align-items:center; gap:10px; flex:1; min-width:0; }
 .card-logo {
   width:32px; height:32px; border-radius:7px; object-fit:contain; flex-shrink:0;
-  background:#ffffff; border:1px solid rgba(107,79,160,0.1);
+  background:#ffffff; border:1px solid rgba(255,255,255,0.1);
   padding:3px;
 }
 .card-logo-fallback {
   width:30px; height:30px; border-radius:7px; flex-shrink:0;
-  background:rgba(107,79,160,0.1); border:1px solid rgba(107,79,160,0.15);
+  background:rgba(124,92,224,0.15); border:1px solid rgba(124,92,224,0.25);
   display:flex; align-items:center; justify-content:center;
   font-size:13px; font-weight:700; color:var(--plum); font-family:var(--sans);
 }
 .card-name {
-  font-family:var(--serif); font-size:15px; font-weight:600;
-  color:var(--text); line-height:1.2;
+  font-family:var(--sans); font-size:14px; font-weight:700;
+  color:var(--white); line-height:1.2; letter-spacing:-0.01em;
 }
 .pricing-dot {
   width:7px; height:7px; border-radius:50%; flex-shrink:0;
@@ -273,8 +276,8 @@ input[type="search"]::placeholder { color:var(--text-muted); }
 .card-tags { display:flex; gap:5px; flex-wrap:wrap; }
 .tag {
   font-size:10px; padding:2px 8px; border-radius:4px;
-  background:rgba(107,79,160,0.07); color:var(--text-muted);
-  border:1px solid rgba(107,79,160,0.15); letter-spacing:0.04em;
+  background:rgba(255,255,255,0.06); color:var(--text-muted);
+  border:1px solid rgba(255,255,255,0.1); letter-spacing:0.04em;
 }
 .card-url { font-size:11px; color:rgba(201,169,110,0.55); font-weight:400; margin-top:2px; }
 
@@ -282,7 +285,7 @@ input[type="search"]::placeholder { color:var(--text-muted); }
 .pricing-legend {
   display:flex; gap:18px; flex-wrap:wrap; align-items:center;
   margin-bottom:28px; padding:14px 20px;
-  background:rgba(107,79,160,0.05); border:1px solid var(--border); border-radius:10px;
+  background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px;
   font-size:12px; color:var(--text-muted);
 }
 .legend-item { display:flex; align-items:center; gap:7px; }
@@ -297,17 +300,17 @@ input[type="search"]::placeholder { color:var(--text-muted); }
 .prompt-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(320px,1fr)); gap:16px; margin-bottom:56px; }
 
 .prompt-card {
-  background:#ffffff; border:1px solid rgba(107,79,160,0.12); border-radius:14px;
+  background:var(--bg-card); border:1px solid rgba(255,255,255,0.07); border-radius:14px;
   padding:24px; display:flex; flex-direction:column; gap:14px;
-  box-shadow:0 1px 4px rgba(107,79,160,0.08); transition:border-color 0.2s, transform 0.2s;
+  transition:border-color 0.2s, transform 0.2s;
 }
-.prompt-card:hover { border-color:rgba(107,79,160,0.3); transform:translateY(-2px); box-shadow:0 6px 20px rgba(107,79,160,0.12); }
+.prompt-card:hover { border-color:rgba(124,92,224,0.4); transform:translateY(-2px); box-shadow:0 6px 24px rgba(124,92,224,0.15); }
 
 .prompt-meta { display:flex; align-items:center; justify-content:space-between; }
 .prompt-cat-badge {
   font-size:10px; letter-spacing:0.1em; text-transform:uppercase; font-weight:500;
   padding:3px 10px; border-radius:100px;
-  background:rgba(107,79,160,0.1); color:var(--plum); border:1px solid rgba(107,79,160,0.2);
+  background:rgba(124,92,224,0.15); color:var(--plum); border:1px solid rgba(124,92,224,0.3);
 }
 .copy-btn {
   background:transparent; border:1px solid var(--border); color:var(--text-muted);
@@ -317,10 +320,10 @@ input[type="search"]::placeholder { color:var(--text-muted); }
 .copy-btn:hover { border-color:var(--plum); color:var(--plum); background:rgba(107,79,160,0.06); }
 .copy-btn.copied { border-color:#5a9e7a; color:#5a9e7a; }
 
-.prompt-title { font-family:var(--serif); font-size:17px; font-weight:600; color:var(--text); }
+.prompt-title { font-family:var(--sans); font-size:15px; font-weight:700; color:var(--white); letter-spacing:-0.01em; }
 .prompt-text {
   font-size:12.5px; color:var(--text-mid); line-height:1.65;
-  background:rgba(107,79,160,0.05); border:1px solid rgba(107,79,160,0.1);
+  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
   border-radius:8px; padding:14px; font-family:monospace;
   white-space:pre-wrap; word-break:break-word;
 }
@@ -329,24 +332,24 @@ input[type="search"]::placeholder { color:var(--text-muted); }
 /* ===================== AUTOMATIONS ===================== */
 .auto-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(340px,1fr)); gap:16px; margin-bottom:56px; }
 .auto-card {
-  background:#ffffff; border:1px solid rgba(107,79,160,0.12); border-radius:14px;
+  background:var(--bg-card); border:1px solid rgba(255,255,255,0.07); border-radius:14px;
   padding:26px; display:flex; flex-direction:column; gap:14px;
-  box-shadow:0 1px 4px rgba(107,79,160,0.08); transition:border-color 0.2s, box-shadow 0.2s;
+  transition:border-color 0.2s, box-shadow 0.2s;
 }
-.auto-card:hover { border-color:rgba(107,79,160,0.3); box-shadow:0 6px 20px rgba(107,79,160,0.12); }
+.auto-card:hover { border-color:rgba(124,92,224,0.4); box-shadow:0 6px 24px rgba(124,92,224,0.15); }
 .auto-header { display:flex; align-items:flex-start; gap:14px; }
 .auto-icon {
   width:44px; height:44px; border-radius:10px; flex-shrink:0;
   display:flex; align-items:center; justify-content:center; font-size:20px;
-  background:rgba(107,79,160,0.08); border:1px solid rgba(107,79,160,0.15);
+  background:rgba(124,92,224,0.1); border:1px solid rgba(124,92,224,0.2);
 }
-.auto-title { font-family:var(--serif); font-size:18px; font-weight:600; color:var(--text); margin-bottom:4px; }
+.auto-title { font-family:var(--sans); font-size:16px; font-weight:700; color:var(--white); margin-bottom:4px; letter-spacing:-0.01em; }
 .auto-difficulty {
   font-size:10px; letter-spacing:0.1em; text-transform:uppercase; font-weight:500;
   padding:2px 8px; border-radius:100px; display:inline-block;
 }
 .diff-beginner { background:rgba(126,207,158,0.1); color:#7ecf9e; border:1px solid rgba(126,207,158,0.2); }
-.diff-intermediate { background:rgba(201,169,110,0.1); color:var(--gold); border:1px solid rgba(201,169,110,0.2); }
+.diff-intermediate { background:rgba(201,169,110,0.1); color:var(--plum); border:1px solid rgba(201,169,110,0.2); }
 .diff-advanced { background:rgba(196,120,138,0.1); color:var(--rose); border:1px solid rgba(196,120,138,0.2); }
 
 .auto-desc { font-size:13px; color:var(--text-muted); line-height:1.65; }
@@ -364,25 +367,24 @@ input[type="search"]::placeholder { color:var(--text-muted); }
 .auto-tools { display:flex; gap:6px; flex-wrap:wrap; margin-top:4px; }
 .tool-pill {
   font-size:10px; padding:2px 9px; border-radius:100px;
-  background:rgba(107,79,160,0.07); color:var(--text-muted);
-  border:1px solid rgba(107,79,160,0.15); letter-spacing:0.03em;
+  background:rgba(255,255,255,0.05); color:var(--text-muted);
+  border:1px solid rgba(255,255,255,0.1); letter-spacing:0.03em;
 }
 
 /* ===================== COURSES ===================== */
 .course-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:16px; margin-bottom:56px; }
 .course-card {
-  background:#ffffff; border:1px solid rgba(107,79,160,0.12); border-radius:14px;
+  background:var(--bg-card); border:1px solid rgba(255,255,255,0.07); border-radius:14px;
   padding:26px; display:flex; flex-direction:column; gap:14px;
   text-decoration:none; color:inherit;
-  box-shadow:0 1px 4px rgba(107,79,160,0.08);
   transition:border-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
-.course-card:hover { border-color:rgba(107,79,160,0.3); transform:translateY(-2px); box-shadow:0 6px 20px rgba(107,79,160,0.12); }
+.course-card:hover { border-color:rgba(124,92,224,0.4); transform:translateY(-2px); box-shadow:0 6px 24px rgba(124,92,224,0.15); }
 .course-provider {
   font-size:10px; letter-spacing:0.15em; text-transform:uppercase;
-  color:var(--gold); font-weight:500;
+  color:var(--plum); font-weight:500;
 }
-.course-title { font-family:var(--serif); font-size:20px; font-weight:600; color:var(--text); line-height:1.25; }
+.course-title { font-family:var(--sans); font-size:17px; font-weight:700; color:var(--white); line-height:1.25; letter-spacing:-0.01em; }
 .course-desc { font-size:12.5px; color:var(--text-muted); line-height:1.65; flex:1; }
 .course-meta { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
 .course-badge {
@@ -391,7 +393,7 @@ input[type="search"]::placeholder { color:var(--text-muted); }
 .cb-free { background:rgba(126,207,158,0.1); color:#7ecf9e; border:1px solid rgba(126,207,158,0.2); }
 .cb-paid { background:rgba(224,155,122,0.1); color:#e09b7a; border:1px solid rgba(224,155,122,0.2); }
 .course-link {
-  font-size:12px; color:var(--gold); font-weight:500; margin-top:auto;
+  font-size:12px; color:var(--plum); font-weight:500; margin-top:auto;
   display:inline-flex; align-items:center; gap:6px;
 }
 
@@ -403,12 +405,12 @@ input[type="search"]::placeholder { color:var(--text-muted); }
   font-family:var(--serif); font-size:clamp(32px,4vw,48px); font-weight:500;
   color:var(--text); margin-bottom:12px; line-height:1.1;
 }
-.section-title em { color:var(--gold); font-style:italic; }
-.section-sub { font-size:15px; color:var(--text-muted); line-height:1.7; max-width:600px; }
+.section-title em { color:var(--plum); font-style:italic; }
+.section-sub { font-size:15px; color:var(--text-muted); line-height:1.7; max-width:600px; font-family:var(--sans); }
 
 /* RESULTS COUNT */
 #results-info { font-size:12px; color:var(--text-muted); margin:16px 0 24px; letter-spacing:0.04em; }
-#results-info strong { color:var(--gold); }
+#results-info strong { color:var(--plum); }
 
 /* FOOTER */
 footer {
@@ -417,7 +419,7 @@ footer {
   padding:32px 48px; text-align:center;
   font-size:12px; color:var(--text-muted); letter-spacing:0.04em;
 }
-footer a { color:var(--plum); text-decoration:none; font-weight:500; }
+footer a { color:var(--plum); text-decoration:none; font-weight:600; }
 footer strong { color:var(--text); }
 
 .hidden { display:none !important; }
@@ -439,7 +441,7 @@ footer strong { color:var(--text); }
 .hamburger:hover { background: rgba(107,79,160,0.1); }
 .hamburger span {
   display: block; width: 22px; height: 2px;
-  background: var(--text); border-radius: 2px;
+  background: #ffffff; border-radius: 2px;
   transition: all 0.25s;
   margin: 5px 0;
 }
@@ -450,7 +452,7 @@ footer strong { color:var(--text); }
 .mobile-menu {
   display: none;
   position: fixed; top: 63px; left: 0; right: 0; z-index: 490;
-  background: rgba(237,233,244,0.99);
+  background: rgba(13,13,15,0.99);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   padding: 8px 0 12px;
@@ -461,15 +463,15 @@ footer strong { color:var(--text); }
   background: none; border: none; cursor: pointer;
   padding: 14px 28px; text-align: left;
   font-family: var(--sans); font-size: 14px;
-  font-weight: 400; letter-spacing: 0.08em;
+  font-weight: 500; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--text-muted);
   transition: all 0.15s; border-left: 3px solid transparent;
 }
-.mobile-menu-item:hover { color: var(--plum); background: rgba(107,79,160,0.06); }
+.mobile-menu-item:hover { color: var(--white); background: rgba(255,255,255,0.05); }
 .mobile-menu-item.active {
-  color: var(--plum); font-weight: 600;
+  color: var(--plum); font-weight: 700;
   border-left-color: var(--plum);
-  background: rgba(107,79,160,0.06);
+  background: rgba(124,92,224,0.08);
 }
 
 @media(max-width: 640px) {
@@ -483,7 +485,7 @@ footer strong { color:var(--text); }
 <!-- ========== SITE NAV ========== -->
 <nav class="site-nav">
   <div class="nav-inner">
-    <a href="https://taneilcurrie.com" class="nav-brand">Taneil <em>Currie</em></a>
+    <a href="https://taneilcurrie.com" class="nav-brand">Taneil <em style="font-style:normal;color:var(--plum);">Currie</em></a>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -511,7 +513,7 @@ footer strong { color:var(--text); }
   <div class="hero">
     <div class="hero-eyebrow">AI Resource Hub</div>
     <h1>AI Made <em>Practical.</em></h1>
-    <p class="hero-sub">A curated collection of AI tools, prompts, automation workflows, and free courses — everything you need to start working smarter with AI.</p>
+    <p class="hero-sub">A curated collection of AI tools, prompts, automation workflows, and free courses. Everything you need to start working smarter with AI.</p>
     <div class="hero-stats">
       <div class="hero-stat">
         <span class="hero-stat-num">285+</span>
@@ -538,32 +540,32 @@ footer strong { color:var(--text); }
   <div style="max-width:1200px;margin:0 auto;padding:0 48px 100px;position:relative;z-index:1;">
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
 
-      <div onclick="switchSection('tools')" style="background:#ffffff;border:1px solid rgba(107,79,160,0.15);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;box-shadow:0 2px 8px rgba(107,79,160,0.08);" onmouseover="this.style.borderColor='rgba(107,79,160,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 28px rgba(107,79,160,0.14)'" onmouseout="this.style.borderColor='rgba(107,79,160,0.15)';this.style.transform='none';this.style.boxShadow='0 2px 8px rgba(107,79,160,0.08)'">
-        <div style="width:48px;height:48px;border-radius:10px;background:rgba(107,79,160,0.12);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2d1b3d" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
-        <div style="font-family:var(--serif);font-size:20px;font-weight:600;color:var(--text);margin-bottom:8px;">AI Tool Directory</div>
+      <div onclick="switchSection('tools')" style="background:var(--bg-card);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(124,92,224,0.5)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 32px rgba(124,92,224,0.2)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">
+        <div style="width:48px;height:48px;border-radius:10px;background:rgba(124,92,224,0.15);border:1px solid rgba(124,92,224,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+        <div style="font-family:var(--sans);font-size:18px;font-weight:800;color:var(--white);margin-bottom:8px;letter-spacing:-0.01em;text-transform:uppercase;">AI Tool Directory</div>
         <div style="font-size:13px;color:var(--text-muted);line-height:1.65;">285+ tools organized by category — video, content, design, SEO, productivity, and more. Find the right tool fast.</div>
-        <div style="margin-top:16px;font-size:12px;color:var(--plum);font-weight:500;">Browse tools →</div>
+        <div style="margin-top:16px;font-size:12px;color:var(--plum);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Browse tools →</div>
       </div>
 
-      <div onclick="switchSection('prompts')" style="background:#ffffff;border:1px solid rgba(107,79,160,0.15);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;box-shadow:0 2px 8px rgba(107,79,160,0.08);" onmouseover="this.style.borderColor='rgba(107,79,160,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 28px rgba(107,79,160,0.14)'" onmouseout="this.style.borderColor='rgba(107,79,160,0.15)';this.style.transform='none';this.style.boxShadow='0 2px 8px rgba(107,79,160,0.08)'">
-        <div style="width:48px;height:48px;border-radius:10px;background:rgba(107,79,160,0.12);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2d1b3d" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="13" y2="14"/></svg></div>
-        <div style="font-family:var(--serif);font-size:20px;font-weight:600;color:var(--text);margin-bottom:8px;">Prompt Library</div>
+      <div onclick="switchSection('prompts')" style="background:var(--bg-card);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(124,92,224,0.5)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 32px rgba(124,92,224,0.2)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">
+        <div style="width:48px;height:48px;border-radius:10px;background:rgba(124,92,224,0.15);border:1px solid rgba(124,92,224,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="13" y2="14"/></svg></div>
+        <div style="font-family:var(--sans);font-size:18px;font-weight:800;color:var(--white);margin-bottom:8px;letter-spacing:-0.01em;text-transform:uppercase;">Prompt Library</div>
         <div style="font-size:13px;color:var(--text-muted);line-height:1.65;">Ready-to-use prompts for marketing, strategy, content, and operations. Copy, adapt, and get better results immediately.</div>
-        <div style="margin-top:16px;font-size:12px;color:var(--plum);font-weight:500;">Explore prompts →</div>
+        <div style="margin-top:16px;font-size:12px;color:var(--plum);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Explore prompts →</div>
       </div>
 
-      <div onclick="switchSection('automations')" style="background:#ffffff;border:1px solid rgba(107,79,160,0.15);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;box-shadow:0 2px 8px rgba(107,79,160,0.08);" onmouseover="this.style.borderColor='rgba(107,79,160,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 28px rgba(107,79,160,0.14)'" onmouseout="this.style.borderColor='rgba(107,79,160,0.15)';this.style.transform='none';this.style.boxShadow='0 2px 8px rgba(107,79,160,0.08)'">
-        <div style="width:48px;height:48px;border-radius:10px;background:rgba(107,79,160,0.12);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2d1b3d" stroke-width="1.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <div style="font-family:var(--serif);font-size:20px;font-weight:600;color:var(--text);margin-bottom:8px;">Automation Workflows</div>
+      <div onclick="switchSection('automations')" style="background:var(--bg-card);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(124,92,224,0.5)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 32px rgba(124,92,224,0.2)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">
+        <div style="width:48px;height:48px;border-radius:10px;background:rgba(124,92,224,0.15);border:1px solid rgba(124,92,224,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div style="font-family:var(--sans);font-size:18px;font-weight:800;color:var(--white);margin-bottom:8px;letter-spacing:-0.01em;text-transform:uppercase;">Automation Workflows</div>
         <div style="font-size:13px;color:var(--text-muted);line-height:1.65;">Step-by-step automation examples using Make, Zapier, and AI tools — built for real business use cases.</div>
-        <div style="margin-top:16px;font-size:12px;color:var(--plum);font-weight:500;">See workflows →</div>
+        <div style="margin-top:16px;font-size:12px;color:var(--plum);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">See workflows →</div>
       </div>
 
-      <div onclick="switchSection('courses')" style="background:#ffffff;border:1px solid rgba(107,79,160,0.15);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;box-shadow:0 2px 8px rgba(107,79,160,0.08);" onmouseover="this.style.borderColor='rgba(107,79,160,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 28px rgba(107,79,160,0.14)'" onmouseout="this.style.borderColor='rgba(107,79,160,0.15)';this.style.transform='none';this.style.boxShadow='0 2px 8px rgba(107,79,160,0.08)'">
-        <div style="width:48px;height:48px;border-radius:10px;background:rgba(107,79,160,0.12);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2d1b3d" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-        <div style="font-family:var(--serif);font-size:20px;font-weight:600;color:var(--text);margin-bottom:8px;">Free Courses</div>
+      <div onclick="switchSection('courses')" style="background:var(--bg-card);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(124,92,224,0.5)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 32px rgba(124,92,224,0.2)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">
+        <div style="width:48px;height:48px;border-radius:10px;background:rgba(124,92,224,0.15);border:1px solid rgba(124,92,224,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div style="font-family:var(--sans);font-size:18px;font-weight:800;color:var(--white);margin-bottom:8px;letter-spacing:-0.01em;text-transform:uppercase;">Free Courses</div>
         <div style="font-size:13px;color:var(--text-muted);line-height:1.65;">The best free AI learning resources, including courses from Anthropic, Google, and DeepLearning.ai — all in one place.</div>
-        <div style="margin-top:16px;font-size:12px;color:var(--plum);font-weight:500;">Start learning →</div>
+        <div style="margin-top:16px;font-size:12px;color:var(--plum);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Start learning →</div>
       </div>
 
     </div>
@@ -2885,7 +2887,7 @@ footer strong { color:var(--text); }
 <!-- ========== PROMPTS SECTION ========== -->
 <section class="section" id="prompts">
 <div class="section-wrap" style="padding-top:80px;">
-  <h3 style="font-family:var(--serif);font-size:18px;color:var(--gold);margin-bottom:16px;letter-spacing:0.08em;text-transform:uppercase;font-size:12px;">Marketing & Content</h3>
+  <h3 style="font-family:var(--sans);font-size:16px;color:var(--plum);margin-bottom:16px;letter-spacing:0.08em;text-transform:uppercase;font-size:12px;">Marketing & Content</h3>
   <div class="prompt-grid">
 
     <div class="prompt-card">
@@ -2932,7 +2934,7 @@ footer strong { color:var(--text); }
 
   </div>
 
-  <h3 style="font-family:var(--serif);font-size:12px;color:var(--gold);margin:32px 0 16px;letter-spacing:0.08em;text-transform:uppercase;">Business Strategy & Operations</h3>
+  <h3 style="font-family:var(--sans);font-size:11px;color:var(--plum);margin:32px 0 16px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;">Business Strategy & Operations</h3>
   <div class="prompt-grid">
 
     <div class="prompt-card">
@@ -3193,7 +3195,7 @@ footer strong { color:var(--text); }
 <!-- ========== COURSES SECTION ========== -->
 <section class="section" id="courses">
 <div class="section-wrap" style="padding-top:80px;">
-  <h3 style="font-family:var(--serif);font-size:12px;color:var(--gold);margin-bottom:16px;letter-spacing:0.08em;text-transform:uppercase;">Beginner — Start Here</h3>
+  <h3 style="font-family:var(--serif);font-size:12px;color:var(--plum);margin-bottom:16px;letter-spacing:0.08em;text-transform:uppercase;">Beginner — Start Here</h3>
   <div class="course-grid">
 
     <a href="https://www.anthropic.com/learn" target="_blank" class="course-card">
@@ -3230,7 +3232,7 @@ footer strong { color:var(--text); }
 
   </div>
 
-  <h3 style="font-family:var(--serif);font-size:12px;color:var(--gold);margin:32px 0 16px;letter-spacing:0.08em;text-transform:uppercase;">Intermediate — Go Deeper</h3>
+  <h3 style="font-family:var(--sans);font-size:11px;color:var(--plum);margin:32px 0 16px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;">Intermediate — Go Deeper</h3>
   <div class="course-grid">
 
     <a href="https://www.deeplearning.ai/short-courses/" target="_blank" class="course-card">
@@ -3267,7 +3269,7 @@ footer strong { color:var(--text); }
 
   </div>
 
-  <h3 style="font-family:var(--serif);font-size:12px;color:var(--gold);margin:32px 0 16px;letter-spacing:0.08em;text-transform:uppercase;">AI Automation Specific</h3>
+  <h3 style="font-family:var(--sans);font-size:11px;color:var(--plum);margin:32px 0 16px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;">AI Automation Specific</h3>
   <div class="course-grid">
 
     <a href="https://academy.make.com" target="_blank" class="course-card">
@@ -3296,7 +3298,7 @@ footer strong { color:var(--text); }
 
   </div>
 
-  <h3 style="font-family:var(--serif);font-size:12px;color:var(--rose);margin:40px 0 20px;letter-spacing:0.08em;text-transform:uppercase;">Top Paid Courses — Worth the Investment</h3>
+  <h3 style="font-family:var(--sans);font-size:11px;color:var(--plum);margin:40px 0 20px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;">Top Paid Courses — Worth the Investment</h3>
   <div class="course-grid">
 
     <a href="https://www.coursera.org/professional-certificates/ibm-ai-developer" target="_blank" class="course-card" style="border-color:rgba(196,120,138,0.25);">
