@@ -4,479 +4,630 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Taneil Currie — AI Resource Hub</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
+/* ============================================================
+   DESIGN SYSTEM — resources.taneilcurrie.com
+   Fonts: Bebas Neue (headlines) / Familjen Grotesk (body)
+   ============================================================ */
 :root {
-  --plum:       #7c5ce0;
-  --plum-deep:  #5a3fb5;
-  --plum-mid:   #9b7ff0;
-  --plum-light: #c4b5f8;
-  --gold:       #7c5ce0;
-  --gold-light: #9b7ff0;
-  --rose:       #9b7ff0;
-  --white:      #ffffff;
-  --bg:         #0d0d0f;
-  --bg-section: #111115;
-  --bg-card:    #18181e;
-  --text:       #f0f0f0;
-  --text-mid:   #c8c8d0;
-  --text-muted: #7a7a8a;
-  --border:     rgba(255,255,255,0.08);
-  --border-gold:rgba(124,92,224,0.4);
-  --card-bg:    #18181e;
-  --serif:      'Inter', 'Jost', sans-serif;
-  --sans:       'Inter', 'Jost', sans-serif;
+  --bg:           #0a0a0a;
+  --bg-card:      #111111;
+  --bg-hover:     #1a1a1a;
+  --lavender:     #c9b8ff;
+  --lavender-hov: #b8a4ff;
+  --lavender-dim: rgba(201,184,255,0.12);
+  --white:        #f5f2ff;
+  --grey:         rgba(255,255,255,0.45);
+  --grey-dim:     rgba(255,255,255,0.18);
+  --border:       rgba(255,255,255,0.08);
+  --border-lav:   rgba(201,184,255,0.25);
+  /* aliases for legacy references */
+  --plum:         #c9b8ff;
+  --plum-dim:     rgba(201,184,255,0.12);
+  --text:         #f5f2ff;
+  --text-muted:   rgba(255,255,255,0.45);
+  --text-dim:     rgba(255,255,255,0.18);
+  --serif:        'Bebas Neue', sans-serif;
+  --sans:         'Familjen Grotesk', sans-serif;
 }
 
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.75;
   background: var(--bg);
-  color: var(--text);
-  -webkit-font-smoothing: antialiased;
+  color: var(--white);
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
+a { color: inherit; text-decoration: none; }
+button { font-family: var(--sans); }
 
-/* SUBTLE TOP ACCENT */
-body::before {
-  content:''; position:fixed; top:0; left:0; right:0; height:3px; z-index:600;
-  background: var(--plum);
-}
+/* ── TOP ACCENT ── */
+.top-accent { height: 3px; background: var(--lavender); width: 100%; position: fixed; top: 0; z-index: 200; }
 
-/* ===================== SITE NAV ===================== */
-.site-nav {
-  position:fixed; top:0; left:0; right:0; z-index:500;
-  background: rgba(13,13,15,0.97);
-  backdrop-filter: blur(20px);
+/* ── NAV ── */
+nav {
+  position: fixed; top: 3px; left: 0; right: 0; z-index: 100;
+  background: rgba(10,10,10,0.97);
   border-bottom: 1px solid var(--border);
-  padding: 0 48px;
+  backdrop-filter: blur(12px);
 }
 .nav-inner {
-  max-width:1200px; margin:0 auto;
-  display:flex; align-items:center; justify-content:space-between;
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 48px;
   height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
 }
 .nav-brand {
   font-family: var(--sans);
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--white);
-  letter-spacing: -0.01em;
+  letter-spacing: 0.04em;
   text-decoration: none;
-  letter-spacing: 0.02em;
 }
-.nav-brand em { color: var(--plum); font-style: italic; }
-.nav-links { display:flex; gap:6px; }
+.nav-brand em { font-style: normal; color: var(--lavender); }
+.nav-tabs { display: flex; gap: 6px; }
 .nav-tab {
-  padding: 7px 18px;
+  padding: 6px 16px;
   border-radius: 100px;
   border: 1px solid transparent;
   background: transparent;
-  color: var(--text-muted);
+  color: var(--grey);
   font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 11px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
-  letter-spacing: 0.04em;
+  transition: all 0.18s;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-.nav-tab:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+.nav-tab:hover { color: var(--white); border-color: var(--border); }
 .nav-tab.active {
-  background: var(--plum);
-  border-color: var(--plum);
-  color: #ffffff;
-  font-weight: 700;
+  background: var(--lavender);
+  border-color: var(--lavender);
+  color: #0a0a0a;
 }
 
-/* ===================== HERO ===================== */
-.hero {
-  position:relative; z-index:1;
-  padding: 140px 48px 100px;
-  max-width:1200px; margin:0 auto;
-}
-.hero-eyebrow {
-  display:inline-flex; align-items:center; gap:10px;
-  font-size:11px; letter-spacing:0.2em; text-transform:uppercase;
-  color: var(--plum); font-weight:500;
-  margin-bottom: 28px;
-}
-.hero-eyebrow::before {
-  content:''; width:32px; height:1px; background:var(--plum); opacity:0.8;
-}
-h1 {
-  font-family: var(--serif);
-  font-size: clamp(48px,7vw,88px);
-  font-weight: 500;
-  line-height: 1.0;
-  letter-spacing: -0.01em;
-  color: var(--text);
-  margin-bottom: 28px;
-}
-h1 em {
-  font-style: italic;
-  color: var(--plum);
-}
-.hero-sub {
-  font-size:17px; font-weight:400; line-height:1.7;
-  color: var(--text-muted);
-  max-width: 520px;
-  margin-bottom: 52px;
-}
-.hero-stats {
-  display:flex; gap:48px; flex-wrap:wrap;
-}
-.hero-stat {}
-.hero-stat-num {
-  font-family: var(--sans);
-  font-size: 42px;
-  font-weight:900;
-  color: var(--plum);
-  display:block; line-height:1;
-  letter-spacing:-0.03em;
-}
-.hero-stat-label {
-  font-size:10px; letter-spacing:0.14em; text-transform:uppercase;
-  color: var(--text-muted); margin-top:6px; display:block; font-weight:600;
-}
-.hero-divider {
-  width:1px; height:40px; background:rgba(45,27,61,0.15); align-self:center;
-}
-
-/* ===================== SECTIONS ===================== */
-.section { display:none; position:relative; z-index:1; }
-.section.active { display:block; }
-.section-wrap { max-width:1200px; margin:0 auto; padding: 40px 48px 100px; }
-/* Tools section needs extra top padding to clear the double sticky bars (nav + filter) */
-#tools .section-wrap { padding-top: 52px; }
-.section-title { scroll-margin-top: 140px; }
-
-/* ===================== SEARCH + FILTER BAR ===================== */
-.filter-bar {
-  position:sticky; top:60px; z-index:100;
-  background: rgba(13,13,15,0.98);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  padding: 14px 48px;
-}
-.filter-bar-inner { max-width:1200px; margin:0 auto; display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
-.search-wrap { position:relative; flex:1; min-width:200px; max-width:360px; }
-.search-wrap svg { position:absolute; left:13px; top:50%; transform:translateY(-50%); opacity:0.35; }
-input[type="search"] {
-  width:100%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
-  border-radius:8px; padding:9px 13px 9px 40px;
-  color:var(--text); font-family:var(--sans); font-size:13px; outline:none;
-  transition:border-color 0.2s;
-}
-input[type="search"]:focus { border-color:rgba(124,92,224,0.6); }
-input[type="search"]::placeholder { color:var(--text-muted); }
-
-.cat-pills { display:flex; gap:6px; flex-wrap:wrap; }
-.cpill {
-  padding:6px 14px; border-radius:100px;
-  border:1px solid var(--border); background:transparent;
-  color:var(--text-muted); font-family:var(--sans); font-size:11px;
-  font-weight:500; letter-spacing:0.07em; text-transform:uppercase;
-  cursor:pointer; transition:all 0.18s; white-space:nowrap;
-}
-.cpill:hover { border-color:rgba(124,92,224,0.5); color:var(--white); }
-.cpill.active {
-  background:var(--plum);
-  border-color:var(--plum);
-  color:#ffffff;
-  font-weight:700;
-}
-
-/* ===================== SECTION HEADERS ===================== */
-.cat-head {
-  display:flex; align-items:center; gap:14px;
-  margin-bottom:36px; padding-bottom:18px;
-  border-bottom:1px solid rgba(255,255,255,0.08);
-}
-.cat-header {
-  display:flex; align-items:center; gap:14px;
-  margin-bottom:36px; padding-bottom:18px;
-  border-bottom:1px solid var(--border);
-}
-.cat-emoji {
-  width:38px; height:38px; border-radius:9px;
-  display:flex; align-items:center; justify-content:center;
-  flex-shrink:0;
-}
-.cat-emoji svg { width:18px; height:18px; stroke-width:1.6; }
-.cat-name {
-  font-family:var(--sans); font-size:18px; font-weight:700; color:var(--white);
-  letter-spacing:-0.01em; text-transform:uppercase;
-}
-.cat-tally {
-  margin-left:auto; font-size:11px; color:var(--text-muted);
-  background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
-  border-radius:100px; padding:3px 12px; letter-spacing:0.06em;
-}
-
-/* ===================== TOOL GRID ===================== */
-.tool-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(270px,1fr)); gap:14px; }
-.tool-cat-section { margin-bottom:56px; }
-.tool-cat-section.hidden { display:none; }
-.cat-block { margin-bottom:56px; }
-.cat-block.hidden { display:none; }
-#toolsContent { padding-top:32px; }
-
-.tool-card {
-  background: var(--bg-card);
-  border:1px solid rgba(255,255,255,0.07);
-  border-radius:14px; padding:22px;
-  display:flex; flex-direction:column; gap:11px;
-  text-decoration:none; color:inherit;
-  transition:border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-  position:relative; overflow:hidden;
-  box-shadow: 0 1px 4px rgba(45,27,61,0.06);
-}
-.tool-card::before {
-  content:''; position:absolute; inset:0;
-  background:linear-gradient(135deg, rgba(201,169,110,0.04) 0%, transparent 50%);
-  opacity:0; transition:opacity 0.2s; pointer-events:none; border-radius:14px;
-}
-.tool-card:hover {
-  border-color:rgba(124,92,224,0.5);
-  transform:translateY(-2px);
-  box-shadow:0 8px 32px rgba(124,92,224,0.15);
-}
-.tool-card:hover::before { opacity:1; }
-.tool-card.hidden { display:none; }
-
-.card-top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
-.card-top-left { display:flex; align-items:center; gap:10px; flex:1; min-width:0; }
-.card-logo {
-  width:32px; height:32px; border-radius:7px; object-fit:contain; flex-shrink:0;
-  background:#ffffff; border:1px solid rgba(255,255,255,0.1);
-  padding:3px;
-}
-.card-logo-fallback {
-  width:30px; height:30px; border-radius:7px; flex-shrink:0;
-  background:rgba(124,92,224,0.15); border:1px solid rgba(124,92,224,0.25);
-  display:flex; align-items:center; justify-content:center;
-  font-size:13px; font-weight:700; color:var(--plum); font-family:var(--sans);
-}
-.card-name {
-  font-family:var(--sans); font-size:14px; font-weight:700;
-  color:var(--white); line-height:1.2; letter-spacing:-0.01em;
-}
-.pricing-dot {
-  width:7px; height:7px; border-radius:50%; flex-shrink:0;
-}
-.p-free    { background:#7ecf9e; }
-.p-freemium { background:#7ab3e0; }
-.p-paid    { background:#e09b7a; }
-
-.card-desc { font-size:12.5px; color:var(--text-muted); line-height:1.6; flex:1; }
-.card-tags { display:flex; gap:5px; flex-wrap:wrap; }
-.tag {
-  font-size:10px; padding:2px 8px; border-radius:4px;
-  background:rgba(255,255,255,0.06); color:var(--text-muted);
-  border:1px solid rgba(255,255,255,0.1); letter-spacing:0.04em;
-}
-.card-url { font-size:11px; color:rgba(201,169,110,0.55); font-weight:400; margin-top:2px; }
-
-/* PRICING LEGEND */
-.pricing-legend {
-  display:flex; gap:18px; flex-wrap:wrap; align-items:center;
-  margin-bottom:28px; padding:14px 20px;
-  background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px;
-  font-size:12px; color:var(--text-muted);
-}
-.legend-item { display:flex; align-items:center; gap:7px; }
-.legend-dot { width:8px; height:8px; border-radius:50%; }
-
-/* EMPTY STATE */
-.empty-state { text-align:center; padding:80px 20px; color:var(--muted); display:none; }
-.empty-state.show { display:block; }
-.empty-state h3 { font-family:var(--serif); font-size:26px; color:var(--text); margin-bottom:8px; }
-
-/* ===================== PROMPT LIBRARY ===================== */
-.prompt-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(320px,1fr)); gap:16px; margin-bottom:56px; }
-
-.prompt-card {
-  background:var(--bg-card); border:1px solid rgba(255,255,255,0.07); border-radius:14px;
-  padding:24px; display:flex; flex-direction:column; gap:14px;
-  transition:border-color 0.2s, transform 0.2s;
-}
-.prompt-card:hover { border-color:rgba(124,92,224,0.4); transform:translateY(-2px); box-shadow:0 6px 24px rgba(124,92,224,0.15); }
-
-.prompt-meta { display:flex; align-items:center; justify-content:space-between; }
-.prompt-cat-badge {
-  font-size:10px; letter-spacing:0.1em; text-transform:uppercase; font-weight:500;
-  padding:3px 10px; border-radius:100px;
-  background:rgba(124,92,224,0.15); color:var(--plum); border:1px solid rgba(124,92,224,0.3);
-}
-.copy-btn {
-  background:transparent; border:1px solid var(--border); color:var(--text-muted);
-  font-family:var(--sans); font-size:11px; padding:4px 12px; border-radius:6px;
-  cursor:pointer; transition:all 0.18s; letter-spacing:0.05em;
-}
-.copy-btn:hover { border-color:var(--plum); color:var(--plum); background:rgba(107,79,160,0.06); }
-.copy-btn.copied { border-color:#5a9e7a; color:#5a9e7a; }
-
-.prompt-title { font-family:var(--sans); font-size:15px; font-weight:700; color:var(--white); letter-spacing:-0.01em; }
-.prompt-text {
-  font-size:12.5px; color:var(--text-mid); line-height:1.65;
-  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
-  border-radius:8px; padding:14px; font-family:monospace;
-  white-space:pre-wrap; word-break:break-word;
-}
-.prompt-tags { display:flex; gap:5px; flex-wrap:wrap; }
-
-/* ===================== AUTOMATIONS ===================== */
-.auto-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(340px,1fr)); gap:16px; margin-bottom:56px; }
-.auto-card {
-  background:var(--bg-card); border:1px solid rgba(255,255,255,0.07); border-radius:14px;
-  padding:26px; display:flex; flex-direction:column; gap:14px;
-  transition:border-color 0.2s, box-shadow 0.2s;
-}
-.auto-card:hover { border-color:rgba(124,92,224,0.4); box-shadow:0 6px 24px rgba(124,92,224,0.15); }
-.auto-header { display:flex; align-items:flex-start; gap:14px; }
-.auto-icon {
-  width:44px; height:44px; border-radius:10px; flex-shrink:0;
-  display:flex; align-items:center; justify-content:center; font-size:20px;
-  background:rgba(124,92,224,0.1); border:1px solid rgba(124,92,224,0.2);
-}
-.auto-title { font-family:var(--sans); font-size:16px; font-weight:700; color:var(--white); margin-bottom:4px; letter-spacing:-0.01em; }
-.auto-difficulty {
-  font-size:10px; letter-spacing:0.1em; text-transform:uppercase; font-weight:500;
-  padding:2px 8px; border-radius:100px; display:inline-block;
-}
-.diff-beginner { background:rgba(126,207,158,0.1); color:#7ecf9e; border:1px solid rgba(126,207,158,0.2); }
-.diff-intermediate { background:rgba(201,169,110,0.1); color:var(--plum); border:1px solid rgba(201,169,110,0.2); }
-.diff-advanced { background:rgba(196,120,138,0.1); color:var(--rose); border:1px solid rgba(196,120,138,0.2); }
-
-.auto-desc { font-size:13px; color:var(--text-muted); line-height:1.65; }
-.auto-steps { display:flex; flex-direction:column; gap:8px; }
-.auto-step {
-  display:flex; align-items:flex-start; gap:10px;
-  font-size:12px; color:var(--text-muted);
-}
-.step-num {
-  width:20px; height:20px; border-radius:50%; background:rgba(45,27,61,0.08);
-  border:1px solid rgba(45,27,61,0.15); display:flex; align-items:center;
-  justify-content:center; font-size:10px; color:var(--plum); flex-shrink:0;
-  font-weight:600; margin-top:1px;
-}
-.auto-tools { display:flex; gap:6px; flex-wrap:wrap; margin-top:4px; }
-.tool-pill {
-  font-size:10px; padding:2px 9px; border-radius:100px;
-  background:rgba(255,255,255,0.05); color:var(--text-muted);
-  border:1px solid rgba(255,255,255,0.1); letter-spacing:0.03em;
-}
-
-/* ===================== COURSES ===================== */
-.course-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:16px; margin-bottom:56px; }
-.course-card {
-  background:var(--bg-card); border:1px solid rgba(255,255,255,0.07); border-radius:14px;
-  padding:26px; display:flex; flex-direction:column; gap:14px;
-  text-decoration:none; color:inherit;
-  transition:border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-}
-.course-card:hover { border-color:rgba(124,92,224,0.4); transform:translateY(-2px); box-shadow:0 6px 24px rgba(124,92,224,0.15); }
-.course-provider {
-  font-size:10px; letter-spacing:0.15em; text-transform:uppercase;
-  color:var(--plum); font-weight:500;
-}
-.course-title { font-family:var(--sans); font-size:17px; font-weight:700; color:var(--white); line-height:1.25; letter-spacing:-0.01em; }
-.course-desc { font-size:12.5px; color:var(--text-muted); line-height:1.65; flex:1; }
-.course-meta { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-.course-badge {
-  font-size:10px; padding:3px 9px; border-radius:100px; font-weight:500; letter-spacing:0.06em;
-}
-.cb-free { background:rgba(126,207,158,0.1); color:#7ecf9e; border:1px solid rgba(126,207,158,0.2); }
-.cb-paid { background:rgba(224,155,122,0.1); color:#e09b7a; border:1px solid rgba(224,155,122,0.2); }
-.course-link {
-  font-size:12px; color:var(--plum); font-weight:500; margin-top:auto;
-  display:inline-flex; align-items:center; gap:6px;
-}
-
-/* ===================== SECTION INTRO ===================== */
-.section-intro {
-  margin-bottom:36px; padding-bottom:32px; border-bottom:1px solid var(--border);
-}
-.section-title {
-  font-family:var(--serif); font-size:clamp(32px,4vw,48px); font-weight:500;
-  color:var(--text); margin-bottom:12px; line-height:1.1;
-}
-.section-title em { color:var(--plum); font-style:italic; }
-.section-sub { font-size:15px; color:var(--text-muted); line-height:1.7; max-width:600px; font-family:var(--sans); }
-
-/* RESULTS COUNT */
-#results-info { font-size:12px; color:var(--text-muted); margin:16px 0 24px; letter-spacing:0.04em; }
-#results-info strong { color:var(--plum); }
-
-/* FOOTER */
-footer {
-  position:relative; z-index:1;
-  border-top:1px solid var(--border);
-  padding:32px 48px; text-align:center;
-  font-size:12px; color:var(--text-muted); letter-spacing:0.04em;
-}
-footer a { color:var(--plum); text-decoration:none; font-weight:600; }
-footer strong { color:var(--text); }
-
-.hidden { display:none !important; }
-
-@media(max-width:640px) {
-  .site-nav { padding:0 20px; }
-  .hero { padding:120px 20px 60px; }
-  .section-wrap,.filter-bar { padding-left:20px; padding-right:20px; }
-  footer { padding:24px 20px; }
-}
-
-/* ===================== MOBILE NAV ===================== */
+/* ── HAMBURGER (mobile) ── */
 .hamburger {
   display: none;
-  background: none; border: none; cursor: pointer;
-  padding: 6px; border-radius: 8px;
-  transition: background 0.2s;
+  flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
 }
-.hamburger:hover { background: rgba(107,79,160,0.1); }
 .hamburger span {
   display: block; width: 22px; height: 2px;
-  background: #ffffff; border-radius: 2px;
-  transition: all 0.25s;
-  margin: 5px 0;
+  background: var(--white); border-radius: 2px;
+  transition: all 0.2s;
 }
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
 .mobile-menu {
-  display: none;
-  position: fixed; top: 63px; left: 0; right: 0; z-index: 490;
-  background: rgba(13,13,15,0.99);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  padding: 8px 0 12px;
-  flex-direction: column;
+  display: none; flex-direction: column;
+  background: rgba(10,10,10,0.99);
+  border-top: 1px solid var(--border);
+  position: absolute; top: 100%; left: 0; right: 0;
 }
 .mobile-menu.open { display: flex; }
 .mobile-menu-item {
   background: none; border: none; cursor: pointer;
   padding: 14px 28px; text-align: left;
-  font-family: var(--sans); font-size: 14px;
-  font-weight: 500; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--text-muted);
+  font-family: var(--sans); font-size: 11px;
+  font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--grey);
   transition: all 0.15s; border-left: 3px solid transparent;
 }
-.mobile-menu-item:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+.mobile-menu-item:hover { color: var(--white); background: rgba(255,255,255,0.04); }
 .mobile-menu-item.active {
-  color: var(--plum); font-weight: 700;
-  border-left-color: var(--plum);
-  background: rgba(124,92,224,0.08);
+  color: var(--lavender); font-weight: 700;
+  border-left-color: var(--lavender);
+  background: var(--lavender-dim);
+}
+@media (max-width: 640px) {
+  .nav-tabs { display: none; }
+  .hamburger { display: flex; }
+  .nav-inner { padding: 0 24px; }
 }
 
-@media(max-width: 640px) {
-  .hamburger { display: block; }
-  .nav-links { display: none; }
+/* ── SECTION SHOW/HIDE ── */
+.section { display: none; }
+.section.active { display: block; }
+
+/* ── HERO ── */
+.hero-section { position: relative; z-index: 1; }
+.hero {
+  position: relative; z-index: 1;
+  padding: 120px 48px 100px;
+  max-width: 1200px; margin: 0 auto;
+}
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--sans);
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--lavender); font-weight: 500;
+  margin-bottom: 20px;
+}
+.hero-eyebrow::before {
+  content: ''; width: 32px; height: 1px;
+  background: var(--lavender); opacity: 0.6;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(72px, 11vw, 128px);
+  font-weight: 400;
+  line-height: 0.93;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--lavender);
+}
+.hero-sub {
+  font-size: 17px; font-weight: 400; line-height: 1.75;
+  color: var(--grey);
+  max-width: 520px;
+  margin-bottom: 52px;
+}
+.hero-stats {
+  display: flex; gap: 48px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+}
+.hero-stat-num {
+  font-family: var(--serif);
+  font-size: 52px; font-weight: 400;
+  color: var(--lavender);
+  display: block; line-height: 1;
+  letter-spacing: 0.02em;
+}
+.hero-stat-label {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--grey); margin-top: 6px; display: block;
+  font-weight: 500; font-family: var(--sans);
+}
+@media (max-width: 640px) {
+  .hero { padding: 100px 24px 60px; }
+  .hero-stats { gap: 28px; flex-wrap: wrap; }
+}
+
+/* ── SECTION WRAPPER ── */
+.section-inner {
+  padding: 120px 48px;
+  max-width: 1200px; margin: 0 auto;
+}
+@media (max-width: 640px) {
+  .section-inner { padding: 60px 24px; }
+}
+.section-label {
+  font-family: var(--sans);
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--lavender); font-weight: 500;
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 16px;
+}
+.section-label::before {
+  content: ''; width: 24px; height: 1px;
+  background: var(--lavender); opacity: 0.6;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(44px, 6vw, 72px);
+  font-weight: 400; line-height: 1.0;
+  text-transform: uppercase; letter-spacing: 0.01em;
+  color: var(--white); margin-bottom: 12px;
+}
+.section-sub {
+  font-size: 16px; color: var(--grey); line-height: 1.75;
+  max-width: 600px; font-family: var(--sans);
+}
+
+/* ── HOME FEATURE CARDS ── */
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2px;
+  margin-top: 48px;
+}
+
+/* ── FILTER BAR (tools) ── */
+.filter-bar {
+  position: sticky; top: 63px; z-index: 50;
+  background: rgba(10,10,10,0.98);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  padding: 14px 48px;
+}
+.filter-bar-inner { max-width: 1200px; margin: 0 auto; }
+input[type="search"] {
+  width: 100%; max-width: 400px;
+  padding: 10px 16px 10px 38px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  color: var(--white); font-family: var(--sans); font-size: 14px;
+  outline: none; margin-bottom: 12px;
+  transition: border-color 0.18s;
+}
+input[type="search"]::placeholder { color: var(--grey); }
+input[type="search"]:focus { border-color: rgba(201,184,255,0.5); }
+.search-wrap { position: relative; display: inline-block; width: 100%; max-width: 400px; }
+.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.35; pointer-events: none; }
+.pill-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.cpill {
+  padding: 6px 14px; border-radius: 100px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--grey);
+  font-family: var(--sans); font-size: 11px;
+  font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.18s; white-space: nowrap;
+}
+.cpill:hover { border-color: var(--lavender); color: var(--lavender); }
+.cpill.active {
+  background: var(--lavender);
+  border-color: var(--lavender);
+  color: #0a0a0a;
+}
+@media (max-width: 640px) { .filter-bar { padding: 12px 16px; } }
+
+/* ── PRICING LEGEND ── */
+.pricing-legend {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  font-size: 11px; color: var(--grey);
+  margin-bottom: 8px; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.p-free { background: #22c55e; }
+.p-freemium { background: #60a5fa; }
+.p-paid { background: #f97316; }
+.pricing-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── RESULTS INFO ── */
+#results-info { font-size: 11px; color: var(--grey); margin: 14px 0 20px; letter-spacing: 0.1em; text-transform: uppercase; }
+#results-info strong { color: var(--lavender); }
+
+/* ── TOOL SECTIONS ── */
+#toolsContent { padding-top: 24px; }
+.tool-cat-section { margin-bottom: 56px; }
+.tool-cat-section.hidden { display: none; }
+.cat-block { margin-bottom: 56px; }
+.cat-block.hidden { display: none; }
+.cat-head, .cat-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 2px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.cat-emoji, .cat-icon {
+  width: 38px; height: 38px; border-radius: 0;
+  background: var(--lavender-dim);
+  border: 1px solid var(--border-lav);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cat-emoji svg, .cat-icon svg { width: 18px; height: 18px; }
+.cat-name {
+  font-family: var(--serif); font-size: 28px; font-weight: 400;
+  color: var(--white); letter-spacing: 0.02em; text-transform: uppercase;
+  flex: 1;
+}
+.cat-tally {
+  font-family: var(--sans); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--lavender);
+  background: var(--lavender-dim);
+  border: 1px solid var(--border-lav);
+  padding: 4px 12px; border-radius: 100px;
+}
+
+/* ── TOOL GRID ── */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 2px;
+}
+.tool-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 0;
+  padding: 20px;
+  text-decoration: none; color: inherit;
+  transition: background 0.18s, border-color 0.18s;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.tool-card:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-lav);
+}
+.tool-card.hidden { display: none; }
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.card-top-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+.card-logo {
+  width: 30px; height: 30px; border-radius: 6px;
+  object-fit: contain; flex-shrink: 0;
+  background: #fff; border: 1px solid rgba(255,255,255,0.1);
+  padding: 2px;
+}
+.card-logo-fallback {
+  width: 30px; height: 30px; border-radius: 6px; flex-shrink: 0;
+  background: var(--lavender-dim); border: 1px solid var(--border-lav);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: var(--lavender);
+  font-family: var(--sans);
+}
+.card-name {
+  font-family: var(--sans); font-size: 14px; font-weight: 600;
+  color: var(--white); line-height: 1.2;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.card-desc {
+  font-size: 13px; color: var(--grey); line-height: 1.6;
+  flex: 1;
+}
+.card-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.tag {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 3px 8px; border-radius: 100px;
+  background: rgba(255,255,255,0.05); color: var(--grey-dim);
+  border: 1px solid var(--border);
+}
+.card-url { font-size: 11px; color: var(--grey-dim); letter-spacing: 0.04em; margin-top: 2px; }
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  text-align: center; padding: 80px 24px;
+  display: none;
+}
+.empty-state.show { display: block; }
+.empty-state h3 {
+  font-family: var(--serif); font-size: 36px;
+  color: var(--white); margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.empty-state p { color: var(--grey); }
+
+/* ── PROMPTS ── */
+.prompt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2px; margin-top: 32px; padding-bottom: 48px;
+}
+.prompt-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-left: 2px solid var(--lavender-dim);
+  border-radius: 0; padding: 28px 28px 24px;
+  transition: background 0.18s, border-color 0.18s;
+}
+.prompt-card:hover {
+  background: var(--bg-hover);
+  border-color: rgba(255,255,255,0.05);
+  border-left-color: var(--lavender);
+}
+.prompt-card-head {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 12px; margin-bottom: 12px;
+}
+.prompt-title {
+  font-family: var(--serif); font-size: 22px; font-weight: 400;
+  color: var(--white); letter-spacing: 0.02em; text-transform: uppercase;
+  line-height: 1.1;
+}
+.prompt-badge {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 4px 10px;
+  background: var(--lavender-dim); color: var(--lavender);
+  border: 1px solid var(--border-lav); border-radius: 100px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.prompt-text {
+  font-size: 13px; color: var(--grey); line-height: 1.7;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  padding: 16px; margin-bottom: 16px; font-family: monospace;
+  max-height: 140px; overflow: hidden;
+  white-space: pre-wrap;
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+.copy-btn {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 7px 18px; border-radius: 100px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--grey); cursor: pointer;
+  transition: all 0.18s;
+}
+.copy-btn:hover { border-color: var(--lavender); color: var(--lavender); background: var(--lavender-dim); }
+.copy-btn.copied { background: var(--lavender); border-color: var(--lavender); color: #0a0a0a; }
+
+/* ── AUTOMATIONS ── */
+.auto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2px; margin-top: 32px;
+}
+.auto-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-left: 2px solid var(--lavender-dim);
+  border-radius: 0; padding: 26px;
+  display: flex; flex-direction: column; gap: 14px;
+  transition: background 0.18s, border-color 0.18s;
+}
+.auto-card:hover {
+  background: var(--bg-hover);
+  border-color: rgba(255,255,255,0.05);
+  border-left-color: var(--lavender);
+}
+.auto-badge {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 4px 10px;
+  border-radius: 100px; display: inline-block; width: fit-content;
+}
+.auto-badge.beginner { background: rgba(34,197,94,0.1); color: #22c55e; border: 1px solid rgba(34,197,94,0.2); }
+.auto-badge.intermediate { background: rgba(96,165,250,0.1); color: #60a5fa; border: 1px solid rgba(96,165,250,0.2); }
+.auto-badge.advanced { background: rgba(201,184,255,0.12); color: var(--lavender); border: 1px solid var(--border-lav); }
+.auto-icon {
+  width: 40px; height: 40px;
+  background: var(--lavender-dim);
+  border: 1px solid var(--border-lav);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.auto-title {
+  font-family: var(--serif); font-size: 24px; font-weight: 400;
+  color: var(--white); letter-spacing: 0.02em; text-transform: uppercase;
+  margin-bottom: 4px; line-height: 1.1;
+}
+.auto-desc { font-size: 14px; color: var(--grey); line-height: 1.7; }
+.auto-steps { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+.auto-step {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px; color: var(--grey);
+}
+.step-num {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--lavender-dim);
+  border: 1px solid var(--border-lav);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: var(--lavender); flex-shrink: 0;
+  font-weight: 700; font-family: var(--sans);
+}
+.auto-tools { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.auto-tool-tag {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.05); color: var(--grey-dim);
+  border: 1px solid var(--border);
+}
+
+/* ── COURSES ── */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2px; margin-top: 32px;
+}
+.course-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-top: 2px solid var(--lavender-dim);
+  border-radius: 0; padding: 26px;
+  display: flex; flex-direction: column; gap: 12px;
+  text-decoration: none; color: inherit;
+  transition: background 0.18s, border-color 0.18s;
+}
+.course-card:hover {
+  background: var(--bg-hover);
+  border-color: rgba(255,255,255,0.05);
+  border-top-color: var(--lavender);
+}
+.course-title {
+  font-family: var(--serif); font-size: 24px; font-weight: 400;
+  color: var(--white); line-height: 1.1;
+  letter-spacing: 0.02em; text-transform: uppercase;
+}
+.course-provider {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--grey);
+}
+.course-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 4px 12px;
+  border-radius: 100px; display: inline-block; width: fit-content;
+}
+.course-badge.free { background: rgba(34,197,94,0.1); color: #22c55e; border: 1px solid rgba(34,197,94,0.2); }
+.course-badge.paid { background: var(--lavender-dim); color: var(--lavender); border: 1px solid var(--border-lav); }
+.course-link-icon {
+  margin-top: auto; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--lavender); display: flex; align-items: center; gap: 6px;
+}
+
+/* ── FOOTER ── */
+footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 40px 48px; text-align: center;
+  font-size: 11px; color: var(--grey);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  font-family: var(--sans);
+}
+footer a { color: var(--lavender); text-decoration: none; font-weight: 600; }
+footer a:hover { color: var(--lavender-hov); }
+
+/* ── HIDDEN UTIL ── */
+.hidden { display: none !important; }
+
+/* ── PROMPT CATEGORY BADGE ── */
+.prompt-cat-badge {
+  font-family: var(--sans);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; padding: 4px 12px;
+  background: var(--lavender-dim);
+  color: var(--lavender);
+  border: 1px solid var(--border-lav);
+  border-radius: 100px;
+}
+.prompt-meta {
+  display: flex; justify-content: space-between;
+  align-items: center; gap: 10px; margin-bottom: 10px;
+}
+/* ── COURSE LINK ── */
+.course-link {
+  margin-top: auto;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--lavender);
+  display: flex; align-items: center; gap: 6px;
+}
+/* ── COURSE BADGE ALIASES ── */
+.cb-free, .course-badge.free {
+  background: rgba(34,197,94,0.1); color: #22c55e;
+  border: 1px solid rgba(34,197,94,0.2);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+}
+.cb-paid, .course-badge.paid {
+  background: var(--lavender-dim); color: var(--lavender);
+  border: 1px solid var(--border-lav);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+}
+.course-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.course-desc { font-size: 14px; color: var(--grey); line-height: 1.7; }
+/* ── PROMPT TAGS ── */
+.prompt-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+/* ── AUTO HEADER ── */
+.auto-header { display: flex; align-items: flex-start; gap: 14px; }
+/* ── SECTION H3 GROUP LABELS ── */
+.section-group-label {
+  font-family: var(--sans);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--lavender);
+  margin: 40px 0 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-group-label::before {
+  content: ''; width: 20px; height: 1px;
+  background: var(--lavender); opacity: 0.5;
 }
 </style>
 </head>
@@ -485,28 +636,26 @@ footer strong { color:var(--text); }
 <!-- ========== SITE NAV ========== -->
 <nav class="site-nav">
   <div class="nav-inner">
-    <a href="https://taneilcurrie.com" class="nav-brand">Taneil <em style="font-style:normal;color:var(--plum);">Currie</em></a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="nav-links">
+    <a href="https://taneilcurrie.com" class="nav-brand">Taneil <em>Currie</em></a>
+    <div class="nav-tabs">
       <button class="nav-tab active" data-section="home">Home</button>
       <button class="nav-tab" data-section="tools">AI Tools</button>
       <button class="nav-tab" data-section="prompts">Prompts</button>
       <button class="nav-tab" data-section="automations">Automations</button>
       <button class="nav-tab" data-section="courses">Courses</button>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-item active" data-section="home">Home</button>
+    <button class="mobile-menu-item" data-section="tools">AI Tools</button>
+    <button class="mobile-menu-item" data-section="prompts">Prompts</button>
+    <button class="mobile-menu-item" data-section="automations">Automations</button>
+    <button class="mobile-menu-item" data-section="courses">Courses</button>
   </div>
 </nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-menu-item active" data-section="home">Home</button>
-  <button class="mobile-menu-item" data-section="tools">AI Tools</button>
-  <button class="mobile-menu-item" data-section="prompts">Prompts</button>
-  <button class="mobile-menu-item" data-section="automations">Automations</button>
-  <button class="mobile-menu-item" data-section="courses">Courses</button>
-</div>
 
 <!-- ========== HOME ========== -->
 <section class="section active" id="home">
@@ -540,32 +689,32 @@ footer strong { color:var(--text); }
   <div style="max-width:1200px;margin:0 auto;padding:0 48px 100px;position:relative;z-index:1;">
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
 
-      <div onclick="switchSection('tools')" style="background:var(--bg-card);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(124,92,224,0.5)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 32px rgba(124,92,224,0.2)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">
-        <div style="width:48px;height:48px;border-radius:10px;background:rgba(124,92,224,0.15);border:1px solid rgba(124,92,224,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
-        <div style="font-family:var(--sans);font-size:18px;font-weight:800;color:var(--white);margin-bottom:8px;letter-spacing:-0.01em;text-transform:uppercase;">AI Tool Directory</div>
+      <div onclick="switchSection('tools')" style="background:#111111;border:1px solid rgba(255,255,255,0.05);border-radius:0;padding:32px;cursor:pointer;transition:background 0.18s,border-color 0.18s;" onmouseover="this.style.background='#1a1a1a';this.style.borderColor='rgba(201,184,255,0.25)'" onmouseout="this.style.background='#111111';this.style.borderColor='rgba(255,255,255,0.05)'">
+        <div style="width:42px;height:42px;background:rgba(201,184,255,0.12);border:1px solid rgba(201,184,255,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;font-weight:400;color:#f5f2ff;margin-bottom:8px;letter-spacing:0.02em;text-transform:uppercase;">AI Tool Directory</div>
         <div style="font-size:13px;color:var(--text-muted);line-height:1.65;">285+ tools organized by category — video, content, design, SEO, productivity, and more. Find the right tool fast.</div>
-        <div style="margin-top:16px;font-size:12px;color:var(--plum);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Browse tools →</div>
+        <div style="margin-top:16px;font-size:10px;color:#c9b8ff;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;">Browse tools →</div>
       </div>
 
-      <div onclick="switchSection('prompts')" style="background:var(--bg-card);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(124,92,224,0.5)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 32px rgba(124,92,224,0.2)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">
-        <div style="width:48px;height:48px;border-radius:10px;background:rgba(124,92,224,0.15);border:1px solid rgba(124,92,224,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="13" y2="14"/></svg></div>
-        <div style="font-family:var(--sans);font-size:18px;font-weight:800;color:var(--white);margin-bottom:8px;letter-spacing:-0.01em;text-transform:uppercase;">Prompt Library</div>
+      <div onclick="switchSection('prompts')" style="background:#111111;border:1px solid rgba(255,255,255,0.05);border-radius:0;padding:32px;cursor:pointer;transition:background 0.18s,border-color 0.18s;" onmouseover="this.style.background='#1a1a1a';this.style.borderColor='rgba(201,184,255,0.25)'" onmouseout="this.style.background='#111111';this.style.borderColor='rgba(255,255,255,0.05)'">
+        <div style="width:42px;height:42px;background:rgba(201,184,255,0.12);border:1px solid rgba(201,184,255,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="13" y2="14"/></svg></div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;font-weight:400;color:#f5f2ff;margin-bottom:8px;letter-spacing:0.02em;text-transform:uppercase;">Prompt Library</div>
         <div style="font-size:13px;color:var(--text-muted);line-height:1.65;">Ready-to-use prompts for marketing, strategy, content, and operations. Copy, adapt, and get better results immediately.</div>
-        <div style="margin-top:16px;font-size:12px;color:var(--plum);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Explore prompts →</div>
+        <div style="margin-top:16px;font-size:10px;color:#c9b8ff;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;">Explore prompts →</div>
       </div>
 
-      <div onclick="switchSection('automations')" style="background:var(--bg-card);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(124,92,224,0.5)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 32px rgba(124,92,224,0.2)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">
-        <div style="width:48px;height:48px;border-radius:10px;background:rgba(124,92,224,0.15);border:1px solid rgba(124,92,224,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <div style="font-family:var(--sans);font-size:18px;font-weight:800;color:var(--white);margin-bottom:8px;letter-spacing:-0.01em;text-transform:uppercase;">Automation Workflows</div>
+      <div onclick="switchSection('automations')" style="background:#111111;border:1px solid rgba(255,255,255,0.05);border-radius:0;padding:32px;cursor:pointer;transition:background 0.18s,border-color 0.18s;" onmouseover="this.style.background='#1a1a1a';this.style.borderColor='rgba(201,184,255,0.25)'" onmouseout="this.style.background='#111111';this.style.borderColor='rgba(255,255,255,0.05)'">
+        <div style="width:42px;height:42px;background:rgba(201,184,255,0.12);border:1px solid rgba(201,184,255,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;font-weight:400;color:#f5f2ff;margin-bottom:8px;letter-spacing:0.02em;text-transform:uppercase;">Automation Workflows</div>
         <div style="font-size:13px;color:var(--text-muted);line-height:1.65;">Step-by-step automation examples using Make, Zapier, and AI tools — built for real business use cases.</div>
-        <div style="margin-top:16px;font-size:12px;color:var(--plum);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">See workflows →</div>
+        <div style="margin-top:16px;font-size:10px;color:#c9b8ff;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;">See workflows →</div>
       </div>
 
-      <div onclick="switchSection('courses')" style="background:var(--bg-card);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(124,92,224,0.5)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 32px rgba(124,92,224,0.2)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">
-        <div style="width:48px;height:48px;border-radius:10px;background:rgba(124,92,224,0.15);border:1px solid rgba(124,92,224,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-        <div style="font-family:var(--sans);font-size:18px;font-weight:800;color:var(--white);margin-bottom:8px;letter-spacing:-0.01em;text-transform:uppercase;">Free Courses</div>
+      <div onclick="switchSection('courses')" style="background:#111111;border:1px solid rgba(255,255,255,0.05);border-radius:0;padding:32px;cursor:pointer;transition:background 0.18s,border-color 0.18s;" onmouseover="this.style.background='#1a1a1a';this.style.borderColor='rgba(201,184,255,0.25)'" onmouseout="this.style.background='#111111';this.style.borderColor='rgba(255,255,255,0.05)'">
+        <div style="width:42px;height:42px;background:rgba(201,184,255,0.12);border:1px solid rgba(201,184,255,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;font-weight:400;color:#f5f2ff;margin-bottom:8px;letter-spacing:0.02em;text-transform:uppercase;">Free Courses</div>
         <div style="font-size:13px;color:var(--text-muted);line-height:1.65;">The best free AI learning resources, including courses from Anthropic, Google, and DeepLearning.ai — all in one place.</div>
-        <div style="margin-top:16px;font-size:12px;color:var(--plum);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Start learning →</div>
+        <div style="margin-top:16px;font-size:10px;color:#c9b8ff;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;">Start learning →</div>
       </div>
 
     </div>
@@ -578,7 +727,7 @@ footer strong { color:var(--text); }
 <div class="filter-bar">
   <div class="filter-bar-inner">
     <div class="search-wrap">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
       <input type="search" id="toolSearch" placeholder="Search tools…">
     </div>
     <div class="cat-pills" id="toolCatPills">
@@ -623,7 +772,7 @@ footer strong { color:var(--text); }
   <div id="toolsContent">
   <!-- AI ASSISTANTS -->
   <div class="tool-cat-section" data-cat="ai-assistants">
-    <div class="cat-head"><div class="cat-emoji" style="background:rgba(196,120,138,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#c4788a" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26A7 7 0 0 1 12 2z"/><path d="M9 21h6"/><path d="M9 18h6"/></svg></div><span class="cat-name">AI Assistants & LLMs</span><span class="cat-tally">8 tools</span></div>
+    <div class="cat-head"><div class="cat-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26A7 7 0 0 1 12 2z"/><path d="M9 21h6"/><path d="M9 18h6"/></svg></div><span class="cat-name">AI Assistants & LLMs</span><span class="cat-tally">8 tools</span></div>
     <div class="tool-grid">
       <a href="https://claude.ai" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/claude.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">Claude (Anthropic)</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Thoughtful, nuanced AI for writing, analysis, coding, and complex reasoning. Outstanding with long documents and nuanced tasks.</p><div class="card-tags"><span class="tag">Writing</span><span class="tag">Analysis</span><span class="tag">Coding</span></div><span class="card-url">claude.ai</span></a>
       <a href="https://chat.openai.com" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/chat.openai.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">ChatGPT (OpenAI)</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">The most widely-used AI assistant. Versatile for writing, brainstorming, coding, and research with SearchGPT built in.</p><div class="card-tags"><span class="tag">Writing</span><span class="tag">Search</span><span class="tag">Coding</span></div><span class="card-url">chat.openai.com</span></a>
@@ -789,7 +938,7 @@ footer strong { color:var(--text); }
 
   <!-- VIDEO CREATION -->
   <div class="tool-cat-section" data-cat="video">
-    <div class="cat-head"><div class="cat-emoji" style="background:rgba(224,155,122,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#e09b7a" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m10 9 5 3-5 3V9z"/></svg></div><span class="cat-name">Video Creation & Generation</span><span class="cat-tally">30+ tools</span></div>
+    <div class="cat-head"><div class="cat-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="#e09b7a" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m10 9 5 3-5 3V9z"/></svg></div><span class="cat-name">Video Creation & Generation</span><span class="cat-tally">30+ tools</span></div>
     <div class="tool-grid">
       <a href="https://runwayml.com" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/runwayml.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">R</div><span class="card-name">Runway</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Industry-leading AI video platform. Text-to-video, image-to-video, inpainting, and creative tools for high-quality content.</p><div class="card-tags"><span class="tag">Text-to-Video</span><span class="tag">Gen AI</span></div><span class="card-url">runwayml.com</span></a>
       <a href="https://www.heygen.com" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.heygen.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">H</div><span class="card-name">HeyGen</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Professional AI avatar videos at scale. Upload your likeness, type a script — no camera required.</p><div class="card-tags"><span class="tag">AI Avatar</span><span class="tag">Talking Head</span></div><span class="card-url">heygen.com</span></a>
@@ -994,7 +1143,7 @@ footer strong { color:var(--text); }
 
   <!-- IMAGE GENERATION -->
   <div class="tool-cat-section" data-cat="image">
-    <div class="cat-head"><div class="cat-emoji" style="background:rgba(196,120,138,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#c4788a" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 8.66 5H3.34A10 10 0 0 1 12 2z" fill="rgba(196,120,138,0.2)"/><circle cx="8" cy="14" r="1.5" fill="#c4788a"/><circle cx="12" cy="10" r="1.5" fill="#c4788a"/><circle cx="16" cy="14" r="1.5" fill="#c4788a"/></svg></div><span class="cat-name">Image Generation & Editing</span><span class="cat-tally">17+ tools</span></div>
+    <div class="cat-head"><div class="cat-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 8.66 5H3.34A10 10 0 0 1 12 2z" fill="rgba(196,120,138,0.2)"/><circle cx="8" cy="14" r="1.5" fill="#c4788a"/><circle cx="12" cy="10" r="1.5" fill="#c4788a"/><circle cx="16" cy="14" r="1.5" fill="#c4788a"/></svg></div><span class="cat-name">Image Generation & Editing</span><span class="cat-tally">17+ tools</span></div>
     <div class="tool-grid">
       <a href="https://www.midjourney.com" target="_blank" class="tool-card" data-cat="image"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.midjourney.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">M</div><span class="card-name">Midjourney</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">The gold standard for AI art. Stunning quality for marketing visuals, brand concepts, and creative campaigns.</p><div class="card-tags"><span class="tag">Art</span><span class="tag">Branding</span></div><span class="card-url">midjourney.com</span></a>
       <a href="https://ideogram.ai" target="_blank" class="tool-card" data-cat="image"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/ideogram.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">I</div><span class="card-name">Ideogram</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Best AI image generator for text rendering. Creates images with readable, stylized typography built in.</p><div class="card-tags"><span class="tag">Typography</span><span class="tag">Text in Images</span></div><span class="card-url">ideogram.ai</span></a>
@@ -1160,7 +1309,7 @@ footer strong { color:var(--text); }
 
   <!-- CONTENT WRITING -->
   <div class="tool-cat-section" data-cat="content">
-    <div class="cat-head"><div class="cat-emoji" style="background:rgba(201,169,110,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#c9a96e" xmlns="http://www.w3.org/2000/svg"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><span class="cat-name">Content Writing & Copywriting</span><span class="cat-tally">12+ tools</span></div>
+    <div class="cat-head"><div class="cat-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="#c9a96e" xmlns="http://www.w3.org/2000/svg"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><span class="cat-name">Content Writing & Copywriting</span><span class="cat-tally">12+ tools</span></div>
     <div class="tool-grid">
       <a href="https://www.jasper.ai" target="_blank" class="tool-card" data-cat="content"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.jasper.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">J</div><span class="card-name">Jasper AI</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Enterprise AI writing for marketing teams. Brand voice training, campaign templates, and long-form content at scale.</p><div class="card-tags"><span class="tag">Brand Voice</span><span class="tag">Enterprise</span></div><span class="card-url">jasper.ai</span></a>
       <a href="https://www.copy.ai" target="_blank" class="tool-card" data-cat="content"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.copy.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">Copy.ai</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Marketing copy in seconds. Email subject lines, ad copy, product descriptions, and social posts with strong templates.</p><div class="card-tags"><span class="tag">Ad Copy</span><span class="tag">Email</span></div><span class="card-url">copy.ai</span></a>
@@ -1315,7 +1464,7 @@ footer strong { color:var(--text); }
 
   <!-- SEO -->
   <div class="tool-cat-section" data-cat="seo">
-    <div class="cat-head"><div class="cat-emoji" style="background:rgba(126,207,158,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#7ecf9e" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div><span class="cat-name">SEO & AI Blogging</span><span class="cat-tally">10+ tools</span></div>
+    <div class="cat-head"><div class="cat-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="#7ecf9e" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div><span class="cat-name">SEO & AI Blogging</span><span class="cat-tally">10+ tools</span></div>
     <div class="tool-grid">
       <a href="https://www.surfer.seo" target="_blank" class="tool-card" data-cat="seo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.surfer.seo" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">Surfer SEO</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Write and optimize content simultaneously with real-time scoring based on top-ranking competitor page analysis.</p><div class="card-tags"><span class="tag">Content Optimization</span><span class="tag">SERP</span></div><span class="card-url">surfer.seo</span></a>
       <a href="https://www.frase.io" target="_blank" class="tool-card" data-cat="seo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.frase.io" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">F</div><span class="card-name">Frase.io</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Research, outline, write, and optimize articles based on what's ranking for your target keywords — in one workflow.</p><div class="card-tags"><span class="tag">Research</span><span class="tag">Outlining</span></div><span class="card-url">frase.io</span></a>
@@ -1460,7 +1609,7 @@ footer strong { color:var(--text); }
 
   <!-- SOCIAL MEDIA -->
   <div class="tool-cat-section" data-cat="social">
-    <div class="cat-head"><div class="cat-emoji" style="background:rgba(122,179,224,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#7ab3e0" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div><span class="cat-name">Social Media Management</span><span class="cat-tally">10+ tools</span></div>
+    <div class="cat-head"><div class="cat-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="#7ab3e0" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div><span class="cat-name">Social Media Management</span><span class="cat-tally">10+ tools</span></div>
     <div class="tool-grid">
       <a href="https://www.socialpilot.co" target="_blank" class="tool-card" data-cat="social"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.socialpilot.co" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">SocialPilot</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Social scheduling and analytics for agencies. Bulk scheduling, AI captions, and white-label reporting.</p><div class="card-tags"><span class="tag">Scheduling</span><span class="tag">Analytics</span></div><span class="card-url">socialpilot.co</span></a>
       <a href="https://www.brandwatch.com" target="_blank" class="tool-card" data-cat="social"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.brandwatch.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">B</div><span class="card-name">Brandwatch</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">AI-powered social listening and consumer intelligence. Monitor brand mentions, sentiment, and competitors at scale.</p><div class="card-tags"><span class="tag">Listening</span><span class="tag">Sentiment</span></div><span class="card-url">brandwatch.com</span></a>
@@ -1614,7 +1763,7 @@ footer strong { color:var(--text); }
 
   <!-- PRESENTATIONS -->
   <div class="tool-cat-section" data-cat="presentation">
-    <div class="cat-head"><div class="cat-emoji" style="background:rgba(201,169,110,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#c9a96e" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 8h2v5H7z" fill="rgba(201,169,110,0.3)"/><path d="M11 10h2v3h-2z" fill="rgba(201,169,110,0.3)"/><path d="M15 7h2v6h-2z" fill="rgba(201,169,110,0.3)"/></svg></div><span class="cat-name">Presentations & Slides</span><span class="cat-tally">10+ tools</span></div>
+    <div class="cat-head"><div class="cat-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="#c9a96e" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 8h2v5H7z" fill="rgba(201,169,110,0.3)"/><path d="M11 10h2v3h-2z" fill="rgba(201,169,110,0.3)"/><path d="M15 7h2v6h-2z" fill="rgba(201,169,110,0.3)"/></svg></div><span class="cat-name">Presentations & Slides</span><span class="cat-tally">10+ tools</span></div>
     <div class="tool-grid">
       <a href="https://gamma.app" target="_blank" class="tool-card" data-cat="presentation"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/gamma.app" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">G</div><span class="card-name">Gamma</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI-powered presentations, docs, and websites. Type a prompt, get a beautiful structured deck in seconds.</p><div class="card-tags"><span class="tag">AI Deck</span><span class="tag">Fast</span></div><span class="card-url">gamma.app</span></a>
       <a href="https://beautiful.ai" target="_blank" class="tool-card" data-cat="presentation"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/beautiful.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">B</div><span class="card-name">Beautiful.ai</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">AI-designed presentations that auto-arrange slides. Smart templates that stay professionally designed as you edit.</p><div class="card-tags"><span class="tag">Smart Design</span><span class="tag">Auto-Format</span></div><span class="card-url">beautiful.ai</span></a>
@@ -1728,7 +1877,7 @@ footer strong { color:var(--text); }
 
   <!-- EMAIL -->
   <div class="tool-cat-section" data-cat="email">
-    <div class="cat-head"><div class="cat-emoji" style="background:rgba(122,179,224,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#7ab3e0" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div><span class="cat-name">Email Writing & Outreach</span><span class="cat-tally">8+ tools</span></div>
+    <div class="cat-head"><div class="cat-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="#7ab3e0" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div><span class="cat-name">Email Writing & Outreach</span><span class="cat-tally">8+ tools</span></div>
     <div class="tool-grid">
       <a href="https://www.flowrite.com" target="_blank" class="tool-card" data-cat="email"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.flowrite.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">F</div><span class="card-name">Flowrite</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Turn short instructions into ready-to-send emails. Works with Gmail, Outlook, and LinkedIn.</p><div class="card-tags"><span class="tag">Gmail</span><span class="tag">Outlook</span></div><span class="card-url">flowrite.com</span></a>
       <a href="https://ellie.ai" target="_blank" class="tool-card" data-cat="email"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/ellie.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">E</div><span class="card-name">Ellie AI</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Learns your writing style. Generates personalized replies based on the full email thread context.</p><div class="card-tags"><span class="tag">Personalized</span><span class="tag">Style Learning</span></div><span class="card-url">ellie.ai</span></a>
@@ -1871,7 +2020,7 @@ footer strong { color:var(--text); }
 
   <!-- PRODUCTIVITY -->
   <div class="tool-cat-section" data-cat="productivity">
-    <div class="cat-head"><div class="cat-emoji" style="background:rgba(122,179,224,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#7ab3e0" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><span class="cat-name">Productivity & Automation</span><span class="cat-tally">8+ tools</span></div>
+    <div class="cat-head"><div class="cat-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="#7ab3e0" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><span class="cat-name">Productivity & Automation</span><span class="cat-tally">8+ tools</span></div>
     <div class="tool-grid">
       <a href="https://clickup.com" target="_blank" class="tool-card" data-cat="productivity"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/clickup.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">ClickUp</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">All-in-one project management with ClickUp Brain AI — connects tasks, docs, and company knowledge.</p><div class="card-tags"><span class="tag">Tasks</span><span class="tag">AI Brain</span></div><span class="card-url">clickup.com</span></a>
       <a href="https://reclaim.ai" target="_blank" class="tool-card" data-cat="productivity"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/reclaim.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">R</div><span class="card-name">Reclaim AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI scheduling that protects time for tasks, meetings, and habits. Smart calendar management that fights for focus.</p><div class="card-tags"><span class="tag">Calendar</span><span class="tag">Scheduling</span></div><span class="card-url">reclaim.ai</span></a>
@@ -1996,7 +2145,7 @@ footer strong { color:var(--text); }
 
   <!-- DATA -->
   <div class="tool-cat-section" data-cat="data">
-    <div class="cat-head"><div class="cat-emoji" style="background:rgba(126,207,158,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#7ecf9e" xmlns="http://www.w3.org/2000/svg"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><span class="cat-name">Data, Analytics & Research</span><span class="cat-tally">8+ tools</span></div>
+    <div class="cat-head"><div class="cat-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="#7ecf9e" xmlns="http://www.w3.org/2000/svg"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><span class="cat-name">Data, Analytics & Research</span><span class="cat-tally">8+ tools</span></div>
     <div class="tool-grid">
       <a href="https://www.browse.ai" target="_blank" class="tool-card" data-cat="data"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.browse.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">B</div><span class="card-name">Browse AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Scrape any website without code. Pre-built robots for competitor pricing, LinkedIn data extraction. 50 free credits/month.</p><div class="card-tags"><span class="tag">Web Scraping</span><span class="tag">Competitor Intel</span></div><span class="card-url">browse.ai</span></a>
       <a href="https://coefficient.io" target="_blank" class="tool-card" data-cat="data"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/coefficient.io" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">Coefficient</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Import live data from Salesforce, HubSpot, and Analytics into Google Sheets. Auto-refresh and AI analysis.</p><div class="card-tags"><span class="tag">Live Data</span><span class="tag">CRM Sync</span></div><span class="card-url">coefficient.io</span></a>
@@ -2129,7 +2278,7 @@ footer strong { color:var(--text); }
 
   <!-- WEBSITE -->
   <div class="tool-cat-section" data-cat="website">
-    <div class="cat-head"><div class="cat-emoji" style="background:rgba(196,120,138,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#c4788a" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><span class="cat-name">Website Building</span><span class="cat-tally">8+ tools</span></div>
+    <div class="cat-head"><div class="cat-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><span class="cat-name">Website Building</span><span class="cat-tally">8+ tools</span></div>
     <div class="tool-grid">
       <a href="https://framer.com" target="_blank" class="tool-card" data-cat="website"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/framer.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">F</div><span class="card-name">Framer AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Describe your site in a sentence and watch it build. Beautiful responsive sites with AI copy and CMS.</p><div class="card-tags"><span class="tag">AI Build</span><span class="tag">Design</span></div><span class="card-url">framer.com</span></a>
       <a href="https://webflow.com" target="_blank" class="tool-card" data-cat="website"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/webflow.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">W</div><span class="card-name">Webflow</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Professional no-code web design with AI. Full design control without developers for marketing teams.</p><div class="card-tags"><span class="tag">No-Code</span><span class="tag">CMS</span></div><span class="card-url">webflow.com</span></a>
@@ -2242,7 +2391,7 @@ footer strong { color:var(--text); }
 
   <!-- LOGO -->
   <div class="tool-cat-section" data-cat="logo">
-    <div class="cat-head"><div class="cat-emoji" style="background:rgba(196,120,138,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#c4788a" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg></div><span class="cat-name">Logo Makers & Brand Identity</span><span class="cat-tally">6+ tools</span></div>
+    <div class="cat-head"><div class="cat-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg></div><span class="cat-name">Logo Makers & Brand Identity</span><span class="cat-tally">6+ tools</span></div>
     <div class="tool-grid">
       <a href="https://looka.com" target="_blank" class="tool-card" data-cat="logo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/looka.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">L</div><span class="card-name">Looka</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI logo maker and brand kit generator. Professional logos with full identity package — fonts, colors, templates.</p><div class="card-tags"><span class="tag">Logo</span><span class="tag">Brand Kit</span></div><span class="card-url">looka.com</span></a>
       <a href="https://www.namelix.com" target="_blank" class="tool-card" data-cat="logo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.namelix.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">N</div><span class="card-name">Namelix</span></div><div class="pricing-dot p-free"></div></div><p class="card-desc">AI business name and logo concept generator. Fast ideation for brand names, taglines, and initial logo directions.</p><div class="card-tags"><span class="tag">Naming</span><span class="tag">Logo Concepts</span></div><span class="card-url">namelix.com</span></a>
@@ -2345,7 +2494,7 @@ footer strong { color:var(--text); }
 
   <!-- TTS -->
   <div class="tool-cat-section" data-cat="tts">
-    <div class="cat-head"><div class="cat-emoji" style="background:rgba(201,169,110,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#c9a96e" xmlns="http://www.w3.org/2000/svg"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></div><span class="cat-name">Text-to-Speech & Voice AI</span><span class="cat-tally">8+ tools</span></div>
+    <div class="cat-head"><div class="cat-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="#c9a96e" xmlns="http://www.w3.org/2000/svg"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></div><span class="cat-name">Text-to-Speech & Voice AI</span><span class="cat-tally">8+ tools</span></div>
     <div class="tool-grid">
       <a href="https://elevenlabs.io" target="_blank" class="tool-card" data-cat="tts"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/elevenlabs.io" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">E</div><span class="card-name">ElevenLabs</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">The most realistic AI voice generation. Clone voices, generate narration in 29 languages, build voice applications.</p><div class="card-tags"><span class="tag">Voice Cloning</span><span class="tag">API</span></div><span class="card-url">elevenlabs.io</span></a>
       <a href="https://murf.ai" target="_blank" class="tool-card" data-cat="tts"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/murf.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">M</div><span class="card-name">Murf AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Studio-quality AI voiceover with 120+ voices in 20 languages. Perfect for explainer videos and podcasts.</p><div class="card-tags"><span class="tag">120+ Voices</span><span class="tag">Multilingual</span></div><span class="card-url">murf.ai</span></a>
@@ -2468,7 +2617,7 @@ footer strong { color:var(--text); }
 
   <!-- MARKETING -->
   <div class="tool-cat-section" data-cat="marketing">
-    <div class="cat-head"><div class="cat-emoji" style="background:rgba(196,120,138,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#c4788a" xmlns="http://www.w3.org/2000/svg"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span class="cat-name">Marketing & Growth</span><span class="cat-tally">6+ tools</span></div>
+    <div class="cat-head"><div class="cat-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" xmlns="http://www.w3.org/2000/svg"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span class="cat-name">Marketing & Growth</span><span class="cat-tally">6+ tools</span></div>
     <div class="tool-grid">
       <a href="https://www.hubspot.com" target="_blank" class="tool-card" data-cat="marketing"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.hubspot.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">H</div><span class="card-name">HubSpot AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">CRM with AI-powered marketing, sales, and service. AI content assistant, predictive lead scoring, conversation intelligence.</p><div class="card-tags"><span class="tag">CRM</span><span class="tag">Lead Scoring</span></div><span class="card-url">hubspot.com</span></a>
       <a href="https://www.adcreative.ai" target="_blank" class="tool-card" data-cat="marketing"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.adcreative.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">A</div><span class="card-name">AdCreative.ai</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Generate high-converting ad creatives. Trained on billions of ad data points for images, copy, and complete ad sets.</p><div class="card-tags"><span class="tag">Ad Creative</span><span class="tag">Social Ads</span></div><span class="card-url">adcreative.ai</span></a>
@@ -2573,7 +2722,7 @@ footer strong { color:var(--text); }
 
 <div class="cat-block" data-cat="videoeditingtools">
   <div class="cat-header">
-    <div class="cat-icon" style="color:var(--plum);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 10l4.553-2.277A1 1 0 0121 8.67v6.66a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg></div>
+    <div class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.6"><path d="M15 10l4.553-2.277A1 1 0 0121 8.67v6.66a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg></div>
     <span class="cat-name">Video Editing Tools</span>
     <span class="cat-tally">7 tools</span>
   </div>
@@ -2653,7 +2802,7 @@ footer strong { color:var(--text); }
 
 <div class="cat-block" data-cat="businessplanningstrategy">
   <div class="cat-header">
-    <div class="cat-icon" style="color:var(--plum);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 17H7A5 5 0 017 7h2M15 7h2a5 5 0 010 10h-2M9 12h6"/></svg></div>
+    <div class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.6"><path d="M9 17H7A5 5 0 017 7h2M15 7h2a5 5 0 010 10h-2M9 12h6"/></svg></div>
     <span class="cat-name">Business Planning & Strategy</span>
     <span class="cat-tally">11 tools</span>
   </div>
@@ -2773,7 +2922,7 @@ footer strong { color:var(--text); }
 
 <div class="cat-block" data-cat="calendarscheduling">
   <div class="cat-header">
-    <div class="cat-icon" style="color:var(--plum);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><circle cx="8" cy="15" r="1" fill="currentColor"/><circle cx="12" cy="15" r="1" fill="currentColor"/><circle cx="16" cy="15" r="1" fill="currentColor"/></svg></div>
+    <div class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.6"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><circle cx="8" cy="15" r="1" fill="currentColor"/><circle cx="12" cy="15" r="1" fill="currentColor"/><circle cx="16" cy="15" r="1" fill="currentColor"/></svg></div>
     <span class="cat-name">Calendar & Scheduling</span>
     <span class="cat-tally">10 tools</span>
   </div>
@@ -2886,8 +3035,8 @@ footer strong { color:var(--text); }
 
 <!-- ========== PROMPTS SECTION ========== -->
 <section class="section" id="prompts">
-<div class="section-wrap" style="padding-top:80px;">
-  <h3 style="font-family:var(--sans);font-size:16px;color:var(--plum);margin-bottom:16px;letter-spacing:0.08em;text-transform:uppercase;font-size:12px;">Marketing & Content</h3>
+<div class="section-inner">
+  <h3 class="section-group-label">Marketing & Content</h3>
   <div class="prompt-grid">
 
     <div class="prompt-card">
@@ -2934,7 +3083,7 @@ footer strong { color:var(--text); }
 
   </div>
 
-  <h3 style="font-family:var(--sans);font-size:11px;color:var(--plum);margin:32px 0 16px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;">Business Strategy & Operations</h3>
+  <h3 style="font-family:\'Familjen Grotesk\',sans-serif;font-size:10px;color:#c9b8ff;margin:32px 0 16px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;">Business Strategy & Operations</h3>
   <div class="prompt-grid">
 
     <div class="prompt-card">
@@ -2985,13 +3134,13 @@ footer strong { color:var(--text); }
 
 <!-- ========== AUTOMATIONS SECTION ========== -->
 <section class="section" id="automations">
-<div class="section-wrap" style="padding-top:80px;">
+<div class="section-inner">
   <div class="auto-grid">
 
     <div class="auto-card">
       <div class="auto-header">
         <div class="auto-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         </div>
         <div>
           <div class="auto-title">Lead → CRM → Welcome Email</div>
@@ -3011,7 +3160,7 @@ footer strong { color:var(--text); }
     <div class="auto-card">
       <div class="auto-header">
         <div class="auto-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.6"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.6"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
         </div>
         <div>
           <div class="auto-title">Ad Campaign Creation</div>
@@ -3031,7 +3180,7 @@ footer strong { color:var(--text); }
     <div class="auto-card">
       <div class="auto-header">
         <div class="auto-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         </div>
         <div>
           <div class="auto-title">Email Sequence Generation</div>
@@ -3051,7 +3200,7 @@ footer strong { color:var(--text); }
     <div class="auto-card">
       <div class="auto-header">
         <div class="auto-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
         </div>
         <div>
           <div class="auto-title">Content Gap Analysis</div>
@@ -3071,7 +3220,7 @@ footer strong { color:var(--text); }
     <div class="auto-card">
       <div class="auto-header">
         <div class="auto-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
         <div>
           <div class="auto-title">Competitor Analysis</div>
@@ -3091,7 +3240,7 @@ footer strong { color:var(--text); }
     <div class="auto-card">
       <div class="auto-header">
         <div class="auto-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.6"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.6"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
         <div>
           <div class="auto-title">Automated Outbound Sales</div>
@@ -3111,7 +3260,7 @@ footer strong { color:var(--text); }
     <div class="auto-card">
       <div class="auto-header">
         <div class="auto-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.6"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.6"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
         </div>
         <div>
           <div class="auto-title">Blog Post → Social Content</div>
@@ -3131,7 +3280,7 @@ footer strong { color:var(--text); }
     <div class="auto-card">
       <div class="auto-header">
         <div class="auto-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.6"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.6"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
         <div>
           <div class="auto-title">Review Monitoring & Response</div>
@@ -3151,7 +3300,7 @@ footer strong { color:var(--text); }
     <div class="auto-card">
       <div class="auto-header">
         <div class="auto-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.6"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.6"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         </div>
         <div>
           <div class="auto-title">Weekly Marketing Report</div>
@@ -3171,7 +3320,7 @@ footer strong { color:var(--text); }
     <div class="auto-card">
       <div class="auto-header">
         <div class="auto-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9b8ff" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
         <div>
           <div class="auto-title">AI Customer Support Triage</div>
@@ -3194,7 +3343,7 @@ footer strong { color:var(--text); }
 
 <!-- ========== COURSES SECTION ========== -->
 <section class="section" id="courses">
-<div class="section-wrap" style="padding-top:80px;">
+<div class="section-inner">
   <h3 style="font-family:var(--serif);font-size:12px;color:var(--plum);margin-bottom:16px;letter-spacing:0.08em;text-transform:uppercase;">Beginner — Start Here</h3>
   <div class="course-grid">
 
@@ -3232,7 +3381,7 @@ footer strong { color:var(--text); }
 
   </div>
 
-  <h3 style="font-family:var(--sans);font-size:11px;color:var(--plum);margin:32px 0 16px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;">Intermediate — Go Deeper</h3>
+  <h3 style="font-family:\'Familjen Grotesk\',sans-serif;font-size:10px;color:#c9b8ff;margin:32px 0 16px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;">Intermediate — Go Deeper</h3>
   <div class="course-grid">
 
     <a href="https://www.deeplearning.ai/short-courses/" target="_blank" class="course-card">
@@ -3269,7 +3418,7 @@ footer strong { color:var(--text); }
 
   </div>
 
-  <h3 style="font-family:var(--sans);font-size:11px;color:var(--plum);margin:32px 0 16px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;">AI Automation Specific</h3>
+  <h3 style="font-family:\'Familjen Grotesk\',sans-serif;font-size:10px;color:#c9b8ff;margin:32px 0 16px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;">AI Automation Specific</h3>
   <div class="course-grid">
 
     <a href="https://academy.make.com" target="_blank" class="course-card">
@@ -3298,7 +3447,7 @@ footer strong { color:var(--text); }
 
   </div>
 
-  <h3 style="font-family:var(--sans);font-size:11px;color:var(--plum);margin:40px 0 20px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;">Top Paid Courses — Worth the Investment</h3>
+  <h3 style="font-family:\'Familjen Grotesk\',sans-serif;font-size:10px;color:#c9b8ff;margin:40px 0 20px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;">Top Paid Courses — Worth the Investment</h3>
   <div class="course-grid">
 
     <a href="https://www.coursera.org/professional-certificates/ibm-ai-developer" target="_blank" class="course-card" style="border-color:rgba(196,120,138,0.25);">
@@ -3430,12 +3579,28 @@ if (toolSearch) toolSearch.addEventListener('input', filterTools);
 
 // ---- COPY PROMPTS ----
 function copyPrompt(btn) {
-  const text = btn.closest('.prompt-card').querySelector('.prompt-text').innerText;
-  navigator.clipboard.writeText(text).then(() => {
+  const el = btn.closest('.prompt-card').querySelector('.prompt-text');
+  const text = el.innerText.trim();
+  const succeed = () => {
     btn.textContent = 'Copied!';
     btn.classList.add('copied');
     setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
-  });
+  };
+  const fail = () => {
+    // Fallback: select text visually
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); succeed(); } catch(e) {}
+    sel.removeAllRanges();
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(succeed).catch(fail);
+  } else {
+    fail();
+  }
 }
 
 // Init
