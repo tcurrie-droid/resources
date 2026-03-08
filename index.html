@@ -7,19 +7,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --plum:       #2d1b3d;
-  --plum-deep:  #1e1129;
-  --plum-mid:   #3d2455;
-  --plum-light: #52326e;
-  --cream:      #f5f0e8;
-  --cream-dim:  #e8e0d0;
+  --plum:       #6b4fa0;
+  --plum-deep:  #3d2455;
+  --plum-mid:   #8b6fba;
+  --plum-light: #c5b3e0;
   --gold:       #c9a96e;
   --gold-light: #e2c99a;
   --rose:       #c4788a;
-  --white:      #fdfaf5;
-  --muted:      rgba(245,240,232,0.45);
-  --border:     rgba(201,169,110,0.18);
-  --card-bg:    rgba(61,36,85,0.5);
+  --white:      #ffffff;
+  --bg:         #ede9f4;
+  --bg-section: #e8e2f2;
+  --bg-card:    #f7f4fc;
+  --text:       #1c1828;
+  --text-mid:   #3d3352;
+  --text-muted: #7a6e8a;
+  --border:     rgba(107,79,160,0.15);
+  --border-gold:rgba(201,169,110,0.3);
+  --card-bg:    #f7f4fc;
   --serif:      'Cormorant Garamond', Georgia, serif;
   --sans:       'Jost', sans-serif;
 }
@@ -29,31 +33,22 @@ html { scroll-behavior:smooth; }
 
 body {
   font-family: var(--sans);
-  background: var(--plum-deep);
-  color: var(--cream);
+  background: var(--bg);
+  color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* GRAIN TEXTURE */
+/* SUBTLE TOP ACCENT */
 body::before {
-  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
-  opacity:0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-}
-
-/* AMBIENT GLOW */
-body::after {
-  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
-  background:
-    radial-gradient(ellipse 60% 50% at 90% 10%, rgba(196,120,138,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 5% 85%, rgba(201,169,110,0.07) 0%, transparent 60%);
+  content:''; position:fixed; top:0; left:0; right:0; height:3px; z-index:600;
+  background: var(--plum);
 }
 
 /* ===================== SITE NAV ===================== */
 .site-nav {
   position:fixed; top:0; left:0; right:0; z-index:500;
-  background: rgba(30,17,41,0.92);
+  background: rgba(237,233,244,0.97);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   padding: 0 48px;
@@ -67,7 +62,7 @@ body::after {
   font-family: var(--serif);
   font-size: 18px;
   font-weight: 500;
-  color: var(--cream);
+  color: var(--text);
   text-decoration: none;
   letter-spacing: 0.02em;
 }
@@ -78,7 +73,7 @@ body::after {
   border-radius: 100px;
   border: 1px solid transparent;
   background: transparent;
-  color: var(--muted);
+  color: var(--text-muted);
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 400;
@@ -87,11 +82,12 @@ body::after {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.nav-tab:hover { color: var(--cream); border-color: var(--border); }
+.nav-tab:hover { color: var(--plum); border-color: rgba(107,79,160,0.3); }
 .nav-tab.active {
-  background: rgba(201,169,110,0.12);
-  border-color: rgba(201,169,110,0.35);
-  color: var(--gold);
+  background: var(--plum);
+  border-color: var(--plum);
+  color: #ffffff;
+  font-weight: 500;
 }
 
 /* ===================== HERO ===================== */
@@ -107,7 +103,7 @@ body::after {
   margin-bottom: 28px;
 }
 .hero-eyebrow::before {
-  content:''; width:32px; height:1px; background:var(--gold); opacity:0.6;
+  content:''; width:32px; height:1px; background:var(--plum); opacity:0.5;
 }
 h1 {
   font-family: var(--serif);
@@ -115,7 +111,7 @@ h1 {
   font-weight: 500;
   line-height: 1.0;
   letter-spacing: -0.01em;
-  color: var(--white);
+  color: var(--text);
   margin-bottom: 28px;
 }
 h1 em {
@@ -124,7 +120,7 @@ h1 em {
 }
 .hero-sub {
   font-size:17px; font-weight:300; line-height:1.7;
-  color: var(--muted);
+  color: var(--text-muted);
   max-width: 560px;
   margin-bottom: 52px;
 }
@@ -141,10 +137,10 @@ h1 em {
 }
 .hero-stat-label {
   font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
-  color: var(--muted); margin-top:6px; display:block;
+  color: var(--text-muted); margin-top:6px; display:block;
 }
 .hero-divider {
-  width:1px; height:40px; background:var(--border); align-self:center;
+  width:1px; height:40px; background:rgba(45,27,61,0.15); align-self:center;
 }
 
 /* ===================== SECTIONS ===================== */
@@ -158,7 +154,7 @@ h1 em {
 /* ===================== SEARCH + FILTER BAR ===================== */
 .filter-bar {
   position:sticky; top:60px; z-index:100;
-  background: rgba(30,17,41,0.97);
+  background: rgba(237,233,244,0.98);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   padding: 14px 48px;
@@ -167,27 +163,28 @@ h1 em {
 .search-wrap { position:relative; flex:1; min-width:200px; max-width:360px; }
 .search-wrap svg { position:absolute; left:13px; top:50%; transform:translateY(-50%); opacity:0.35; }
 input[type="search"] {
-  width:100%; background:rgba(61,36,85,0.6); border:1px solid var(--border);
+  width:100%; background:rgba(255,255,255,0.6); border:1px solid var(--border);
   border-radius:8px; padding:9px 13px 9px 40px;
-  color:var(--cream); font-family:var(--sans); font-size:13px; outline:none;
+  color:var(--text); font-family:var(--sans); font-size:13px; outline:none;
   transition:border-color 0.2s;
 }
-input[type="search"]:focus { border-color:rgba(201,169,110,0.4); }
-input[type="search"]::placeholder { color:var(--muted); }
+input[type="search"]:focus { border-color:rgba(107,79,160,0.4); }
+input[type="search"]::placeholder { color:var(--text-muted); }
 
 .cat-pills { display:flex; gap:6px; flex-wrap:wrap; }
 .cpill {
   padding:6px 14px; border-radius:100px;
   border:1px solid var(--border); background:transparent;
-  color:var(--muted); font-family:var(--sans); font-size:11px;
+  color:var(--text-muted); font-family:var(--sans); font-size:11px;
   font-weight:500; letter-spacing:0.07em; text-transform:uppercase;
   cursor:pointer; transition:all 0.18s; white-space:nowrap;
 }
-.cpill:hover { border-color:rgba(201,169,110,0.35); color:var(--cream-dim); }
+.cpill:hover { border-color:rgba(107,79,160,0.35); color:var(--plum); }
 .cpill.active {
-  background:rgba(201,169,110,0.15);
-  border-color:rgba(201,169,110,0.5);
-  color:var(--gold);
+  background:var(--plum);
+  border-color:var(--plum);
+  color:#ffffff;
+  font-weight:500;
 }
 
 /* ===================== SECTION HEADERS ===================== */
@@ -203,12 +200,12 @@ input[type="search"]::placeholder { color:var(--muted); }
 }
 .cat-emoji svg { width:18px; height:18px; stroke-width:1.6; }
 .cat-name {
-  font-family:var(--serif); font-size:22px; font-weight:500; color:var(--white);
+  font-family:var(--serif); font-size:22px; font-weight:500; color:var(--text);
   letter-spacing:0.01em;
 }
 .cat-tally {
-  margin-left:auto; font-size:11px; color:var(--muted);
-  background:rgba(61,36,85,0.8); border:1px solid var(--border);
+  margin-left:auto; font-size:11px; color:var(--text-muted);
+  background:rgba(107,79,160,0.08); border:1px solid var(--border);
   border-radius:100px; padding:3px 12px; letter-spacing:0.06em;
 }
 
@@ -218,14 +215,14 @@ input[type="search"]::placeholder { color:var(--muted); }
 .tool-cat-section.hidden { display:none; }
 
 .tool-card {
-  background: var(--card-bg);
-  border:1px solid var(--border);
+  background: #ffffff;
+  border:1px solid rgba(107,79,160,0.12);
   border-radius:14px; padding:22px;
   display:flex; flex-direction:column; gap:11px;
   text-decoration:none; color:inherit;
   transition:border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-  backdrop-filter:blur(8px);
   position:relative; overflow:hidden;
+  box-shadow: 0 1px 4px rgba(45,27,61,0.06);
 }
 .tool-card::before {
   content:''; position:absolute; inset:0;
@@ -233,9 +230,9 @@ input[type="search"]::placeholder { color:var(--muted); }
   opacity:0; transition:opacity 0.2s; pointer-events:none; border-radius:14px;
 }
 .tool-card:hover {
-  border-color:rgba(201,169,110,0.35);
+  border-color:rgba(107,79,160,0.35);
   transform:translateY(-2px);
-  box-shadow:0 12px 36px rgba(0,0,0,0.35), 0 0 0 1px rgba(201,169,110,0.12);
+  box-shadow:0 8px 24px rgba(107,79,160,0.12);
 }
 .tool-card:hover::before { opacity:1; }
 .tool-card.hidden { display:none; }
@@ -243,19 +240,19 @@ input[type="search"]::placeholder { color:var(--muted); }
 .card-top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
 .card-top-left { display:flex; align-items:center; gap:10px; flex:1; min-width:0; }
 .card-logo {
-  width:30px; height:30px; border-radius:7px; object-fit:contain; flex-shrink:0;
-  background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1);
-  padding:4px;
+  width:32px; height:32px; border-radius:7px; object-fit:contain; flex-shrink:0;
+  background:#ffffff; border:1px solid rgba(107,79,160,0.1);
+  padding:3px;
 }
 .card-logo-fallback {
   width:30px; height:30px; border-radius:7px; flex-shrink:0;
-  background:rgba(201,169,110,0.12); border:1px solid rgba(201,169,110,0.2);
+  background:rgba(107,79,160,0.1); border:1px solid rgba(107,79,160,0.15);
   display:flex; align-items:center; justify-content:center;
-  font-size:13px; font-weight:700; color:var(--gold); font-family:var(--sans);
+  font-size:13px; font-weight:700; color:var(--plum); font-family:var(--sans);
 }
 .card-name {
   font-family:var(--serif); font-size:15px; font-weight:600;
-  color:var(--white); line-height:1.2;
+  color:var(--text); line-height:1.2;
 }
 .pricing-dot {
   width:7px; height:7px; border-radius:50%; flex-shrink:0;
@@ -264,12 +261,12 @@ input[type="search"]::placeholder { color:var(--muted); }
 .p-freemium { background:#7ab3e0; }
 .p-paid    { background:#e09b7a; }
 
-.card-desc { font-size:12.5px; color:var(--muted); line-height:1.6; flex:1; }
+.card-desc { font-size:12.5px; color:var(--text-muted); line-height:1.6; flex:1; }
 .card-tags { display:flex; gap:5px; flex-wrap:wrap; }
 .tag {
   font-size:10px; padding:2px 8px; border-radius:4px;
-  background:rgba(45,27,61,0.8); color:rgba(245,240,232,0.5);
-  border:1px solid var(--border); letter-spacing:0.04em;
+  background:rgba(107,79,160,0.07); color:var(--text-muted);
+  border:1px solid rgba(107,79,160,0.15); letter-spacing:0.04em;
 }
 .card-url { font-size:11px; color:rgba(201,169,110,0.55); font-weight:400; margin-top:2px; }
 
@@ -277,8 +274,8 @@ input[type="search"]::placeholder { color:var(--muted); }
 .pricing-legend {
   display:flex; gap:18px; flex-wrap:wrap; align-items:center;
   margin-bottom:28px; padding:14px 20px;
-  background:rgba(61,36,85,0.35); border:1px solid var(--border); border-radius:10px;
-  font-size:12px; color:var(--muted);
+  background:rgba(107,79,160,0.05); border:1px solid var(--border); border-radius:10px;
+  font-size:12px; color:var(--text-muted);
 }
 .legend-item { display:flex; align-items:center; gap:7px; }
 .legend-dot { width:8px; height:8px; border-radius:50%; }
@@ -286,36 +283,36 @@ input[type="search"]::placeholder { color:var(--muted); }
 /* EMPTY STATE */
 .empty-state { text-align:center; padding:80px 20px; color:var(--muted); display:none; }
 .empty-state.show { display:block; }
-.empty-state h3 { font-family:var(--serif); font-size:26px; color:var(--cream-dim); margin-bottom:8px; }
+.empty-state h3 { font-family:var(--serif); font-size:26px; color:var(--text); margin-bottom:8px; }
 
 /* ===================== PROMPT LIBRARY ===================== */
 .prompt-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(320px,1fr)); gap:16px; margin-bottom:56px; }
 
 .prompt-card {
-  background:var(--card-bg); border:1px solid var(--border); border-radius:14px;
+  background:#ffffff; border:1px solid rgba(107,79,160,0.12); border-radius:14px;
   padding:24px; display:flex; flex-direction:column; gap:14px;
-  backdrop-filter:blur(8px); transition:border-color 0.2s, transform 0.2s;
+  box-shadow:0 1px 4px rgba(107,79,160,0.08); transition:border-color 0.2s, transform 0.2s;
 }
-.prompt-card:hover { border-color:rgba(201,169,110,0.35); transform:translateY(-2px); }
+.prompt-card:hover { border-color:rgba(107,79,160,0.3); transform:translateY(-2px); box-shadow:0 6px 20px rgba(107,79,160,0.12); }
 
 .prompt-meta { display:flex; align-items:center; justify-content:space-between; }
 .prompt-cat-badge {
   font-size:10px; letter-spacing:0.1em; text-transform:uppercase; font-weight:500;
   padding:3px 10px; border-radius:100px;
-  background:rgba(201,169,110,0.1); color:var(--gold); border:1px solid rgba(201,169,110,0.2);
+  background:rgba(107,79,160,0.1); color:var(--plum); border:1px solid rgba(107,79,160,0.2);
 }
 .copy-btn {
-  background:transparent; border:1px solid var(--border); color:var(--muted);
+  background:transparent; border:1px solid var(--border); color:var(--text-muted);
   font-family:var(--sans); font-size:11px; padding:4px 12px; border-radius:6px;
   cursor:pointer; transition:all 0.18s; letter-spacing:0.05em;
 }
-.copy-btn:hover { border-color:rgba(201,169,110,0.4); color:var(--gold); }
-.copy-btn.copied { border-color:rgba(126,207,158,0.4); color:#7ecf9e; }
+.copy-btn:hover { border-color:var(--plum); color:var(--plum); background:rgba(107,79,160,0.06); }
+.copy-btn.copied { border-color:#5a9e7a; color:#5a9e7a; }
 
-.prompt-title { font-family:var(--serif); font-size:17px; font-weight:600; color:var(--white); }
+.prompt-title { font-family:var(--serif); font-size:17px; font-weight:600; color:var(--text); }
 .prompt-text {
-  font-size:12.5px; color:var(--muted); line-height:1.65;
-  background:rgba(30,17,41,0.5); border:1px solid var(--border);
+  font-size:12.5px; color:var(--text-mid); line-height:1.65;
+  background:rgba(107,79,160,0.05); border:1px solid rgba(107,79,160,0.1);
   border-radius:8px; padding:14px; font-family:monospace;
   white-space:pre-wrap; word-break:break-word;
 }
@@ -324,18 +321,18 @@ input[type="search"]::placeholder { color:var(--muted); }
 /* ===================== AUTOMATIONS ===================== */
 .auto-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(340px,1fr)); gap:16px; margin-bottom:56px; }
 .auto-card {
-  background:var(--card-bg); border:1px solid var(--border); border-radius:14px;
+  background:#ffffff; border:1px solid rgba(107,79,160,0.12); border-radius:14px;
   padding:26px; display:flex; flex-direction:column; gap:14px;
-  backdrop-filter:blur(8px); transition:border-color 0.2s;
+  box-shadow:0 1px 4px rgba(107,79,160,0.08); transition:border-color 0.2s, box-shadow 0.2s;
 }
-.auto-card:hover { border-color:rgba(201,169,110,0.35); }
+.auto-card:hover { border-color:rgba(107,79,160,0.3); box-shadow:0 6px 20px rgba(107,79,160,0.12); }
 .auto-header { display:flex; align-items:flex-start; gap:14px; }
 .auto-icon {
   width:44px; height:44px; border-radius:10px; flex-shrink:0;
   display:flex; align-items:center; justify-content:center; font-size:20px;
-  background:rgba(201,169,110,0.1); border:1px solid rgba(201,169,110,0.2);
+  background:rgba(107,79,160,0.08); border:1px solid rgba(107,79,160,0.15);
 }
-.auto-title { font-family:var(--serif); font-size:18px; font-weight:600; color:var(--white); margin-bottom:4px; }
+.auto-title { font-family:var(--serif); font-size:18px; font-weight:600; color:var(--text); margin-bottom:4px; }
 .auto-difficulty {
   font-size:10px; letter-spacing:0.1em; text-transform:uppercase; font-weight:500;
   padding:2px 8px; border-radius:100px; display:inline-block;
@@ -344,40 +341,41 @@ input[type="search"]::placeholder { color:var(--muted); }
 .diff-intermediate { background:rgba(201,169,110,0.1); color:var(--gold); border:1px solid rgba(201,169,110,0.2); }
 .diff-advanced { background:rgba(196,120,138,0.1); color:var(--rose); border:1px solid rgba(196,120,138,0.2); }
 
-.auto-desc { font-size:13px; color:var(--muted); line-height:1.65; }
+.auto-desc { font-size:13px; color:var(--text-muted); line-height:1.65; }
 .auto-steps { display:flex; flex-direction:column; gap:8px; }
 .auto-step {
   display:flex; align-items:flex-start; gap:10px;
-  font-size:12px; color:var(--muted);
+  font-size:12px; color:var(--text-muted);
 }
 .step-num {
-  width:20px; height:20px; border-radius:50%; background:rgba(201,169,110,0.15);
-  border:1px solid rgba(201,169,110,0.25); display:flex; align-items:center;
-  justify-content:center; font-size:10px; color:var(--gold); flex-shrink:0;
+  width:20px; height:20px; border-radius:50%; background:rgba(45,27,61,0.08);
+  border:1px solid rgba(45,27,61,0.15); display:flex; align-items:center;
+  justify-content:center; font-size:10px; color:var(--plum); flex-shrink:0;
   font-weight:600; margin-top:1px;
 }
 .auto-tools { display:flex; gap:6px; flex-wrap:wrap; margin-top:4px; }
 .tool-pill {
   font-size:10px; padding:2px 9px; border-radius:100px;
-  background:rgba(82,50,110,0.7); color:rgba(245,240,232,0.6);
-  border:1px solid var(--border); letter-spacing:0.03em;
+  background:rgba(107,79,160,0.07); color:var(--text-muted);
+  border:1px solid rgba(107,79,160,0.15); letter-spacing:0.03em;
 }
 
 /* ===================== COURSES ===================== */
 .course-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:16px; margin-bottom:56px; }
 .course-card {
-  background:var(--card-bg); border:1px solid var(--border); border-radius:14px;
+  background:#ffffff; border:1px solid rgba(107,79,160,0.12); border-radius:14px;
   padding:26px; display:flex; flex-direction:column; gap:14px;
-  text-decoration:none; color:inherit; backdrop-filter:blur(8px);
-  transition:border-color 0.2s, transform 0.2s;
+  text-decoration:none; color:inherit;
+  box-shadow:0 1px 4px rgba(107,79,160,0.08);
+  transition:border-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
-.course-card:hover { border-color:rgba(201,169,110,0.35); transform:translateY(-2px); }
+.course-card:hover { border-color:rgba(107,79,160,0.3); transform:translateY(-2px); box-shadow:0 6px 20px rgba(107,79,160,0.12); }
 .course-provider {
   font-size:10px; letter-spacing:0.15em; text-transform:uppercase;
   color:var(--gold); font-weight:500;
 }
-.course-title { font-family:var(--serif); font-size:20px; font-weight:600; color:var(--white); line-height:1.25; }
-.course-desc { font-size:12.5px; color:var(--muted); line-height:1.65; flex:1; }
+.course-title { font-family:var(--serif); font-size:20px; font-weight:600; color:var(--text); line-height:1.25; }
+.course-desc { font-size:12.5px; color:var(--text-muted); line-height:1.65; flex:1; }
 .course-meta { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
 .course-badge {
   font-size:10px; padding:3px 9px; border-radius:100px; font-weight:500; letter-spacing:0.06em;
@@ -395,13 +393,13 @@ input[type="search"]::placeholder { color:var(--muted); }
 }
 .section-title {
   font-family:var(--serif); font-size:clamp(32px,4vw,48px); font-weight:500;
-  color:var(--white); margin-bottom:12px; line-height:1.1;
+  color:var(--text); margin-bottom:12px; line-height:1.1;
 }
 .section-title em { color:var(--gold); font-style:italic; }
-.section-sub { font-size:15px; color:var(--muted); line-height:1.7; max-width:600px; }
+.section-sub { font-size:15px; color:var(--text-muted); line-height:1.7; max-width:600px; }
 
 /* RESULTS COUNT */
-#results-info { font-size:12px; color:var(--muted); margin:16px 0 24px; letter-spacing:0.04em; }
+#results-info { font-size:12px; color:var(--text-muted); margin:16px 0 24px; letter-spacing:0.04em; }
 #results-info strong { color:var(--gold); }
 
 /* FOOTER */
@@ -409,10 +407,10 @@ footer {
   position:relative; z-index:1;
   border-top:1px solid var(--border);
   padding:32px 48px; text-align:center;
-  font-size:12px; color:var(--muted); letter-spacing:0.04em;
+  font-size:12px; color:var(--text-muted); letter-spacing:0.04em;
 }
-footer a { color:var(--gold); text-decoration:none; }
-footer strong { color:var(--cream-dim); }
+footer a { color:var(--plum); text-decoration:none; font-weight:500; }
+footer strong { color:var(--text); }
 
 .hidden { display:none !important; }
 
@@ -420,9 +418,55 @@ footer strong { color:var(--cream-dim); }
   .site-nav { padding:0 20px; }
   .hero { padding:120px 20px 60px; }
   .section-wrap,.filter-bar { padding-left:20px; padding-right:20px; }
-  .nav-links { gap:2px; }
-  .nav-tab { padding:6px 10px; font-size:10px; }
   footer { padding:24px 20px; }
+}
+
+/* ===================== MOBILE NAV ===================== */
+.hamburger {
+  display: none;
+  background: none; border: none; cursor: pointer;
+  padding: 6px; border-radius: 8px;
+  transition: background 0.2s;
+}
+.hamburger:hover { background: rgba(107,79,160,0.1); }
+.hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--text); border-radius: 2px;
+  transition: all 0.25s;
+  margin: 5px 0;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  position: fixed; top: 63px; left: 0; right: 0; z-index: 490;
+  background: rgba(237,233,244,0.99);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0 12px;
+  flex-direction: column;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu-item {
+  background: none; border: none; cursor: pointer;
+  padding: 14px 28px; text-align: left;
+  font-family: var(--sans); font-size: 14px;
+  font-weight: 400; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-muted);
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.mobile-menu-item:hover { color: var(--plum); background: rgba(107,79,160,0.06); }
+.mobile-menu-item.active {
+  color: var(--plum); font-weight: 600;
+  border-left-color: var(--plum);
+  background: rgba(107,79,160,0.06);
+}
+
+@media(max-width: 640px) {
+  .hamburger { display: block; }
+  .nav-links { display: none; }
 }
 </style>
 </head>
@@ -432,6 +476,9 @@ footer strong { color:var(--cream-dim); }
 <nav class="site-nav">
   <div class="nav-inner">
     <a href="https://taneilcurrie.com" class="nav-brand">Taneil <em>Currie</em></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links">
       <button class="nav-tab active" data-section="home">Home</button>
       <button class="nav-tab" data-section="tools">AI Tools</button>
@@ -442,12 +489,21 @@ footer strong { color:var(--cream-dim); }
   </div>
 </nav>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-item active" data-section="home">Home</button>
+  <button class="mobile-menu-item" data-section="tools">AI Tools</button>
+  <button class="mobile-menu-item" data-section="prompts">Prompts</button>
+  <button class="mobile-menu-item" data-section="automations">Automations</button>
+  <button class="mobile-menu-item" data-section="courses">Courses</button>
+</div>
+
 <!-- ========== HOME ========== -->
 <section class="section active" id="home">
   <div class="hero">
     <div class="hero-eyebrow">AI Resource Hub</div>
-    <h1>The tools, prompts &<br><em>workflows</em> that work.</h1>
-    <p class="hero-sub">A curated collection of AI tools, ready-to-use prompts, automation workflows, and free courses — built for business owners, marketers, and teams ready to work smarter.</p>
+    <h1>AI Made <em>Practical.</em></h1>
+    <p class="hero-sub">A curated collection of AI tools, prompts, automation workflows, and free courses — everything you need to start working smarter with AI.</p>
     <div class="hero-stats">
       <div class="hero-stat">
         <span class="hero-stat-num">500+</span>
@@ -474,32 +530,32 @@ footer strong { color:var(--cream-dim); }
   <div style="max-width:1200px;margin:0 auto;padding:0 48px 100px;position:relative;z-index:1;">
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
 
-      <div onclick="switchSection('tools')" style="background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;backdrop-filter:blur(8px);" onmouseover="this.style.borderColor='rgba(201,169,110,0.4)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
-        <div style="font-size:28px;margin-bottom:16px;">🧰</div>
-        <div style="font-family:var(--serif);font-size:20px;font-weight:600;color:var(--white);margin-bottom:8px;">AI Tool Directory</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.65;">500+ tools organized by category — video, content, design, SEO, productivity, and more. Find the right tool fast.</div>
-        <div style="margin-top:16px;font-size:12px;color:var(--gold);font-weight:500;">Browse tools →</div>
+      <div onclick="switchSection('tools')" style="background:#ffffff;border:1px solid rgba(107,79,160,0.15);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;box-shadow:0 2px 8px rgba(107,79,160,0.08);" onmouseover="this.style.borderColor='rgba(107,79,160,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 28px rgba(107,79,160,0.14)'" onmouseout="this.style.borderColor='rgba(107,79,160,0.15)';this.style.transform='none';this.style.boxShadow='0 2px 8px rgba(107,79,160,0.08)'">
+        <div style="width:48px;height:48px;border-radius:10px;background:rgba(107,79,160,0.12);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2d1b3d" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+        <div style="font-family:var(--serif);font-size:20px;font-weight:600;color:var(--text);margin-bottom:8px;">AI Tool Directory</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.65;">500+ tools organized by category — video, content, design, SEO, productivity, and more. Find the right tool fast.</div>
+        <div style="margin-top:16px;font-size:12px;color:var(--plum);font-weight:500;">Browse tools →</div>
       </div>
 
-      <div onclick="switchSection('prompts')" style="background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;backdrop-filter:blur(8px);" onmouseover="this.style.borderColor='rgba(201,169,110,0.4)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
-        <div style="font-size:28px;margin-bottom:16px;">💬</div>
-        <div style="font-family:var(--serif);font-size:20px;font-weight:600;color:var(--white);margin-bottom:8px;">Prompt Library</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.65;">Ready-to-use prompts for marketing, strategy, content, and operations. Copy, adapt, and get better results immediately.</div>
-        <div style="margin-top:16px;font-size:12px;color:var(--gold);font-weight:500;">Explore prompts →</div>
+      <div onclick="switchSection('prompts')" style="background:#ffffff;border:1px solid rgba(107,79,160,0.15);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;box-shadow:0 2px 8px rgba(107,79,160,0.08);" onmouseover="this.style.borderColor='rgba(107,79,160,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 28px rgba(107,79,160,0.14)'" onmouseout="this.style.borderColor='rgba(107,79,160,0.15)';this.style.transform='none';this.style.boxShadow='0 2px 8px rgba(107,79,160,0.08)'">
+        <div style="width:48px;height:48px;border-radius:10px;background:rgba(107,79,160,0.12);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2d1b3d" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="13" y2="14"/></svg></div>
+        <div style="font-family:var(--serif);font-size:20px;font-weight:600;color:var(--text);margin-bottom:8px;">Prompt Library</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.65;">Ready-to-use prompts for marketing, strategy, content, and operations. Copy, adapt, and get better results immediately.</div>
+        <div style="margin-top:16px;font-size:12px;color:var(--plum);font-weight:500;">Explore prompts →</div>
       </div>
 
-      <div onclick="switchSection('automations')" style="background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;backdrop-filter:blur(8px);" onmouseover="this.style.borderColor='rgba(201,169,110,0.4)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
-        <div style="font-size:28px;margin-bottom:16px;">⚡</div>
-        <div style="font-family:var(--serif);font-size:20px;font-weight:600;color:var(--white);margin-bottom:8px;">Automation Workflows</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.65;">Step-by-step automation examples using Make, Zapier, and AI tools — built for real business use cases.</div>
-        <div style="margin-top:16px;font-size:12px;color:var(--gold);font-weight:500;">See workflows →</div>
+      <div onclick="switchSection('automations')" style="background:#ffffff;border:1px solid rgba(107,79,160,0.15);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;box-shadow:0 2px 8px rgba(107,79,160,0.08);" onmouseover="this.style.borderColor='rgba(107,79,160,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 28px rgba(107,79,160,0.14)'" onmouseout="this.style.borderColor='rgba(107,79,160,0.15)';this.style.transform='none';this.style.boxShadow='0 2px 8px rgba(107,79,160,0.08)'">
+        <div style="width:48px;height:48px;border-radius:10px;background:rgba(107,79,160,0.12);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2d1b3d" stroke-width="1.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div style="font-family:var(--serif);font-size:20px;font-weight:600;color:var(--text);margin-bottom:8px;">Automation Workflows</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.65;">Step-by-step automation examples using Make, Zapier, and AI tools — built for real business use cases.</div>
+        <div style="margin-top:16px;font-size:12px;color:var(--plum);font-weight:500;">See workflows →</div>
       </div>
 
-      <div onclick="switchSection('courses')" style="background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;backdrop-filter:blur(8px);" onmouseover="this.style.borderColor='rgba(201,169,110,0.4)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
-        <div style="font-size:28px;margin-bottom:16px;">🎓</div>
-        <div style="font-family:var(--serif);font-size:20px;font-weight:600;color:var(--white);margin-bottom:8px;">Free Courses</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.65;">The best free AI learning resources, including courses from Anthropic, Google, and DeepLearning.ai — all in one place.</div>
-        <div style="margin-top:16px;font-size:12px;color:var(--gold);font-weight:500;">Start learning →</div>
+      <div onclick="switchSection('courses')" style="background:#ffffff;border:1px solid rgba(107,79,160,0.15);border-radius:16px;padding:32px;cursor:pointer;transition:all 0.2s;box-shadow:0 2px 8px rgba(107,79,160,0.08);" onmouseover="this.style.borderColor='rgba(107,79,160,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 28px rgba(107,79,160,0.14)'" onmouseout="this.style.borderColor='rgba(107,79,160,0.15)';this.style.transform='none';this.style.boxShadow='0 2px 8px rgba(107,79,160,0.08)'">
+        <div style="width:48px;height:48px;border-radius:10px;background:rgba(107,79,160,0.12);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2d1b3d" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div style="font-family:var(--serif);font-size:20px;font-weight:600;color:var(--text);margin-bottom:8px;">Free Courses</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.65;">The best free AI learning resources, including courses from Anthropic, Google, and DeepLearning.ai — all in one place.</div>
+        <div style="margin-top:16px;font-size:12px;color:var(--plum);font-weight:500;">Start learning →</div>
       </div>
 
     </div>
@@ -555,14 +611,14 @@ footer strong { color:var(--cream-dim); }
   <div class="tool-cat-section" data-cat="ai-assistants">
     <div class="cat-head"><div class="cat-emoji" style="background:rgba(196,120,138,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#c4788a" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26A7 7 0 0 1 12 2z"/><path d="M9 21h6"/><path d="M9 18h6"/></svg></div><span class="cat-name">AI Assistants & LLMs</span><span class="cat-tally">8 tools</span></div>
     <div class="tool-grid">
-      <a href="https://claude.ai" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">Claude (Anthropic)</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Thoughtful, nuanced AI for writing, analysis, coding, and complex reasoning. Outstanding with long documents and nuanced tasks.</p><div class="card-tags"><span class="tag">Writing</span><span class="tag">Analysis</span><span class="tag">Coding</span></div><span class="card-url">claude.ai</span></a>
-      <a href="https://chat.openai.com" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=chat.openai.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">ChatGPT (OpenAI)</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">The most widely-used AI assistant. Versatile for writing, brainstorming, coding, and research with SearchGPT built in.</p><div class="card-tags"><span class="tag">Writing</span><span class="tag">Search</span><span class="tag">Coding</span></div><span class="card-url">chat.openai.com</span></a>
-      <a href="https://gemini.google.com" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">G</div><span class="card-name">Gemini (Google)</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Google's AI deeply integrated with Workspace. Excellent multimodal tasks and live web access.</p><div class="card-tags"><span class="tag">Multimodal</span><span class="tag">Google Suite</span></div><span class="card-url">gemini.google.com</span></a>
-      <a href="https://copilot.microsoft.com" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=copilot.microsoft.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">M</div><span class="card-name">Microsoft Copilot</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI inside Microsoft 365 — Word, Excel, PowerPoint, Outlook. Game-changer for Microsoft ecosystem teams.</p><div class="card-tags"><span class="tag">Office Suite</span><span class="tag">Productivity</span></div><span class="card-url">copilot.microsoft.com</span></a>
-      <a href="https://www.perplexity.ai" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.perplexity.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">P</div><span class="card-name">Perplexity AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI search engine that cites sources. Ideal for research, fact-checking, and current answers with references.</p><div class="card-tags"><span class="tag">Search</span><span class="tag">Research</span><span class="tag">Citations</span></div><span class="card-url">perplexity.ai</span></a>
-      <a href="https://pi.ai" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=pi.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">P</div><span class="card-name">Pi (Personal AI)</span></div><div class="pricing-dot p-free"></div></div><p class="card-desc">Conversational personal AI focused on thoughtful dialogue. Great for reflection, brainstorming, and exploration.</p><div class="card-tags"><span class="tag">Conversational</span><span class="tag">Personal</span></div><span class="card-url">pi.ai</span></a>
-      <a href="https://lindy.ai" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=lindy.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">L</div><span class="card-name">Lindy AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI agents that automate workflows — email triage, meeting notes, CRM updates — without code.</p><div class="card-tags"><span class="tag">AI Agents</span><span class="tag">Automation</span></div><span class="card-url">lindy.ai</span></a>
-      <a href="https://haiper.ai" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=haiper.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">H</div><span class="card-name">Haiper AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Fast AI assistant for everyday tasks — writing, Q&A, and creative briefs in a clean, simple interface.</p><div class="card-tags"><span class="tag">Assistant</span><span class="tag">Writing</span></div><span class="card-url">haiper.ai</span></a>
+      <a href="https://claude.ai" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/claude.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">Claude (Anthropic)</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Thoughtful, nuanced AI for writing, analysis, coding, and complex reasoning. Outstanding with long documents and nuanced tasks.</p><div class="card-tags"><span class="tag">Writing</span><span class="tag">Analysis</span><span class="tag">Coding</span></div><span class="card-url">claude.ai</span></a>
+      <a href="https://chat.openai.com" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/chat.openai.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">ChatGPT (OpenAI)</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">The most widely-used AI assistant. Versatile for writing, brainstorming, coding, and research with SearchGPT built in.</p><div class="card-tags"><span class="tag">Writing</span><span class="tag">Search</span><span class="tag">Coding</span></div><span class="card-url">chat.openai.com</span></a>
+      <a href="https://gemini.google.com" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/gemini.google.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">G</div><span class="card-name">Gemini (Google)</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Google's AI deeply integrated with Workspace. Excellent multimodal tasks and live web access.</p><div class="card-tags"><span class="tag">Multimodal</span><span class="tag">Google Suite</span></div><span class="card-url">gemini.google.com</span></a>
+      <a href="https://copilot.microsoft.com" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/copilot.microsoft.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">M</div><span class="card-name">Microsoft Copilot</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI inside Microsoft 365 — Word, Excel, PowerPoint, Outlook. Game-changer for Microsoft ecosystem teams.</p><div class="card-tags"><span class="tag">Office Suite</span><span class="tag">Productivity</span></div><span class="card-url">copilot.microsoft.com</span></a>
+      <a href="https://www.perplexity.ai" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.perplexity.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">P</div><span class="card-name">Perplexity AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI search engine that cites sources. Ideal for research, fact-checking, and current answers with references.</p><div class="card-tags"><span class="tag">Search</span><span class="tag">Research</span><span class="tag">Citations</span></div><span class="card-url">perplexity.ai</span></a>
+      <a href="https://pi.ai" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/pi.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">P</div><span class="card-name">Pi (Personal AI)</span></div><div class="pricing-dot p-free"></div></div><p class="card-desc">Conversational personal AI focused on thoughtful dialogue. Great for reflection, brainstorming, and exploration.</p><div class="card-tags"><span class="tag">Conversational</span><span class="tag">Personal</span></div><span class="card-url">pi.ai</span></a>
+      <a href="https://lindy.ai" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/lindy.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">L</div><span class="card-name">Lindy AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI agents that automate workflows — email triage, meeting notes, CRM updates — without code.</p><div class="card-tags"><span class="tag">AI Agents</span><span class="tag">Automation</span></div><span class="card-url">lindy.ai</span></a>
+      <a href="https://haiper.ai" target="_blank" class="tool-card" data-cat="ai-assistants"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/haiper.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">H</div><span class="card-name">Haiper AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Fast AI assistant for everyday tasks — writing, Q&A, and creative briefs in a clean, simple interface.</p><div class="card-tags"><span class="tag">Assistant</span><span class="tag">Writing</span></div><span class="card-url">haiper.ai</span></a>
     </div>
   </div>
 
@@ -570,22 +626,22 @@ footer strong { color:var(--cream-dim); }
   <div class="tool-cat-section" data-cat="video">
     <div class="cat-head"><div class="cat-emoji" style="background:rgba(224,155,122,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#e09b7a" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m10 9 5 3-5 3V9z"/></svg></div><span class="cat-name">Video Creation & Generation</span><span class="cat-tally">30+ tools</span></div>
     <div class="tool-grid">
-      <a href="https://runwayml.com" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=runwayml.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">R</div><span class="card-name">Runway</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Industry-leading AI video platform. Text-to-video, image-to-video, inpainting, and creative tools for high-quality content.</p><div class="card-tags"><span class="tag">Text-to-Video</span><span class="tag">Gen AI</span></div><span class="card-url">runwayml.com</span></a>
-      <a href="https://www.heygen.com" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.heygen.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">H</div><span class="card-name">HeyGen</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Professional AI avatar videos at scale. Upload your likeness, type a script — no camera required.</p><div class="card-tags"><span class="tag">AI Avatar</span><span class="tag">Talking Head</span></div><span class="card-url">heygen.com</span></a>
-      <a href="https://www.synthesia.io" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.synthesia.io&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">Synthesia</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Enterprise AI video with customizable avatars. Studio-quality presenter videos in 40+ languages from a typed script.</p><div class="card-tags"><span class="tag">Enterprise</span><span class="tag">Multilingual</span></div><span class="card-url">synthesia.io</span></a>
-      <a href="https://pika.art" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=pika.art&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">P</div><span class="card-name">Pika Labs</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Text and image-to-video with smooth, cinematic results. Popular for creative short-form social content.</p><div class="card-tags"><span class="tag">Text-to-Video</span><span class="tag">Creative</span></div><span class="card-url">pika.art</span></a>
-      <a href="https://invideo.io" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=invideo.io&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">I</div><span class="card-name">InVideo AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Turn text prompts into polished videos with stock footage, voiceover, and music. Great for YouTube and social.</p><div class="card-tags"><span class="tag">Script-to-Video</span><span class="tag">YouTube</span></div><span class="card-url">invideo.io</span></a>
-      <a href="https://lumen5.com" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=lumen5.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">L</div><span class="card-name">Lumen5</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Convert blog posts and articles into engaging social videos. Strong for repurposing written content.</p><div class="card-tags"><span class="tag">Blog-to-Video</span><span class="tag">Repurposing</span></div><span class="card-url">lumen5.com</span></a>
-      <a href="https://openai.com/sora" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">Sora (OpenAI)</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Cinematic text-to-video from OpenAI. Generates realistic, high-quality video clips from text descriptions.</p><div class="card-tags"><span class="tag">Cinematic</span><span class="tag">Text-to-Video</span></div><span class="card-url">openai.com/sora</span></a>
-      <a href="https://pixverse.ai" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=pixverse.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">P</div><span class="card-name">PixVerse</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">High-quality AI video generation from text and images. Strong cinematic output for creative marketing.</p><div class="card-tags"><span class="tag">Text-to-Video</span><span class="tag">Cinematic</span></div><span class="card-url">pixverse.ai</span></a>
-      <a href="https://www.capcut.com" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.capcut.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">CapCut</span></div><div class="pricing-dot p-free"></div></div><p class="card-desc">Free all-in-one video editor with AI features — auto captions, background removal, and 1,000s of templates.</p><div class="card-tags"><span class="tag">Video Editor</span><span class="tag">Social</span></div><span class="card-url">capcut.com</span></a>
-      <a href="https://www.d-id.com" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.d-id.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">D</div><span class="card-name">D-ID Creative Reality</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Animate photos into talking video avatars. Great for personalized marketing videos and digital humans.</p><div class="card-tags"><span class="tag">Photo Animation</span><span class="tag">Avatar</span></div><span class="card-url">d-id.com</span></a>
-      <a href="https://www.tavus.io" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.tavus.io&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">T</div><span class="card-name">Tavus</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Personalized video at scale — one recording, infinite personalized versions. Powerful for sales outreach.</p><div class="card-tags"><span class="tag">Personalization</span><span class="tag">Sales</span></div><span class="card-url">tavus.io</span></a>
-      <a href="https://fliki.ai" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=fliki.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">F</div><span class="card-name">Fliki</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Convert text and blogs to videos with AI voices. 1,900+ voices, 75+ languages, stock visuals included.</p><div class="card-tags"><span class="tag">Text-to-Video</span><span class="tag">Voiceover</span></div><span class="card-url">fliki.ai</span></a>
-      <a href="https://www.zebracat.ai" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.zebracat.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">Z</div><span class="card-name">Zebracat</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI marketing video from text prompts. Generates short-form videos with stock footage and AI voiceover for social ads.</p><div class="card-tags"><span class="tag">Marketing Video</span><span class="tag">Ads</span></div><span class="card-url">zebracat.ai</span></a>
-      <a href="https://kaiber.ai" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=kaiber.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">K</div><span class="card-name">Kaiber</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI video generator for artists. Create music videos, animations, and visual stories from images or text.</p><div class="card-tags"><span class="tag">Music Video</span><span class="tag">Animation</span></div><span class="card-url">kaiber.ai</span></a>
-      <a href="https://playplay.com" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=playplay.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">P</div><span class="card-name">PlayPlay</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Video creation for marketing teams. Templates, brand customization, and collaboration for professional video at scale.</p><div class="card-tags"><span class="tag">Teams</span><span class="tag">Brand Templates</span></div><span class="card-url">playplay.com</span></a>
-      <a href="https://www.veed.io" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.veed.io&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">V</div><span class="card-name">VEED Studio</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Browser-based video editor with AI subtitles, transcription, avatar creation, and text-to-speech in one suite.</p><div class="card-tags"><span class="tag">Video Editor</span><span class="tag">Subtitles</span></div><span class="card-url">veed.io</span></a>
+      <a href="https://runwayml.com" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/runwayml.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">R</div><span class="card-name">Runway</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Industry-leading AI video platform. Text-to-video, image-to-video, inpainting, and creative tools for high-quality content.</p><div class="card-tags"><span class="tag">Text-to-Video</span><span class="tag">Gen AI</span></div><span class="card-url">runwayml.com</span></a>
+      <a href="https://www.heygen.com" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.heygen.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">H</div><span class="card-name">HeyGen</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Professional AI avatar videos at scale. Upload your likeness, type a script — no camera required.</p><div class="card-tags"><span class="tag">AI Avatar</span><span class="tag">Talking Head</span></div><span class="card-url">heygen.com</span></a>
+      <a href="https://www.synthesia.io" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.synthesia.io" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">Synthesia</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Enterprise AI video with customizable avatars. Studio-quality presenter videos in 40+ languages from a typed script.</p><div class="card-tags"><span class="tag">Enterprise</span><span class="tag">Multilingual</span></div><span class="card-url">synthesia.io</span></a>
+      <a href="https://pika.art" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/pika.art" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">P</div><span class="card-name">Pika Labs</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Text and image-to-video with smooth, cinematic results. Popular for creative short-form social content.</p><div class="card-tags"><span class="tag">Text-to-Video</span><span class="tag">Creative</span></div><span class="card-url">pika.art</span></a>
+      <a href="https://invideo.io" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/invideo.io" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">I</div><span class="card-name">InVideo AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Turn text prompts into polished videos with stock footage, voiceover, and music. Great for YouTube and social.</p><div class="card-tags"><span class="tag">Script-to-Video</span><span class="tag">YouTube</span></div><span class="card-url">invideo.io</span></a>
+      <a href="https://lumen5.com" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/lumen5.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">L</div><span class="card-name">Lumen5</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Convert blog posts and articles into engaging social videos. Strong for repurposing written content.</p><div class="card-tags"><span class="tag">Blog-to-Video</span><span class="tag">Repurposing</span></div><span class="card-url">lumen5.com</span></a>
+      <a href="https://openai.com/sora" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/openai.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">Sora (OpenAI)</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Cinematic text-to-video from OpenAI. Generates realistic, high-quality video clips from text descriptions.</p><div class="card-tags"><span class="tag">Cinematic</span><span class="tag">Text-to-Video</span></div><span class="card-url">openai.com/sora</span></a>
+      <a href="https://pixverse.ai" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/pixverse.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">P</div><span class="card-name">PixVerse</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">High-quality AI video generation from text and images. Strong cinematic output for creative marketing.</p><div class="card-tags"><span class="tag">Text-to-Video</span><span class="tag">Cinematic</span></div><span class="card-url">pixverse.ai</span></a>
+      <a href="https://www.capcut.com" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.capcut.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">CapCut</span></div><div class="pricing-dot p-free"></div></div><p class="card-desc">Free all-in-one video editor with AI features — auto captions, background removal, and 1,000s of templates.</p><div class="card-tags"><span class="tag">Video Editor</span><span class="tag">Social</span></div><span class="card-url">capcut.com</span></a>
+      <a href="https://www.d-id.com" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.d-id.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">D</div><span class="card-name">D-ID Creative Reality</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Animate photos into talking video avatars. Great for personalized marketing videos and digital humans.</p><div class="card-tags"><span class="tag">Photo Animation</span><span class="tag">Avatar</span></div><span class="card-url">d-id.com</span></a>
+      <a href="https://www.tavus.io" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.tavus.io" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">T</div><span class="card-name">Tavus</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Personalized video at scale — one recording, infinite personalized versions. Powerful for sales outreach.</p><div class="card-tags"><span class="tag">Personalization</span><span class="tag">Sales</span></div><span class="card-url">tavus.io</span></a>
+      <a href="https://fliki.ai" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/fliki.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">F</div><span class="card-name">Fliki</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Convert text and blogs to videos with AI voices. 1,900+ voices, 75+ languages, stock visuals included.</p><div class="card-tags"><span class="tag">Text-to-Video</span><span class="tag">Voiceover</span></div><span class="card-url">fliki.ai</span></a>
+      <a href="https://www.zebracat.ai" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.zebracat.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">Z</div><span class="card-name">Zebracat</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI marketing video from text prompts. Generates short-form videos with stock footage and AI voiceover for social ads.</p><div class="card-tags"><span class="tag">Marketing Video</span><span class="tag">Ads</span></div><span class="card-url">zebracat.ai</span></a>
+      <a href="https://kaiber.ai" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/kaiber.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">K</div><span class="card-name">Kaiber</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI video generator for artists. Create music videos, animations, and visual stories from images or text.</p><div class="card-tags"><span class="tag">Music Video</span><span class="tag">Animation</span></div><span class="card-url">kaiber.ai</span></a>
+      <a href="https://playplay.com" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/playplay.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">P</div><span class="card-name">PlayPlay</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Video creation for marketing teams. Templates, brand customization, and collaboration for professional video at scale.</p><div class="card-tags"><span class="tag">Teams</span><span class="tag">Brand Templates</span></div><span class="card-url">playplay.com</span></a>
+      <a href="https://www.veed.io" target="_blank" class="tool-card" data-cat="video"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.veed.io" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">V</div><span class="card-name">VEED Studio</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Browser-based video editor with AI subtitles, transcription, avatar creation, and text-to-speech in one suite.</p><div class="card-tags"><span class="tag">Video Editor</span><span class="tag">Subtitles</span></div><span class="card-url">veed.io</span></a>
     </div>
   </div>
 
@@ -593,13 +649,13 @@ footer strong { color:var(--cream-dim); }
   <div class="tool-cat-section" data-cat="image">
     <div class="cat-head"><div class="cat-emoji" style="background:rgba(196,120,138,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#c4788a" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 8.66 5H3.34A10 10 0 0 1 12 2z" fill="rgba(196,120,138,0.2)"/><circle cx="8" cy="14" r="1.5" fill="#c4788a"/><circle cx="12" cy="10" r="1.5" fill="#c4788a"/><circle cx="16" cy="14" r="1.5" fill="#c4788a"/></svg></div><span class="cat-name">Image Generation & Editing</span><span class="cat-tally">15+ tools</span></div>
     <div class="tool-grid">
-      <a href="https://www.midjourney.com" target="_blank" class="tool-card" data-cat="image"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.midjourney.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">M</div><span class="card-name">Midjourney</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">The gold standard for AI art. Stunning quality for marketing visuals, brand concepts, and creative campaigns.</p><div class="card-tags"><span class="tag">Art</span><span class="tag">Branding</span></div><span class="card-url">midjourney.com</span></a>
-      <a href="https://ideogram.ai" target="_blank" class="tool-card" data-cat="image"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=ideogram.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">I</div><span class="card-name">Ideogram</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Best AI image generator for text rendering. Creates images with readable, stylized typography built in.</p><div class="card-tags"><span class="tag">Typography</span><span class="tag">Text in Images</span></div><span class="card-url">ideogram.ai</span></a>
-      <a href="https://visualelectric.com" target="_blank" class="tool-card" data-cat="image"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=visualelectric.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">V</div><span class="card-name">Visual Electric</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Designer-focused AI image generation. Mood board interface, style locking, brand color matching.</p><div class="card-tags"><span class="tag">Designer Tool</span><span class="tag">Mood Board</span></div><span class="card-url">visualelectric.com</span></a>
-      <a href="https://www.adobe.com/products/firefly.html" target="_blank" class="tool-card" data-cat="image"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.adobe.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">A</div><span class="card-name">Adobe Firefly</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Commercially safe AI image generation trained on licensed content. Integrated into Photoshop and Creative Cloud.</p><div class="card-tags"><span class="tag">Commercial</span><span class="tag">Photoshop</span></div><span class="card-url">adobe.com/firefly</span></a>
-      <a href="https://stability.ai" target="_blank" class="tool-card" data-cat="image"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=stability.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">Stable Diffusion</span></div><div class="pricing-dot p-free"></div></div><p class="card-desc">Open-source AI image model. Runs locally or via API. Extremely customizable for developers and advanced users.</p><div class="card-tags"><span class="tag">Open Source</span><span class="tag">API</span></div><span class="card-url">stability.ai</span></a>
-      <a href="https://www.tryleap.ai" target="_blank" class="tool-card" data-cat="image"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.tryleap.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">L</div><span class="card-name">Leap AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Fast AI image generation with multiple models. Content detection tools make it useful for marketers checking AI-generated copy.</p><div class="card-tags"><span class="tag">Image Gen</span><span class="tag">AI Detection</span></div><span class="card-url">tryleap.ai</span></a>
-      <a href="https://www.freepik.com/ai" target="_blank" class="tool-card" data-cat="image"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.freepik.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">F</div><span class="card-name">Freepik AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI image generation with access to Freepik's vast commercial asset library. Good for marketing use cases.</p><div class="card-tags"><span class="tag">Commercial</span><span class="tag">Stock Library</span></div><span class="card-url">freepik.com</span></a>
+      <a href="https://www.midjourney.com" target="_blank" class="tool-card" data-cat="image"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.midjourney.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">M</div><span class="card-name">Midjourney</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">The gold standard for AI art. Stunning quality for marketing visuals, brand concepts, and creative campaigns.</p><div class="card-tags"><span class="tag">Art</span><span class="tag">Branding</span></div><span class="card-url">midjourney.com</span></a>
+      <a href="https://ideogram.ai" target="_blank" class="tool-card" data-cat="image"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/ideogram.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">I</div><span class="card-name">Ideogram</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Best AI image generator for text rendering. Creates images with readable, stylized typography built in.</p><div class="card-tags"><span class="tag">Typography</span><span class="tag">Text in Images</span></div><span class="card-url">ideogram.ai</span></a>
+      <a href="https://visualelectric.com" target="_blank" class="tool-card" data-cat="image"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/visualelectric.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">V</div><span class="card-name">Visual Electric</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Designer-focused AI image generation. Mood board interface, style locking, brand color matching.</p><div class="card-tags"><span class="tag">Designer Tool</span><span class="tag">Mood Board</span></div><span class="card-url">visualelectric.com</span></a>
+      <a href="https://www.adobe.com/products/firefly.html" target="_blank" class="tool-card" data-cat="image"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.adobe.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">A</div><span class="card-name">Adobe Firefly</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Commercially safe AI image generation trained on licensed content. Integrated into Photoshop and Creative Cloud.</p><div class="card-tags"><span class="tag">Commercial</span><span class="tag">Photoshop</span></div><span class="card-url">adobe.com/firefly</span></a>
+      <a href="https://stability.ai" target="_blank" class="tool-card" data-cat="image"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/stability.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">Stable Diffusion</span></div><div class="pricing-dot p-free"></div></div><p class="card-desc">Open-source AI image model. Runs locally or via API. Extremely customizable for developers and advanced users.</p><div class="card-tags"><span class="tag">Open Source</span><span class="tag">API</span></div><span class="card-url">stability.ai</span></a>
+      <a href="https://www.tryleap.ai" target="_blank" class="tool-card" data-cat="image"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.tryleap.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">L</div><span class="card-name">Leap AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Fast AI image generation with multiple models. Content detection tools make it useful for marketers checking AI-generated copy.</p><div class="card-tags"><span class="tag">Image Gen</span><span class="tag">AI Detection</span></div><span class="card-url">tryleap.ai</span></a>
+      <a href="https://www.freepik.com/ai" target="_blank" class="tool-card" data-cat="image"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.freepik.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">F</div><span class="card-name">Freepik AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI image generation with access to Freepik's vast commercial asset library. Good for marketing use cases.</p><div class="card-tags"><span class="tag">Commercial</span><span class="tag">Stock Library</span></div><span class="card-url">freepik.com</span></a>
     </div>
   </div>
 
@@ -607,12 +663,12 @@ footer strong { color:var(--cream-dim); }
   <div class="tool-cat-section" data-cat="content">
     <div class="cat-head"><div class="cat-emoji" style="background:rgba(201,169,110,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#c9a96e" xmlns="http://www.w3.org/2000/svg"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><span class="cat-name">Content Writing & Copywriting</span><span class="cat-tally">12+ tools</span></div>
     <div class="tool-grid">
-      <a href="https://www.jasper.ai" target="_blank" class="tool-card" data-cat="content"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.jasper.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">J</div><span class="card-name">Jasper AI</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Enterprise AI writing for marketing teams. Brand voice training, campaign templates, and long-form content at scale.</p><div class="card-tags"><span class="tag">Brand Voice</span><span class="tag">Enterprise</span></div><span class="card-url">jasper.ai</span></a>
-      <a href="https://www.copy.ai" target="_blank" class="tool-card" data-cat="content"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.copy.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">Copy.ai</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Marketing copy in seconds. Email subject lines, ad copy, product descriptions, and social posts with strong templates.</p><div class="card-tags"><span class="tag">Ad Copy</span><span class="tag">Email</span></div><span class="card-url">copy.ai</span></a>
-      <a href="https://www.writesonic.com" target="_blank" class="tool-card" data-cat="content"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.writesonic.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">W</div><span class="card-name">Writesonic</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">SEO-optimized blogs, landing pages, and social copy. Chatsonic with web access for current content generation.</p><div class="card-tags"><span class="tag">SEO</span><span class="tag">Blog</span></div><span class="card-url">writesonic.com</span></a>
-      <a href="https://www.grammarly.com" target="_blank" class="tool-card" data-cat="content"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.grammarly.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">G</div><span class="card-name">Grammarly</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI writing assistant beyond grammar — tone detection, clarity suggestions, and generative writing in any browser.</p><div class="card-tags"><span class="tag">Grammar</span><span class="tag">Tone</span></div><span class="card-url">grammarly.com</span></a>
-      <a href="https://hix.ai" target="_blank" class="tool-card" data-cat="content"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=hix.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">H</div><span class="card-name">Hix AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">All-in-one AI content suite — articles, social posts, emails, and paraphrasing with 120+ writing tools.</p><div class="card-tags"><span class="tag">All-in-One</span><span class="tag">120+ Tools</span></div><span class="card-url">hix.ai</span></a>
-      <a href="https://hypotenuse.ai" target="_blank" class="tool-card" data-cat="content"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=hypotenuse.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">H</div><span class="card-name">Hypotenuse AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI content for ecommerce. Bulk-generate product descriptions, ads, and blog content from product data.</p><div class="card-tags"><span class="tag">Ecommerce</span><span class="tag">Product Desc</span></div><span class="card-url">hypotenuse.ai</span></a>
+      <a href="https://www.jasper.ai" target="_blank" class="tool-card" data-cat="content"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.jasper.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">J</div><span class="card-name">Jasper AI</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Enterprise AI writing for marketing teams. Brand voice training, campaign templates, and long-form content at scale.</p><div class="card-tags"><span class="tag">Brand Voice</span><span class="tag">Enterprise</span></div><span class="card-url">jasper.ai</span></a>
+      <a href="https://www.copy.ai" target="_blank" class="tool-card" data-cat="content"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.copy.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">Copy.ai</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Marketing copy in seconds. Email subject lines, ad copy, product descriptions, and social posts with strong templates.</p><div class="card-tags"><span class="tag">Ad Copy</span><span class="tag">Email</span></div><span class="card-url">copy.ai</span></a>
+      <a href="https://www.writesonic.com" target="_blank" class="tool-card" data-cat="content"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.writesonic.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">W</div><span class="card-name">Writesonic</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">SEO-optimized blogs, landing pages, and social copy. Chatsonic with web access for current content generation.</p><div class="card-tags"><span class="tag">SEO</span><span class="tag">Blog</span></div><span class="card-url">writesonic.com</span></a>
+      <a href="https://www.grammarly.com" target="_blank" class="tool-card" data-cat="content"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.grammarly.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">G</div><span class="card-name">Grammarly</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI writing assistant beyond grammar — tone detection, clarity suggestions, and generative writing in any browser.</p><div class="card-tags"><span class="tag">Grammar</span><span class="tag">Tone</span></div><span class="card-url">grammarly.com</span></a>
+      <a href="https://hix.ai" target="_blank" class="tool-card" data-cat="content"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/hix.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">H</div><span class="card-name">Hix AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">All-in-one AI content suite — articles, social posts, emails, and paraphrasing with 120+ writing tools.</p><div class="card-tags"><span class="tag">All-in-One</span><span class="tag">120+ Tools</span></div><span class="card-url">hix.ai</span></a>
+      <a href="https://hypotenuse.ai" target="_blank" class="tool-card" data-cat="content"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/hypotenuse.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">H</div><span class="card-name">Hypotenuse AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI content for ecommerce. Bulk-generate product descriptions, ads, and blog content from product data.</p><div class="card-tags"><span class="tag">Ecommerce</span><span class="tag">Product Desc</span></div><span class="card-url">hypotenuse.ai</span></a>
     </div>
   </div>
 
@@ -620,12 +676,12 @@ footer strong { color:var(--cream-dim); }
   <div class="tool-cat-section" data-cat="seo">
     <div class="cat-head"><div class="cat-emoji" style="background:rgba(126,207,158,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#7ecf9e" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div><span class="cat-name">SEO & AI Blogging</span><span class="cat-tally">10+ tools</span></div>
     <div class="tool-grid">
-      <a href="https://www.surfer.seo" target="_blank" class="tool-card" data-cat="seo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.surfer.seo&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">Surfer SEO</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Write and optimize content simultaneously with real-time scoring based on top-ranking competitor page analysis.</p><div class="card-tags"><span class="tag">Content Optimization</span><span class="tag">SERP</span></div><span class="card-url">surfer.seo</span></a>
-      <a href="https://www.frase.io" target="_blank" class="tool-card" data-cat="seo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.frase.io&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">F</div><span class="card-name">Frase.io</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Research, outline, write, and optimize articles based on what's ranking for your target keywords — in one workflow.</p><div class="card-tags"><span class="tag">Research</span><span class="tag">Outlining</span></div><span class="card-url">frase.io</span></a>
-      <a href="https://seo.ai" target="_blank" class="tool-card" data-cat="seo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=seo.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">SEO.ai</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">AI SEO writer that researches keywords, generates briefs, writes, and optimizes — full workflow in one tool.</p><div class="card-tags"><span class="tag">Full Workflow</span><span class="tag">Keywords</span></div><span class="card-url">seo.ai</span></a>
-      <a href="https://seowriting.ai" target="_blank" class="tool-card" data-cat="seo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=seowriting.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">SEO Writing AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">One-click SEO articles with images, auto-post to WordPress. Generates optimized articles with NLP keywords fast.</p><div class="card-tags"><span class="tag">Auto-Post</span><span class="tag">WordPress</span></div><span class="card-url">seowriting.ai</span></a>
-      <a href="https://junia.ai" target="_blank" class="tool-card" data-cat="seo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=junia.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">J</div><span class="card-name">Junia AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI blog writer trained on SEO. Long-form articles with internal linking, FAQ, and schema markup included.</p><div class="card-tags"><span class="tag">Long-Form</span><span class="tag">Schema</span></div><span class="card-url">junia.ai</span></a>
-      <a href="https://gizzmo.ai" target="_blank" class="tool-card" data-cat="seo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=gizzmo.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">G</div><span class="card-name">Gizzmo</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI article writer for affiliate and product review content. Optimized for Amazon affiliate articles with schema markup.</p><div class="card-tags"><span class="tag">Affiliate</span><span class="tag">Product Reviews</span></div><span class="card-url">gizzmo.ai</span></a>
+      <a href="https://www.surfer.seo" target="_blank" class="tool-card" data-cat="seo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.surfer.seo" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">Surfer SEO</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Write and optimize content simultaneously with real-time scoring based on top-ranking competitor page analysis.</p><div class="card-tags"><span class="tag">Content Optimization</span><span class="tag">SERP</span></div><span class="card-url">surfer.seo</span></a>
+      <a href="https://www.frase.io" target="_blank" class="tool-card" data-cat="seo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.frase.io" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">F</div><span class="card-name">Frase.io</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Research, outline, write, and optimize articles based on what's ranking for your target keywords — in one workflow.</p><div class="card-tags"><span class="tag">Research</span><span class="tag">Outlining</span></div><span class="card-url">frase.io</span></a>
+      <a href="https://seo.ai" target="_blank" class="tool-card" data-cat="seo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/seo.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">SEO.ai</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">AI SEO writer that researches keywords, generates briefs, writes, and optimizes — full workflow in one tool.</p><div class="card-tags"><span class="tag">Full Workflow</span><span class="tag">Keywords</span></div><span class="card-url">seo.ai</span></a>
+      <a href="https://seowriting.ai" target="_blank" class="tool-card" data-cat="seo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/seowriting.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">SEO Writing AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">One-click SEO articles with images, auto-post to WordPress. Generates optimized articles with NLP keywords fast.</p><div class="card-tags"><span class="tag">Auto-Post</span><span class="tag">WordPress</span></div><span class="card-url">seowriting.ai</span></a>
+      <a href="https://junia.ai" target="_blank" class="tool-card" data-cat="seo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/junia.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">J</div><span class="card-name">Junia AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI blog writer trained on SEO. Long-form articles with internal linking, FAQ, and schema markup included.</p><div class="card-tags"><span class="tag">Long-Form</span><span class="tag">Schema</span></div><span class="card-url">junia.ai</span></a>
+      <a href="https://gizzmo.ai" target="_blank" class="tool-card" data-cat="seo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/gizzmo.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">G</div><span class="card-name">Gizzmo</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI article writer for affiliate and product review content. Optimized for Amazon affiliate articles with schema markup.</p><div class="card-tags"><span class="tag">Affiliate</span><span class="tag">Product Reviews</span></div><span class="card-url">gizzmo.ai</span></a>
     </div>
   </div>
 
@@ -633,11 +689,11 @@ footer strong { color:var(--cream-dim); }
   <div class="tool-cat-section" data-cat="social">
     <div class="cat-head"><div class="cat-emoji" style="background:rgba(122,179,224,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#7ab3e0" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div><span class="cat-name">Social Media Management</span><span class="cat-tally">10+ tools</span></div>
     <div class="tool-grid">
-      <a href="https://www.socialpilot.co" target="_blank" class="tool-card" data-cat="social"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.socialpilot.co&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">SocialPilot</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Social scheduling and analytics for agencies. Bulk scheduling, AI captions, and white-label reporting.</p><div class="card-tags"><span class="tag">Scheduling</span><span class="tag">Analytics</span></div><span class="card-url">socialpilot.co</span></a>
-      <a href="https://www.brandwatch.com" target="_blank" class="tool-card" data-cat="social"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.brandwatch.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">B</div><span class="card-name">Brandwatch</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">AI-powered social listening and consumer intelligence. Monitor brand mentions, sentiment, and competitors at scale.</p><div class="card-tags"><span class="tag">Listening</span><span class="tag">Sentiment</span></div><span class="card-url">brandwatch.com</span></a>
-      <a href="https://marky.ai" target="_blank" class="tool-card" data-cat="social"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=marky.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">M</div><span class="card-name">Marky</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI social content on autopilot. Set your brand voice, get weeks of social content generated automatically.</p><div class="card-tags"><span class="tag">Autopilot</span><span class="tag">Brand Voice</span></div><span class="card-url">marky.ai</span></a>
-      <a href="https://www.nuelink.com" target="_blank" class="tool-card" data-cat="social"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.nuelink.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">N</div><span class="card-name">Nuelink</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Social automation with AI content generation. Auto-fill your calendar from RSS, YouTube, Shopify, and more.</p><div class="card-tags"><span class="tag">Automation</span><span class="tag">Content Calendar</span></div><span class="card-url">nuelink.com</span></a>
-      <a href="https://www.rapidely.com" target="_blank" class="tool-card" data-cat="social"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.rapidely.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">R</div><span class="card-name">Rapidely</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Create month-long content calendars in minutes. Branded content across all major platforms.</p><div class="card-tags"><span class="tag">Content Calendar</span><span class="tag">Monthly Planning</span></div><span class="card-url">rapidely.com</span></a>
+      <a href="https://www.socialpilot.co" target="_blank" class="tool-card" data-cat="social"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.socialpilot.co" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">SocialPilot</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Social scheduling and analytics for agencies. Bulk scheduling, AI captions, and white-label reporting.</p><div class="card-tags"><span class="tag">Scheduling</span><span class="tag">Analytics</span></div><span class="card-url">socialpilot.co</span></a>
+      <a href="https://www.brandwatch.com" target="_blank" class="tool-card" data-cat="social"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.brandwatch.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">B</div><span class="card-name">Brandwatch</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">AI-powered social listening and consumer intelligence. Monitor brand mentions, sentiment, and competitors at scale.</p><div class="card-tags"><span class="tag">Listening</span><span class="tag">Sentiment</span></div><span class="card-url">brandwatch.com</span></a>
+      <a href="https://marky.ai" target="_blank" class="tool-card" data-cat="social"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/marky.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">M</div><span class="card-name">Marky</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI social content on autopilot. Set your brand voice, get weeks of social content generated automatically.</p><div class="card-tags"><span class="tag">Autopilot</span><span class="tag">Brand Voice</span></div><span class="card-url">marky.ai</span></a>
+      <a href="https://www.nuelink.com" target="_blank" class="tool-card" data-cat="social"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.nuelink.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">N</div><span class="card-name">Nuelink</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Social automation with AI content generation. Auto-fill your calendar from RSS, YouTube, Shopify, and more.</p><div class="card-tags"><span class="tag">Automation</span><span class="tag">Content Calendar</span></div><span class="card-url">nuelink.com</span></a>
+      <a href="https://www.rapidely.com" target="_blank" class="tool-card" data-cat="social"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.rapidely.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">R</div><span class="card-name">Rapidely</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Create month-long content calendars in minutes. Branded content across all major platforms.</p><div class="card-tags"><span class="tag">Content Calendar</span><span class="tag">Monthly Planning</span></div><span class="card-url">rapidely.com</span></a>
     </div>
   </div>
 
@@ -645,11 +701,11 @@ footer strong { color:var(--cream-dim); }
   <div class="tool-cat-section" data-cat="presentation">
     <div class="cat-head"><div class="cat-emoji" style="background:rgba(201,169,110,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#c9a96e" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 8h2v5H7z" fill="rgba(201,169,110,0.3)"/><path d="M11 10h2v3h-2z" fill="rgba(201,169,110,0.3)"/><path d="M15 7h2v6h-2z" fill="rgba(201,169,110,0.3)"/></svg></div><span class="cat-name">Presentations & Slides</span><span class="cat-tally">10+ tools</span></div>
     <div class="tool-grid">
-      <a href="https://gamma.app" target="_blank" class="tool-card" data-cat="presentation"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=gamma.app&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">G</div><span class="card-name">Gamma</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI-powered presentations, docs, and websites. Type a prompt, get a beautiful structured deck in seconds.</p><div class="card-tags"><span class="tag">AI Deck</span><span class="tag">Fast</span></div><span class="card-url">gamma.app</span></a>
-      <a href="https://beautiful.ai" target="_blank" class="tool-card" data-cat="presentation"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=beautiful.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">B</div><span class="card-name">Beautiful.ai</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">AI-designed presentations that auto-arrange slides. Smart templates that stay professionally designed as you edit.</p><div class="card-tags"><span class="tag">Smart Design</span><span class="tag">Auto-Format</span></div><span class="card-url">beautiful.ai</span></a>
-      <a href="https://pitch.com" target="_blank" class="tool-card" data-cat="presentation"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=pitch.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">P</div><span class="card-name">Pitch</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Collaborative presentation software with AI generation, real-time collaboration, and deck engagement analytics.</p><div class="card-tags"><span class="tag">Collaboration</span><span class="tag">Analytics</span></div><span class="card-url">pitch.com</span></a>
-      <a href="https://www.decktopus.com" target="_blank" class="tool-card" data-cat="presentation"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.decktopus.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">D</div><span class="card-name">Decktopus AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI presentation builder with auto-generated content, images, and speaker notes built in.</p><div class="card-tags"><span class="tag">AI Generated</span><span class="tag">Speaker Notes</span></div><span class="card-url">decktopus.com</span></a>
-      <a href="https://storydoc.com" target="_blank" class="tool-card" data-cat="presentation"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=storydoc.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">Storydoc</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Interactive business presentations and proposals with scroll-based animations and conversion tracking.</p><div class="card-tags"><span class="tag">Interactive</span><span class="tag">Proposals</span></div><span class="card-url">storydoc.com</span></a>
+      <a href="https://gamma.app" target="_blank" class="tool-card" data-cat="presentation"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/gamma.app" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">G</div><span class="card-name">Gamma</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI-powered presentations, docs, and websites. Type a prompt, get a beautiful structured deck in seconds.</p><div class="card-tags"><span class="tag">AI Deck</span><span class="tag">Fast</span></div><span class="card-url">gamma.app</span></a>
+      <a href="https://beautiful.ai" target="_blank" class="tool-card" data-cat="presentation"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/beautiful.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">B</div><span class="card-name">Beautiful.ai</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">AI-designed presentations that auto-arrange slides. Smart templates that stay professionally designed as you edit.</p><div class="card-tags"><span class="tag">Smart Design</span><span class="tag">Auto-Format</span></div><span class="card-url">beautiful.ai</span></a>
+      <a href="https://pitch.com" target="_blank" class="tool-card" data-cat="presentation"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/pitch.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">P</div><span class="card-name">Pitch</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Collaborative presentation software with AI generation, real-time collaboration, and deck engagement analytics.</p><div class="card-tags"><span class="tag">Collaboration</span><span class="tag">Analytics</span></div><span class="card-url">pitch.com</span></a>
+      <a href="https://www.decktopus.com" target="_blank" class="tool-card" data-cat="presentation"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.decktopus.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">D</div><span class="card-name">Decktopus AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI presentation builder with auto-generated content, images, and speaker notes built in.</p><div class="card-tags"><span class="tag">AI Generated</span><span class="tag">Speaker Notes</span></div><span class="card-url">decktopus.com</span></a>
+      <a href="https://storydoc.com" target="_blank" class="tool-card" data-cat="presentation"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/storydoc.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">Storydoc</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Interactive business presentations and proposals with scroll-based animations and conversion tracking.</p><div class="card-tags"><span class="tag">Interactive</span><span class="tag">Proposals</span></div><span class="card-url">storydoc.com</span></a>
     </div>
   </div>
 
@@ -657,10 +713,10 @@ footer strong { color:var(--cream-dim); }
   <div class="tool-cat-section" data-cat="email">
     <div class="cat-head"><div class="cat-emoji" style="background:rgba(122,179,224,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#7ab3e0" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div><span class="cat-name">Email Writing & Outreach</span><span class="cat-tally">8+ tools</span></div>
     <div class="tool-grid">
-      <a href="https://www.flowrite.com" target="_blank" class="tool-card" data-cat="email"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.flowrite.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">F</div><span class="card-name">Flowrite</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Turn short instructions into ready-to-send emails. Works with Gmail, Outlook, and LinkedIn.</p><div class="card-tags"><span class="tag">Gmail</span><span class="tag">Outlook</span></div><span class="card-url">flowrite.com</span></a>
-      <a href="https://ellie.ai" target="_blank" class="tool-card" data-cat="email"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=ellie.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">E</div><span class="card-name">Ellie AI</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Learns your writing style. Generates personalized replies based on the full email thread context.</p><div class="card-tags"><span class="tag">Personalized</span><span class="tag">Style Learning</span></div><span class="card-url">ellie.ai</span></a>
-      <a href="https://www.beehiiv.com" target="_blank" class="tool-card" data-cat="email"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.beehiiv.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">B</div><span class="card-name">Beehiiv</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Newsletter platform built for growth. AI writing, monetization, referral programs, and deep analytics.</p><div class="card-tags"><span class="tag">Newsletter</span><span class="tag">Monetization</span></div><span class="card-url">beehiiv.com</span></a>
-      <a href="https://nureply.com" target="_blank" class="tool-card" data-cat="email"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=nureply.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">N</div><span class="card-name">Nureply</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">AI cold email outreach. Generates hyper-personalized sequences from LinkedIn and website research.</p><div class="card-tags"><span class="tag">Cold Email</span><span class="tag">Personalization</span></div><span class="card-url">nureply.com</span></a>
+      <a href="https://www.flowrite.com" target="_blank" class="tool-card" data-cat="email"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.flowrite.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">F</div><span class="card-name">Flowrite</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Turn short instructions into ready-to-send emails. Works with Gmail, Outlook, and LinkedIn.</p><div class="card-tags"><span class="tag">Gmail</span><span class="tag">Outlook</span></div><span class="card-url">flowrite.com</span></a>
+      <a href="https://ellie.ai" target="_blank" class="tool-card" data-cat="email"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/ellie.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">E</div><span class="card-name">Ellie AI</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">Learns your writing style. Generates personalized replies based on the full email thread context.</p><div class="card-tags"><span class="tag">Personalized</span><span class="tag">Style Learning</span></div><span class="card-url">ellie.ai</span></a>
+      <a href="https://www.beehiiv.com" target="_blank" class="tool-card" data-cat="email"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.beehiiv.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">B</div><span class="card-name">Beehiiv</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Newsletter platform built for growth. AI writing, monetization, referral programs, and deep analytics.</p><div class="card-tags"><span class="tag">Newsletter</span><span class="tag">Monetization</span></div><span class="card-url">beehiiv.com</span></a>
+      <a href="https://nureply.com" target="_blank" class="tool-card" data-cat="email"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/nureply.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">N</div><span class="card-name">Nureply</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">AI cold email outreach. Generates hyper-personalized sequences from LinkedIn and website research.</p><div class="card-tags"><span class="tag">Cold Email</span><span class="tag">Personalization</span></div><span class="card-url">nureply.com</span></a>
     </div>
   </div>
 
@@ -668,12 +724,12 @@ footer strong { color:var(--cream-dim); }
   <div class="tool-cat-section" data-cat="productivity">
     <div class="cat-head"><div class="cat-emoji" style="background:rgba(122,179,224,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#7ab3e0" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><span class="cat-name">Productivity & Automation</span><span class="cat-tally">8+ tools</span></div>
     <div class="tool-grid">
-      <a href="https://clickup.com" target="_blank" class="tool-card" data-cat="productivity"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=clickup.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">ClickUp</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">All-in-one project management with ClickUp Brain AI — connects tasks, docs, and company knowledge.</p><div class="card-tags"><span class="tag">Tasks</span><span class="tag">AI Brain</span></div><span class="card-url">clickup.com</span></a>
-      <a href="https://reclaim.ai" target="_blank" class="tool-card" data-cat="productivity"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=reclaim.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">R</div><span class="card-name">Reclaim AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI scheduling that protects time for tasks, meetings, and habits. Smart calendar management that fights for focus.</p><div class="card-tags"><span class="tag">Calendar</span><span class="tag">Scheduling</span></div><span class="card-url">reclaim.ai</span></a>
-      <a href="https://zapier.com" target="_blank" class="tool-card" data-cat="productivity"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=zapier.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">Z</div><span class="card-name">Zapier</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Connect 6,000+ apps and automate workflows without code. AI-powered automation for any business process.</p><div class="card-tags"><span class="tag">6000+ Apps</span><span class="tag">No-Code</span></div><span class="card-url">zapier.com</span></a>
-      <a href="https://www.make.com" target="_blank" class="tool-card" data-cat="productivity"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.make.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">M</div><span class="card-name">Make</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Visual automation connecting 1,000+ apps with AI steps — powerful for complex marketing workflows.</p><div class="card-tags"><span class="tag">Visual Automation</span><span class="tag">Workflows</span></div><span class="card-url">make.com</span></a>
-      <a href="https://bardeen.ai" target="_blank" class="tool-card" data-cat="productivity"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=bardeen.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">B</div><span class="card-name">Bardeen</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI browser automation for sales. Scrape, enrich, and sync data between web apps without code.</p><div class="card-tags"><span class="tag">Browser Auto</span><span class="tag">Sales Ops</span></div><span class="card-url">bardeen.ai</span></a>
-      <a href="https://curiosity.ai" target="_blank" class="tool-card" data-cat="productivity"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=curiosity.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">Curiosity AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Search all your apps — Slack, email, Drive, calendar — in one place. AI understands and summarizes files instantly.</p><div class="card-tags"><span class="tag">Unified Search</span><span class="tag">Files</span></div><span class="card-url">curiosity.ai</span></a>
+      <a href="https://clickup.com" target="_blank" class="tool-card" data-cat="productivity"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/clickup.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">ClickUp</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">All-in-one project management with ClickUp Brain AI — connects tasks, docs, and company knowledge.</p><div class="card-tags"><span class="tag">Tasks</span><span class="tag">AI Brain</span></div><span class="card-url">clickup.com</span></a>
+      <a href="https://reclaim.ai" target="_blank" class="tool-card" data-cat="productivity"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/reclaim.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">R</div><span class="card-name">Reclaim AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI scheduling that protects time for tasks, meetings, and habits. Smart calendar management that fights for focus.</p><div class="card-tags"><span class="tag">Calendar</span><span class="tag">Scheduling</span></div><span class="card-url">reclaim.ai</span></a>
+      <a href="https://zapier.com" target="_blank" class="tool-card" data-cat="productivity"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/zapier.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">Z</div><span class="card-name">Zapier</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Connect 6,000+ apps and automate workflows without code. AI-powered automation for any business process.</p><div class="card-tags"><span class="tag">6000+ Apps</span><span class="tag">No-Code</span></div><span class="card-url">zapier.com</span></a>
+      <a href="https://www.make.com" target="_blank" class="tool-card" data-cat="productivity"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.make.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">M</div><span class="card-name">Make</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Visual automation connecting 1,000+ apps with AI steps — powerful for complex marketing workflows.</p><div class="card-tags"><span class="tag">Visual Automation</span><span class="tag">Workflows</span></div><span class="card-url">make.com</span></a>
+      <a href="https://bardeen.ai" target="_blank" class="tool-card" data-cat="productivity"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/bardeen.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">B</div><span class="card-name">Bardeen</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI browser automation for sales. Scrape, enrich, and sync data between web apps without code.</p><div class="card-tags"><span class="tag">Browser Auto</span><span class="tag">Sales Ops</span></div><span class="card-url">bardeen.ai</span></a>
+      <a href="https://curiosity.ai" target="_blank" class="tool-card" data-cat="productivity"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/curiosity.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">Curiosity AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Search all your apps — Slack, email, Drive, calendar — in one place. AI understands and summarizes files instantly.</p><div class="card-tags"><span class="tag">Unified Search</span><span class="tag">Files</span></div><span class="card-url">curiosity.ai</span></a>
     </div>
   </div>
 
@@ -681,10 +737,10 @@ footer strong { color:var(--cream-dim); }
   <div class="tool-cat-section" data-cat="data">
     <div class="cat-head"><div class="cat-emoji" style="background:rgba(126,207,158,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#7ecf9e" xmlns="http://www.w3.org/2000/svg"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><span class="cat-name">Data, Analytics & Research</span><span class="cat-tally">8+ tools</span></div>
     <div class="tool-grid">
-      <a href="https://www.browse.ai" target="_blank" class="tool-card" data-cat="data"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.browse.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">B</div><span class="card-name">Browse AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Scrape any website without code. Pre-built robots for competitor pricing, LinkedIn data extraction. 50 free credits/month.</p><div class="card-tags"><span class="tag">Web Scraping</span><span class="tag">Competitor Intel</span></div><span class="card-url">browse.ai</span></a>
-      <a href="https://coefficient.io" target="_blank" class="tool-card" data-cat="data"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=coefficient.io&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">Coefficient</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Import live data from Salesforce, HubSpot, and Analytics into Google Sheets. Auto-refresh and AI analysis.</p><div class="card-tags"><span class="tag">Live Data</span><span class="tag">CRM Sync</span></div><span class="card-url">coefficient.io</span></a>
-      <a href="https://julius.ai" target="_blank" class="tool-card" data-cat="data"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=julius.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">J</div><span class="card-name">Julius AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Chat with your data. Upload spreadsheets and ask questions in plain language to get charts and insights.</p><div class="card-tags"><span class="tag">Chat with Data</span><span class="tag">Charts</span></div><span class="card-url">julius.ai</span></a>
-      <a href="https://www.otter.ai" target="_blank" class="tool-card" data-cat="data"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.otter.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">O</div><span class="card-name">Otter.ai</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Real-time meeting transcription. Captures action items and key takeaways from Zoom, Teams, and Meet.</p><div class="card-tags"><span class="tag">Transcription</span><span class="tag">Meetings</span></div><span class="card-url">otter.ai</span></a>
+      <a href="https://www.browse.ai" target="_blank" class="tool-card" data-cat="data"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.browse.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">B</div><span class="card-name">Browse AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Scrape any website without code. Pre-built robots for competitor pricing, LinkedIn data extraction. 50 free credits/month.</p><div class="card-tags"><span class="tag">Web Scraping</span><span class="tag">Competitor Intel</span></div><span class="card-url">browse.ai</span></a>
+      <a href="https://coefficient.io" target="_blank" class="tool-card" data-cat="data"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/coefficient.io" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">C</div><span class="card-name">Coefficient</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Import live data from Salesforce, HubSpot, and Analytics into Google Sheets. Auto-refresh and AI analysis.</p><div class="card-tags"><span class="tag">Live Data</span><span class="tag">CRM Sync</span></div><span class="card-url">coefficient.io</span></a>
+      <a href="https://julius.ai" target="_blank" class="tool-card" data-cat="data"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/julius.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">J</div><span class="card-name">Julius AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Chat with your data. Upload spreadsheets and ask questions in plain language to get charts and insights.</p><div class="card-tags"><span class="tag">Chat with Data</span><span class="tag">Charts</span></div><span class="card-url">julius.ai</span></a>
+      <a href="https://www.otter.ai" target="_blank" class="tool-card" data-cat="data"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.otter.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">O</div><span class="card-name">Otter.ai</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Real-time meeting transcription. Captures action items and key takeaways from Zoom, Teams, and Meet.</p><div class="card-tags"><span class="tag">Transcription</span><span class="tag">Meetings</span></div><span class="card-url">otter.ai</span></a>
     </div>
   </div>
 
@@ -692,10 +748,10 @@ footer strong { color:var(--cream-dim); }
   <div class="tool-cat-section" data-cat="website">
     <div class="cat-head"><div class="cat-emoji" style="background:rgba(196,120,138,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#c4788a" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><span class="cat-name">Website Building</span><span class="cat-tally">8+ tools</span></div>
     <div class="tool-grid">
-      <a href="https://framer.com" target="_blank" class="tool-card" data-cat="website"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=framer.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">F</div><span class="card-name">Framer AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Describe your site in a sentence and watch it build. Beautiful responsive sites with AI copy and CMS.</p><div class="card-tags"><span class="tag">AI Build</span><span class="tag">Design</span></div><span class="card-url">framer.com</span></a>
-      <a href="https://webflow.com" target="_blank" class="tool-card" data-cat="website"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=webflow.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">W</div><span class="card-name">Webflow</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Professional no-code web design with AI. Full design control without developers for marketing teams.</p><div class="card-tags"><span class="tag">No-Code</span><span class="tag">CMS</span></div><span class="card-url">webflow.com</span></a>
-      <a href="https://www.durable.co" target="_blank" class="tool-card" data-cat="website"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.durable.co&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">D</div><span class="card-name">Durable AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Build a complete business website in 30 seconds. AI generates copy, images, and structure from your business type.</p><div class="card-tags"><span class="tag">30-Second Build</span><span class="tag">Small Biz</span></div><span class="card-url">durable.co</span></a>
-      <a href="https://uizard.io" target="_blank" class="tool-card" data-cat="website"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=uizard.io&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">U</div><span class="card-name">Uizard</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI UI design. Generate multi-screen mockups from text. Screenshot to editable prototype in seconds.</p><div class="card-tags"><span class="tag">UI Mockups</span><span class="tag">Prototyping</span></div><span class="card-url">uizard.io</span></a>
+      <a href="https://framer.com" target="_blank" class="tool-card" data-cat="website"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/framer.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">F</div><span class="card-name">Framer AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Describe your site in a sentence and watch it build. Beautiful responsive sites with AI copy and CMS.</p><div class="card-tags"><span class="tag">AI Build</span><span class="tag">Design</span></div><span class="card-url">framer.com</span></a>
+      <a href="https://webflow.com" target="_blank" class="tool-card" data-cat="website"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/webflow.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">W</div><span class="card-name">Webflow</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Professional no-code web design with AI. Full design control without developers for marketing teams.</p><div class="card-tags"><span class="tag">No-Code</span><span class="tag">CMS</span></div><span class="card-url">webflow.com</span></a>
+      <a href="https://www.durable.co" target="_blank" class="tool-card" data-cat="website"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.durable.co" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">D</div><span class="card-name">Durable AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Build a complete business website in 30 seconds. AI generates copy, images, and structure from your business type.</p><div class="card-tags"><span class="tag">30-Second Build</span><span class="tag">Small Biz</span></div><span class="card-url">durable.co</span></a>
+      <a href="https://uizard.io" target="_blank" class="tool-card" data-cat="website"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/uizard.io" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">U</div><span class="card-name">Uizard</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI UI design. Generate multi-screen mockups from text. Screenshot to editable prototype in seconds.</p><div class="card-tags"><span class="tag">UI Mockups</span><span class="tag">Prototyping</span></div><span class="card-url">uizard.io</span></a>
     </div>
   </div>
 
@@ -703,10 +759,10 @@ footer strong { color:var(--cream-dim); }
   <div class="tool-cat-section" data-cat="logo">
     <div class="cat-head"><div class="cat-emoji" style="background:rgba(196,120,138,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#c4788a" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg></div><span class="cat-name">Logo Makers & Brand Identity</span><span class="cat-tally">6+ tools</span></div>
     <div class="tool-grid">
-      <a href="https://looka.com" target="_blank" class="tool-card" data-cat="logo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=looka.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">L</div><span class="card-name">Looka</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI logo maker and brand kit generator. Professional logos with full identity package — fonts, colors, templates.</p><div class="card-tags"><span class="tag">Logo</span><span class="tag">Brand Kit</span></div><span class="card-url">looka.com</span></a>
-      <a href="https://www.namelix.com" target="_blank" class="tool-card" data-cat="logo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.namelix.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">N</div><span class="card-name">Namelix</span></div><div class="pricing-dot p-free"></div></div><p class="card-desc">AI business name and logo concept generator. Fast ideation for brand names, taglines, and initial logo directions.</p><div class="card-tags"><span class="tag">Naming</span><span class="tag">Logo Concepts</span></div><span class="card-url">namelix.com</span></a>
-      <a href="https://tailorbrands.com" target="_blank" class="tool-card" data-cat="logo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=tailorbrands.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">T</div><span class="card-name">Tailor Brands</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Full business identity platform — logo, website, business cards, and social branding all from one AI platform.</p><div class="card-tags"><span class="tag">Full Identity</span><span class="tag">Business Cards</span></div><span class="card-url">tailorbrands.com</span></a>
-      <a href="https://turbologo.com" target="_blank" class="tool-card" data-cat="logo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=turbologo.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">T</div><span class="card-name">Turbologo</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI logo generator with SVG export. Hundreds of icon options with full colour and font customization.</p><div class="card-tags"><span class="tag">SVG Export</span><span class="tag">Customizable</span></div><span class="card-url">turbologo.com</span></a>
+      <a href="https://looka.com" target="_blank" class="tool-card" data-cat="logo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/looka.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">L</div><span class="card-name">Looka</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI logo maker and brand kit generator. Professional logos with full identity package — fonts, colors, templates.</p><div class="card-tags"><span class="tag">Logo</span><span class="tag">Brand Kit</span></div><span class="card-url">looka.com</span></a>
+      <a href="https://www.namelix.com" target="_blank" class="tool-card" data-cat="logo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.namelix.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">N</div><span class="card-name">Namelix</span></div><div class="pricing-dot p-free"></div></div><p class="card-desc">AI business name and logo concept generator. Fast ideation for brand names, taglines, and initial logo directions.</p><div class="card-tags"><span class="tag">Naming</span><span class="tag">Logo Concepts</span></div><span class="card-url">namelix.com</span></a>
+      <a href="https://tailorbrands.com" target="_blank" class="tool-card" data-cat="logo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/tailorbrands.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">T</div><span class="card-name">Tailor Brands</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Full business identity platform — logo, website, business cards, and social branding all from one AI platform.</p><div class="card-tags"><span class="tag">Full Identity</span><span class="tag">Business Cards</span></div><span class="card-url">tailorbrands.com</span></a>
+      <a href="https://turbologo.com" target="_blank" class="tool-card" data-cat="logo"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/turbologo.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">T</div><span class="card-name">Turbologo</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">AI logo generator with SVG export. Hundreds of icon options with full colour and font customization.</p><div class="card-tags"><span class="tag">SVG Export</span><span class="tag">Customizable</span></div><span class="card-url">turbologo.com</span></a>
     </div>
   </div>
 
@@ -714,10 +770,10 @@ footer strong { color:var(--cream-dim); }
   <div class="tool-cat-section" data-cat="tts">
     <div class="cat-head"><div class="cat-emoji" style="background:rgba(201,169,110,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#c9a96e" xmlns="http://www.w3.org/2000/svg"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></div><span class="cat-name">Text-to-Speech & Voice AI</span><span class="cat-tally">8+ tools</span></div>
     <div class="tool-grid">
-      <a href="https://elevenlabs.io" target="_blank" class="tool-card" data-cat="tts"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=elevenlabs.io&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">E</div><span class="card-name">ElevenLabs</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">The most realistic AI voice generation. Clone voices, generate narration in 29 languages, build voice applications.</p><div class="card-tags"><span class="tag">Voice Cloning</span><span class="tag">API</span></div><span class="card-url">elevenlabs.io</span></a>
-      <a href="https://murf.ai" target="_blank" class="tool-card" data-cat="tts"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=murf.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">M</div><span class="card-name">Murf AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Studio-quality AI voiceover with 120+ voices in 20 languages. Perfect for explainer videos and podcasts.</p><div class="card-tags"><span class="tag">120+ Voices</span><span class="tag">Multilingual</span></div><span class="card-url">murf.ai</span></a>
-      <a href="https://play.ht" target="_blank" class="tool-card" data-cat="tts"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=play.ht&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">P</div><span class="card-name">Play.ht</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Ultra-realistic AI voices for podcasts, videos, and apps with voice cloning capabilities.</p><div class="card-tags"><span class="tag">Podcast</span><span class="tag">Voice Clone</span></div><span class="card-url">play.ht</span></a>
-      <a href="https://www.speechify.com" target="_blank" class="tool-card" data-cat="tts"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.speechify.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">Speechify</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Listen to anything — articles, PDFs, books, emails — at up to 4.5x speed. Great for productivity.</p><div class="card-tags"><span class="tag">Read Aloud</span><span class="tag">Productivity</span></div><span class="card-url">speechify.com</span></a>
+      <a href="https://elevenlabs.io" target="_blank" class="tool-card" data-cat="tts"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/elevenlabs.io" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">E</div><span class="card-name">ElevenLabs</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">The most realistic AI voice generation. Clone voices, generate narration in 29 languages, build voice applications.</p><div class="card-tags"><span class="tag">Voice Cloning</span><span class="tag">API</span></div><span class="card-url">elevenlabs.io</span></a>
+      <a href="https://murf.ai" target="_blank" class="tool-card" data-cat="tts"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/murf.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">M</div><span class="card-name">Murf AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Studio-quality AI voiceover with 120+ voices in 20 languages. Perfect for explainer videos and podcasts.</p><div class="card-tags"><span class="tag">120+ Voices</span><span class="tag">Multilingual</span></div><span class="card-url">murf.ai</span></a>
+      <a href="https://play.ht" target="_blank" class="tool-card" data-cat="tts"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/play.ht" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">P</div><span class="card-name">Play.ht</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Ultra-realistic AI voices for podcasts, videos, and apps with voice cloning capabilities.</p><div class="card-tags"><span class="tag">Podcast</span><span class="tag">Voice Clone</span></div><span class="card-url">play.ht</span></a>
+      <a href="https://www.speechify.com" target="_blank" class="tool-card" data-cat="tts"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.speechify.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">S</div><span class="card-name">Speechify</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Listen to anything — articles, PDFs, books, emails — at up to 4.5x speed. Great for productivity.</p><div class="card-tags"><span class="tag">Read Aloud</span><span class="tag">Productivity</span></div><span class="card-url">speechify.com</span></a>
     </div>
   </div>
 
@@ -725,10 +781,10 @@ footer strong { color:var(--cream-dim); }
   <div class="tool-cat-section" data-cat="marketing">
     <div class="cat-head"><div class="cat-emoji" style="background:rgba(196,120,138,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#c4788a" xmlns="http://www.w3.org/2000/svg"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span class="cat-name">Marketing & Growth</span><span class="cat-tally">6+ tools</span></div>
     <div class="tool-grid">
-      <a href="https://www.hubspot.com" target="_blank" class="tool-card" data-cat="marketing"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.hubspot.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">H</div><span class="card-name">HubSpot AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">CRM with AI-powered marketing, sales, and service. AI content assistant, predictive lead scoring, conversation intelligence.</p><div class="card-tags"><span class="tag">CRM</span><span class="tag">Lead Scoring</span></div><span class="card-url">hubspot.com</span></a>
-      <a href="https://www.adcreative.ai" target="_blank" class="tool-card" data-cat="marketing"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=www.adcreative.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">A</div><span class="card-name">AdCreative.ai</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Generate high-converting ad creatives. Trained on billions of ad data points for images, copy, and complete ad sets.</p><div class="card-tags"><span class="tag">Ad Creative</span><span class="tag">Social Ads</span></div><span class="card-url">adcreative.ai</span></a>
-      <a href="https://digitalfirst.ai" target="_blank" class="tool-card" data-cat="marketing"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=digitalfirst.ai&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">D</div><span class="card-name">Digital First AI</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">AI marketing strategy builder. Customized tactics and content plans based on your business goals and audience.</p><div class="card-tags"><span class="tag">Strategy</span><span class="tag">Content Plan</span></div><span class="card-url">digitalfirst.ai</span></a>
-      <a href="https://vidiq.com" target="_blank" class="tool-card" data-cat="marketing"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://www.google.com/s2/favicons?domain=vidiq.com&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-fallback" style="display:none">V</div><span class="card-name">VidIQ</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">YouTube growth platform with AI coach. Keyword research, competitor analysis, and AI title/thumbnail suggestions.</p><div class="card-tags"><span class="tag">YouTube Growth</span><span class="tag">Keywords</span></div><span class="card-url">vidiq.com</span></a>
+      <a href="https://www.hubspot.com" target="_blank" class="tool-card" data-cat="marketing"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.hubspot.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">H</div><span class="card-name">HubSpot AI</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">CRM with AI-powered marketing, sales, and service. AI content assistant, predictive lead scoring, conversation intelligence.</p><div class="card-tags"><span class="tag">CRM</span><span class="tag">Lead Scoring</span></div><span class="card-url">hubspot.com</span></a>
+      <a href="https://www.adcreative.ai" target="_blank" class="tool-card" data-cat="marketing"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/www.adcreative.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">A</div><span class="card-name">AdCreative.ai</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">Generate high-converting ad creatives. Trained on billions of ad data points for images, copy, and complete ad sets.</p><div class="card-tags"><span class="tag">Ad Creative</span><span class="tag">Social Ads</span></div><span class="card-url">adcreative.ai</span></a>
+      <a href="https://digitalfirst.ai" target="_blank" class="tool-card" data-cat="marketing"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/digitalfirst.ai" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">D</div><span class="card-name">Digital First AI</span></div><div class="pricing-dot p-paid"></div></div><p class="card-desc">AI marketing strategy builder. Customized tactics and content plans based on your business goals and audience.</p><div class="card-tags"><span class="tag">Strategy</span><span class="tag">Content Plan</span></div><span class="card-url">digitalfirst.ai</span></a>
+      <a href="https://vidiq.com" target="_blank" class="tool-card" data-cat="marketing"><div class="card-top"><div class="card-top-left"><img class="card-logo" src="https://logo.clearbit.com/vidiq.com" alt="" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain='+this.src.replace('https://logo.clearbit.com/','')+'&sz=64';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="card-logo-fallback" style="display:none">V</div><span class="card-name">VidIQ</span></div><div class="pricing-dot p-freemium"></div></div><p class="card-desc">YouTube growth platform with AI coach. Keyword research, competitor analysis, and AI title/thumbnail suggestions.</p><div class="card-tags"><span class="tag">YouTube Growth</span><span class="tag">Keywords</span></div><span class="card-url">vidiq.com</span></a>
     </div>
   </div>
 
@@ -738,7 +794,7 @@ footer strong { color:var(--cream-dim); }
 
 <!-- ========== PROMPTS SECTION ========== -->
 <section class="section" id="prompts">
-<div class="section-wrap">
+<div class="section-wrap" style="padding-top:80px;">
   <h3 style="font-family:var(--serif);font-size:18px;color:var(--gold);margin-bottom:16px;letter-spacing:0.08em;text-transform:uppercase;font-size:12px;">Marketing & Content</h3>
   <div class="prompt-grid">
 
@@ -837,7 +893,7 @@ footer strong { color:var(--cream-dim); }
 
 <!-- ========== AUTOMATIONS SECTION ========== -->
 <section class="section" id="automations">
-<div class="section-wrap">
+<div class="section-wrap" style="padding-top:80px;">
   <div class="auto-grid">
 
     <div class="auto-card">
@@ -1046,7 +1102,7 @@ footer strong { color:var(--cream-dim); }
 
 <!-- ========== COURSES SECTION ========== -->
 <section class="section" id="courses">
-<div class="section-wrap">
+<div class="section-wrap" style="padding-top:80px;">
   <h3 style="font-family:var(--serif);font-size:12px;color:var(--gold);margin-bottom:16px;letter-spacing:0.08em;text-transform:uppercase;">Beginner — Start Here</h3>
   <div class="course-grid">
 
@@ -1150,8 +1206,7 @@ footer strong { color:var(--cream-dim); }
 
   </div>
 
-  <h3 style="font-family:var(--serif);font-size:12px;color:var(--rose);margin:40px 0 8px;letter-spacing:0.08em;text-transform:uppercase;">Top Paid Courses — Worth the Investment</h3>
-  <p style="font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.65;">These paid courses are widely considered the best in their category — recommended by practitioners, not just platforms.</p>
+  <h3 style="font-family:var(--serif);font-size:12px;color:var(--rose);margin:40px 0 20px;letter-spacing:0.08em;text-transform:uppercase;">Top Paid Courses — Worth the Investment</h3>
   <div class="course-grid">
 
     <a href="https://www.coursera.org/professional-certificates/ibm-ai-developer" target="_blank" class="course-card" style="border-color:rgba(196,120,138,0.25);">
@@ -1208,7 +1263,7 @@ footer strong { color:var(--cream-dim); }
 
 <footer>
   <p><strong>Taneil Currie</strong> — Business & AI Automation Consultant</p>
-  <p style="margin-top:6px;"><a href="https://taneilcurrie.com">taneilcurrie.com</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/taneilcurrie">LinkedIn</a> &nbsp;·&nbsp; Updated March 2026</p>
+  <p style="margin-top:6px;"><a href="https://taneilcurrie.com">taneilcurrie.com</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/taneilcurrie">LinkedIn</a></p>
 </footer>
 
 <script>
@@ -1216,13 +1271,28 @@ footer strong { color:var(--cream-dim); }
 function switchSection(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.mobile-menu-item').forEach(t => t.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  document.querySelector(`[data-section="${id}"]`).classList.add('active');
+  document.querySelectorAll(`[data-section="${id}"]`).forEach(el => el.classList.add('active'));
+  // Close mobile menu
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
 document.querySelectorAll('.nav-tab').forEach(tab => {
   tab.addEventListener('click', () => switchSection(tab.dataset.section));
+});
+
+// Hamburger toggle
+document.getElementById('hamburger').addEventListener('click', function() {
+  this.classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+});
+
+// Mobile menu items
+document.querySelectorAll('.mobile-menu-item').forEach(item => {
+  item.addEventListener('click', () => switchSection(item.dataset.section));
 });
 
 // ---- TOOL FILTERS ----
