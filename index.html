@@ -218,6 +218,9 @@ input[type="search"]::placeholder { color:var(--text-muted); }
 .tool-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(270px,1fr)); gap:14px; }
 .tool-cat-section { margin-bottom:56px; }
 .tool-cat-section.hidden { display:none; }
+.cat-block { margin-bottom:56px; }
+.cat-block.hidden { display:none; }
+#toolsContent { padding-top:32px; }
 
 .tool-card {
   background: #ffffff;
@@ -615,6 +618,7 @@ footer strong { color:var(--text); }
 
   <div id="results-info"></div>
 
+  <div id="toolsContent">
   <!-- AI ASSISTANTS -->
   <div class="tool-cat-section" data-cat="ai-assistants">
     <div class="cat-head"><div class="cat-emoji" style="background:rgba(196,120,138,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#c4788a" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26A7 7 0 0 1 12 2z"/><path d="M9 21h6"/><path d="M9 18h6"/></svg></div><span class="cat-name">AI Assistants & LLMs</span><span class="cat-tally">8 tools</span></div>
@@ -2874,6 +2878,7 @@ footer strong { color:var(--text); }
 </a>
   </div>
 </div>
+</div><!-- /toolsContent -->
 </div>
 </section>
 
@@ -3388,16 +3393,18 @@ let activeCat = 'all';
 function filterTools() {
   const q = toolSearch.value.toLowerCase().trim();
   let count = 0;
-  document.querySelectorAll('.tool-cat-section').forEach(sec => {
-    const secCat = sec.dataset.cat;
+  // Handle both old (.tool-cat-section) and new (.cat-block) category containers
+  document.querySelectorAll('.tool-cat-section, .cat-block').forEach(sec => {
+    const secCat = sec.dataset.cat || '';
+    const catMatch = activeCat === 'all' || secCat === activeCat;
     const cards = sec.querySelectorAll('.tool-card');
     let vis = 0;
     cards.forEach(card => {
-      const cat = card.dataset.cat || '';
       const text = card.innerText.toLowerCase();
-      const catOk = activeCat === 'all' || cat.includes(activeCat);
       const qOk = !q || text.includes(q);
-      if (catOk && qOk) { card.classList.remove('hidden'); vis++; count++; }
+      // For filtering: if a category is selected, show all cards in matching section
+      // If searching, show cards that match the query text
+      if (catMatch && qOk) { card.classList.remove('hidden'); vis++; count++; }
       else card.classList.add('hidden');
     });
     sec.classList.toggle('hidden', vis === 0);
@@ -3413,6 +3420,8 @@ toolPills.forEach(p => {
     p.classList.add('active');
     activeCat = p.dataset.cat;
     filterTools();
+    // Scroll to top of tools section smoothly
+    document.getElementById('tools').scrollIntoView({behavior:'smooth', block:'start'});
   });
 });
 if (toolSearch) toolSearch.addEventListener('input', filterTools);
