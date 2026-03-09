@@ -151,13 +151,14 @@ nav {
 }
 .hero h1 {
   font-family: var(--serif);
-  font-size: clamp(60px, 9vw, 110px);
+  font-size: clamp(64px, 10vw, 120px);
   font-weight: 300; font-style: italic;
-  line-height: 1.0; letter-spacing: -0.01em;
+  line-height: 0.95; letter-spacing: -0.02em;
   color: var(--ink); margin-bottom: 28px;
 }
 .hero h1 em {
   font-style: italic; color: var(--mauve);
+  display: inline-block;
 }
 .hero-sub {
   font-size: 17px; font-weight: 400; line-height: 1.75;
@@ -179,7 +180,8 @@ nav {
 }
 @media (max-width: 640px) {
   .hero { padding: 100px 24px 60px; }
-  .hero-stats { gap: 28px; flex-wrap: wrap; }
+  .hero h1 { font-size: clamp(52px, 14vw, 80px); }
+  .hero-stats { gap: 24px; flex-wrap: wrap; }
 }
 
 /* ── SECTION WRAPPER ── */
@@ -544,6 +546,88 @@ footer a:hover { color: var(--indigo); }
 
 /* ── HIDDEN UTIL ── */
 .hidden { display: none !important; }
+
+/* ══════════════════════════════════════
+   MOBILE RESPONSIVE — max-width: 640px
+   ══════════════════════════════════════ */
+@media (max-width: 640px) {
+
+  /* ── Tools page side padding ── */
+  .filter-bar { padding: 12px 16px; }
+  .filter-bar-inner { padding: 0; }
+  #results-info-wrap { padding: 8px 16px 0 !important; }
+  #toolsContent { padding: 16px 16px 0 !important; }
+
+  /* ── Category header — fix wrap on mobile ── */
+  .cat-head, .cat-header {
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+  }
+  .cat-name {
+    font-size: 20px;
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cat-emoji, .cat-icon {
+    width: 32px; height: 32px;
+    flex-shrink: 0;
+  }
+  .cat-tally {
+    flex-shrink: 0;
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+
+  /* ── Tool grid — single column ── */
+  .tool-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  /* ── Prompt grid ── */
+  .prompt-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* ── Auto grid ── */
+  .auto-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* ── Course grid ── */
+  .course-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* ── Section inner padding ── */
+  .section-inner { padding: 60px 16px 40px; }
+
+  /* ── Home grid ── */
+  .home-grid { grid-template-columns: 1fr; gap: 12px; }
+
+  /* ── Hero stats ── */
+  .hero-stats { gap: 24px; flex-wrap: wrap; padding-top: 32px; }
+  .hero-stat-num { font-size: 40px; }
+
+  /* ── Pills wrap properly ── */
+  .pill-row, .cat-pills { gap: 6px; }
+  .cpill { font-size: 10px; padding: 5px 12px; }
+
+  /* ── Pricing legend ── */
+  .pricing-legend { font-size: 10px; gap: 10px; padding: 8px 10px; }
+
+  /* ── Footer ── */
+  footer { padding: 32px 16px; }
+}
 </style>
 </head>
 <body>
@@ -576,7 +660,7 @@ footer a:hover { color: var(--indigo); }
 <section class="section active" id="home">
   <div class="hero">
     <div class="hero-eyebrow">AI Resource Hub</div>
-    <h1>AI Made <em>Practical.</em></h1>
+    <h1>AI Made<br><em>Practical.</em></h1>
     <p class="hero-sub">A curated collection of AI tools, prompts, automation workflows, and free courses. Everything you need to start working smarter with AI.</p>
     <div class="hero-stats">
       <div class="hero-stat">
@@ -637,7 +721,7 @@ footer a:hover { color: var(--indigo); }
 </section>
 
 <!-- ========== TOOLS SECTION ========== -->
-<section class="section" id="tools" style="padding: 0 0 80px;">
+<section class="section" id="tools" style="padding: 0 0 80px; scroll-margin-top: 63px;">
 
 <div class="filter-bar">
   <div class="filter-bar-inner">
@@ -665,24 +749,18 @@ footer a:hover { color: var(--indigo); }
     <button class="cpill" data-cat="businessplanningstrategy">Business Planning</button>
     <button class="cpill" data-cat="calendarscheduling">Calendar & Scheduling</button>
     </div>
+    <div class="pricing-legend" style="margin-top:10px;">
+      <span style="font-size:11px;text-transform:uppercase;letter-spacing:0.1em;margin-right:4px;">Pricing:</span>
+      <div class="legend-item"><div class="legend-dot p-free"></div> Free tier available</div>
+      <div class="legend-item"><div class="legend-dot p-freemium"></div> Freemium</div>
+      <div class="legend-item"><div class="legend-dot p-paid"></div> Paid only</div>
+    </div>
   </div>
 </div>
 
-<div class="section-wrap" style="padding: 0 48px; max-width: 1200px; margin: 0 auto;">
-  <div style="height:16px"></div>
-  <div class="section-intro">
-    <h2 class="section-title">AI Tool <em>Directory</em></h2>
-    <p class="section-sub">285+ tools organized by category. Use the filters to find exactly what you need.</p>
-  </div>
-
-  <div style="height:16px;"></div><div class="pricing-legend">
-    <span style="font-size:11px;text-transform:uppercase;letter-spacing:0.1em;margin-right:4px;">Pricing:</span>
-    <div class="legend-item"><div class="legend-dot p-free"></div> Free tier available</div>
-    <div class="legend-item"><div class="legend-dot p-freemium"></div> Freemium</div>
-    <div class="legend-item"><div class="legend-dot p-paid"></div> Paid only</div>
-  </div>
-
+<div id="results-info-wrap" style="padding: 8px 48px 0; max-width:1200px; margin:0 auto;">
   <div id="results-info"></div>
+
 
   <div id="toolsContent">
   <!-- AI ASSISTANTS -->
